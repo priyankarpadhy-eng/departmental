@@ -1,0 +1,89 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Auth helper
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data;
+    }
+    
+    function hasRole(role) {
+      return isSignedIn() && getUserData().role == role;
+    }
+
+    // Profiles Collection
+    match /profiles/{userId} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || request.auth.uid == userId;
+    }
+
+    // Attendance
+    match /attendance_sessions/{sessionId} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty');
+    }
+
+    match /attendance_records/{recordId} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty') || (isSignedIn() && request.resource.data.student_id == request.auth.uid);
+    }
+
+    match /attendance_summary/{summaryId} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty');
+    }
+
+    // Academic Structure
+    match /departments/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
+    match /batches/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
+    match /semesters/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
+    match /courses/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
+    match /course_offerings/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
+    match /timetable_slots/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
+
+    // Social & Mentorship
+    match /student_posts/{postId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && (resource.data.author_id == request.auth.uid || hasRole('admin'));
+    }
+
+    match /mentorship_requests/{requestId} {
+      allow read: if isSignedIn() && (resource.data.student_id == request.auth.uid || resource.data.alumni_id == request.auth.uid || hasRole('admin'));
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && (resource.data.student_id == request.auth.uid || hasRole('admin'));
+    }
+
+    // Announcements & Resources
+    match /announcements/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin') || hasRole('hod'); }
+    match /materials/{id} { allow read: if isSignedIn(); allow write: if hasRole('faculty') || hasRole('admin'); }
+    match /assignments/{id} { allow read: if isSignedIn(); allow write: if hasRole('faculty') || hasRole('admin'); }
+    match /submissions/{id} { 
+      allow read: if isSignedIn(); 
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && (resource.data.student_id == request.auth.uid || hasRole('faculty') || hasRole('admin'));
+    }
+    
+    // Live Sessions
+    match /live_sessions/{sessionId} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty');
+    }
+
+    // Presence
+    match /admin_presence/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && request.auth.uid == adminId;
+    }
+    
+    // Default fallback
+    match /{document=**} {
+      allow read, write: if hasRole('admin');
+    }
+  }
+}

@@ -1,0 +1,5731 @@
+﻿
+> dept-portal@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/55) ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo          :  
+   NotSpecified: (:String) []  
+  , RemoteException
+    + FullyQualifiedErrorId :  
+   NativeCommandError
+ 
+Error occurred prerendering 
+page "/auth/callback". Read 
+more: https://nextjs.org/docs/m
+essages/prerender-error
+
+Error: Route /auth/callback 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`request.url`.
+    at Object.get (C:\Users\pri
+ya\Documents\DEPT\dept-portal\n
+ode_modules\next\dist\compiled\
+next-server\app-route.runtime.p
+rod.js:6:41748)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\auth\callback\route.js:1
+:536)
+    at C:\Users\priya\Documents
+\DEPT\dept-portal\node_modules\
+next\dist\compiled\next-server\
+app-route.runtime.prod.js:6:384
+17
+    at C:\Users\priya\Documents
+\DEPT\dept-portal\node_modules\
+next\dist\server\lib\trace\trac
+er.js:140:36
+    at NoopContextManager.with 
+(C:\Users\priya\Documents\DEPT\
+dept-portal\node_modules\@opent
+elemetry\api\build\src\context\
+NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\User
+s\priya\Documents\DEPT\dept-por
+tal\node_modules\@opentelemetry
+\api\build\src\api\context.js:6
+0:46)
+    at 
+NoopTracer.startActiveSpan (C:\
+Users\priya\Documents\DEPT\dept
+-portal\node_modules\@opentelem
+etry\api\build\src\trace\NoopTr
+acer.js:65:31)
+    at 
+ProxyTracer.startActiveSpan (C:
+\Users\priya\Documents\DEPT\dep
+t-portal\node_modules\@opentele
+metry\api\build\src\trace\Proxy
+Tracer.js:36:24)
+    at C:\Users\priya\Documents
+\DEPT\dept-portal\node_modules\
+next\dist\server\lib\trace\trac
+er.js:122:103
+    at NoopContextManager.with 
+(C:\Users\priya\Documents\DEPT\
+dept-portal\node_modules\@opent
+elemetry\api\build\src\context\
+NoopContextManager.js:25:19)
+   Generating static pages (13/55) 
+n [Error]: Route 
+/dashboard/alumni/mentorship 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:12764)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:9906)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3718868835'
+}
+n [Error]: Route 
+/dashboard/alumni/mentorship 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:12764)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:9906)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3718868835'
+}
+n [Error]: Route 
+/dashboard/hod/defaulters with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1953739080'
+}
+n [Error]: Route 
+/dashboard/hod/defaulters with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1953739080'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/hod/defaulters". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/hod/defaulters with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/hod/announcements 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1885581338'
+}
+n [Error]: Route 
+/dashboard/hod/announcements 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1885581338'
+}
+
+Error occurred prerendering 
+page "/dashboard/hod/announceme
+nts". Read more: https://nextjs
+.org/docs/messages/prerender-er
+ror
+
+Error: Route 
+/dashboard/hod/announcements 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/results 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3896337765'
+}
+n [Error]: Route 
+/dashboard/faculty/results 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3896337765'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/faculty/results". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/faculty/results 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/assignments 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:9479)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '64174044'
+}
+n [Error]: Route 
+/dashboard/student/assignments 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:9479)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '64174044'
+}
+
+Error occurred prerendering 
+page "/dashboard/student/assign
+ments". Read more: https://next
+js.org/docs/messages/prerender-
+error
+
+Error: Route 
+/dashboard/student/assignments 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:9479)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/hod/reports with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '112777576'
+}
+n [Error]: Route 
+/dashboard/hod/reports with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '112777576'
+}
+
+Error occurred prerendering 
+page "/dashboard/hod/reports". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/hod/reports with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/hod/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '702821928'
+}
+n [Error]: Route 
+/dashboard/hod/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '702821928'
+}
+
+Error occurred prerendering 
+page "/dashboard/hod/faculty". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/hod/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/syllabus 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3862909369'
+}
+n [Error]: Route 
+/dashboard/faculty/syllabus 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3862909369'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/faculty/syllabus". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/faculty/syllabus 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/hod/approvals with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1305391102'
+}
+n [Error]: Route 
+/dashboard/hod/approvals with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1305391102'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/hod/approvals". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/hod/approvals with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/hod/timetable with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2727977896'
+}
+n [Error]: Route 
+/dashboard/hod/timetable with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2727977896'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/hod/timetable". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/hod/timetable with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/hod with `dynamic = 
+"error"` couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\directo
+ry\page.js:1:12775)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\hod\page.js:1:
+2896)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1303869803'
+}
+n [Error]: Route 
+/dashboard/hod with `dynamic = 
+"error"` couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\directo
+ry\page.js:1:12775)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1500425603'
+}
+n [Error]: Route 
+/dashboard/hod with `dynamic = 
+"error"` couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\directo
+ry\page.js:1:12775)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\hod\page.js:1:
+2896)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1303869803'
+}
+n [Error]: Route 
+/dashboard/hod with `dynamic = 
+"error"` couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\directo
+ry\page.js:1:12775)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:7220)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1500425603'
+}
+
+Error occurred prerendering 
+page "/dashboard/hod". Read 
+more: https://nextjs.org/docs/m
+essages/prerender-error
+
+Error: Route /dashboard/hod 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\directo
+ry\page.js:1:12775)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\hod\page.js:1:
+2896)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/alumni/directory 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:12727)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:10110)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '319895763'
+}
+n [Error]: Route 
+/dashboard/alumni/directory 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:12727)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:10110)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '319895763'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/alumni/directory". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/alumni/directory 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:12727)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:10110)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/alumni with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:10376)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2507470631'
+}
+n [Error]: Route 
+/dashboard/alumni with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:9818)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '4215631100'
+}
+n [Error]: Route 
+/dashboard/alumni with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:10376)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2507470631'
+}
+n [Error]: Route 
+/dashboard/alumni with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:9818)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '4215631100'
+}
+
+Error occurred prerendering 
+page "/dashboard/alumni". Read 
+more: https://nextjs.org/docs/m
+essages/prerender-error
+
+Error: Route /dashboard/alumni 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:10376)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/alumni/jobs with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:10110)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1085466562'
+}
+n [Error]: Route 
+/dashboard/alumni/jobs with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:10110)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1085466562'
+}
+
+Error occurred prerendering 
+page "/dashboard/alumni/jobs". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/alumni/jobs with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\jobs\pa
+ge.js:1:10110)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/quiz with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+   Generating static pages (27/55) 
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\profile
+\page.js:1:12754)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1863842739'
+}
+n [Error]: Route 
+/dashboard/faculty/quiz with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\profile
+\page.js:1:12754)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1863842739'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/faculty/quiz". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/faculty/quiz with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\profile
+\page.js:1:12754)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+
+Error occurred prerendering 
+page "/dashboard/alumni/mentors
+hip". Read more: https://nextjs
+.org/docs/messages/prerender-er
+ror
+
+Error: Route 
+/dashboard/alumni/mentorship 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:12764)
+    at c (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:9906)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/face-enroll 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2239836191'
+}
+n [Error]: Route 
+/dashboard/student/face-enroll 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2239836191'
+}
+
+Error occurred prerendering 
+page "/dashboard/student/face-e
+nroll". Read more: https://next
+js.org/docs/messages/prerender-
+error
+
+Error: Route 
+/dashboard/student/face-enroll 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/attendance 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2538574509'
+}
+n [Error]: Route 
+/dashboard/student/attendance 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2538574509'
+}
+
+Error occurred prerendering 
+page "/dashboard/student/attend
+ance". Read more: https://nextj
+s.org/docs/messages/prerender-e
+rror
+
+Error: Route 
+/dashboard/student/attendance 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/materials 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:9479)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '207502044'
+}
+n [Error]: Route 
+/dashboard/student/materials 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:9479)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '207502044'
+}
+
+Error occurred prerendering 
+page "/dashboard/student/materi
+als". Read more: https://nextjs
+.org/docs/messages/prerender-er
+ror
+
+Error: Route 
+/dashboard/student/materials 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at d (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:9479)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route /dashboard/stu
+dent/opportunities with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1552084127'
+}
+n [Error]: Route /dashboard/stu
+dent/opportunities with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1552084127'
+}
+
+Error occurred prerendering 
+page "/dashboard/student/opport
+unities". Read more: https://ne
+xtjs.org/docs/messages/prerende
+r-error
+
+Error: Route /dashboard/student
+/opportunities with `dynamic = 
+"error"` couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2414760799'
+}
+n [Error]: Route 
+/dashboard/student with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2414760799'
+}
+
+Error occurred prerendering 
+page "/dashboard/student". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/student with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/live with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1936018921'
+}
+n [Error]: Route 
+/dashboard/student/live with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1936018921'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/student/live". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/student/live with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/requests 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2901361667'
+}
+n [Error]: Route 
+/dashboard/student/requests 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2901361667'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/student/requests". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/student/requests 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/timetable 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '875409631'
+}
+n [Error]: Route 
+/dashboard/student/timetable 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '875409631'
+}
+
+Error occurred prerendering 
+page "/dashboard/student/timeta
+ble". Read more: https://nextjs
+.org/docs/messages/prerender-er
+ror
+
+Error: Route 
+/dashboard/student/timetable 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/student/quiz with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '41074175'
+}
+n [Error]: Route 
+/dashboard/student/quiz with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '41074175'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/student/quiz". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/student/quiz with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+   Generating static pages (41/55) 
+n [Error]: Route 
+/dashboard/student/results 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:12764)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2397005328'
+}
+n [Error]: Route 
+/dashboard/student/results 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:12764)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2397005328'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/student/results". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/student/results 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\mentors
+hip\page.js:1:12764)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2047.js:1:8366)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/alumni/records with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:9818)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '418932828'
+}
+n [Error]: Route 
+/dashboard/alumni/records with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:9818)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '418932828'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/alumni/records". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/alumni/records with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:9818)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/live with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1927483417'
+}
+n [Error]: Route 
+/dashboard/faculty/live with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1927483417'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/faculty/live". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/faculty/live with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/profile 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3037366329'
+}
+n [Error]: Route 
+/dashboard/faculty/profile 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '3037366329'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/faculty/profile". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/faculty/profile 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/assignments 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2082754475'
+}
+n [Error]: Route 
+/dashboard/faculty/assignments 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2082754475'
+}
+
+Error occurred prerendering 
+page "/dashboard/faculty/assign
+ments". Read more: https://next
+js.org/docs/messages/prerender-
+error
+
+Error: Route 
+/dashboard/faculty/assignments 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\page.js
+:1:16049)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/alumni/profile with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\profile
+\page.js:1:9888)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '4148289474'
+}
+n [Error]: Route 
+/dashboard/alumni/profile with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\profile
+\page.js:1:9888)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '4148289474'
+}
+
+Error occurred prerendering 
+page 
+"/dashboard/alumni/profile". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/alumni/profile with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\profile
+\page.js:1:9888)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/attendance 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1425098297'
+}
+n [Error]: Route 
+/dashboard/faculty/attendance 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1425098297'
+}
+
+Error occurred prerendering 
+page "/dashboard/faculty/attend
+ance". Read more: https://nextj
+s.org/docs/messages/prerender-e
+rror
+
+Error: Route 
+/dashboard/faculty/attendance 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:8923)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\faculty\page.j
+s:1:2924)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1737534605'
+}
+n [Error]: Route 
+/dashboard/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '453556751'
+}
+n [Error]: Route 
+/dashboard/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\faculty\page.j
+s:1:2924)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '1737534605'
+}
+n [Error]: Route 
+/dashboard/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '453556751'
+}
+
+Error occurred prerendering 
+page "/dashboard/faculty". 
+Read more: https://nextjs.org/d
+ocs/messages/prerender-error
+
+Error: Route 
+/dashboard/faculty with 
+`dynamic = "error"` couldn't 
+be rendered statically because 
+it used `cookies`. See more 
+info here: https://nextjs.org/d
+ocs/app/building-your-applicati
+on/rendering/static-and-dynamic
+#dynamic-rendering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\168.js:1:8498)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\faculty\page.j
+s:1:2924)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+n [Error]: Route 
+/dashboard/faculty/materials 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2323178917'
+}
+n [Error]: Route 
+/dashboard/faculty/materials 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242) {
+  code: 
+'NEXT_STATIC_GEN_BAILOUT',
+  digest: '2323178917'
+}
+
+Error occurred prerendering 
+page "/dashboard/faculty/materi
+als". Read more: https://nextjs
+.org/docs/messages/prerender-er
+ror
+
+Error: Route 
+/dashboard/faculty/materials 
+with `dynamic = "error"` 
+couldn't be rendered 
+statically because it used 
+`cookies`. See more info here: 
+https://nextjs.org/docs/app/bui
+lding-your-application/renderin
+g/static-and-dynamic#dynamic-re
+ndering
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\8948.js:1:36877)
+    at f (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\5577.js:1:30559)
+    at a (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\app\dashboard\alumni\records
+\page.js:1:12757)
+    at l (C:\Users\priya\Docume
+nts\DEPT\dept-portal\.next\serv
+er\chunks\2457.js:1:7637)
+    at em (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:134808)
+    at e (C:\Users\priya\Docume
+nts\DEPT\dept-portal\node_modul
+es\next\dist\compiled\next-serv
+er\app-page.runtime.prod.js:12:
+137693)
+    at e_ (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:138168)
+    at Array.toJSON (C:\Users\p
+riya\Documents\DEPT\dept-portal
+\node_modules\next\dist\compile
+d\next-server\app-page.runtime.
+prod.js:12:135777)
+    at stringify (<anonymous>)
+    at eE (C:\Users\priya\Docum
+ents\DEPT\dept-portal\node_modu
+les\next\dist\compiled\next-ser
+ver\app-page.runtime.prod.js:12
+:142242)
+ Γ£ô Generating static pages (55/55)
+
+> Export encountered errors on 
+following paths:
+	/auth/callback/route: 
+/auth/callback
+	/dashboard/alumni/directory/pa
+ge: /dashboard/alumni/directory
+	/dashboard/alumni/jobs/page: 
+/dashboard/alumni/jobs
+	/dashboard/alumni/mentorship/p
+age: 
+/dashboard/alumni/mentorship
+	/dashboard/alumni/page: 
+/dashboard/alumni
+	/dashboard/alumni/profile/page
+: /dashboard/alumni/profile
+	/dashboard/alumni/records/page
+: /dashboard/alumni/records
+	/dashboard/faculty/assignments
+/page: 
+/dashboard/faculty/assignments
+	/dashboard/faculty/attendance/
+page: 
+/dashboard/faculty/attendance
+	/dashboard/faculty/live/page: 
+/dashboard/faculty/live
+	/dashboard/faculty/materials/p
+age: 
+/dashboard/faculty/materials
+	/dashboard/faculty/page: 
+/dashboard/faculty
+	/dashboard/faculty/profile/pag
+e: /dashboard/faculty/profile
+	/dashboard/faculty/quiz/page: 
+/dashboard/faculty/quiz
+	/dashboard/faculty/results/pag
+e: /dashboard/faculty/results
+	/dashboard/faculty/syllabus/pa
+ge: /dashboard/faculty/syllabus
+	/dashboard/hod/announcements/p
+age: 
+/dashboard/hod/announcements
+	
+/dashboard/hod/approvals/page: 
+/dashboard/hod/approvals
+	/dashboard/hod/defaulters/page
+: /dashboard/hod/defaulters
+	/dashboard/hod/faculty/page: 
+/dashboard/hod/faculty
+	/dashboard/hod/page: 
+/dashboard/hod
+	/dashboard/hod/reports/page: 
+/dashboard/hod/reports
+	
+/dashboard/hod/timetable/page: 
+/dashboard/hod/timetable
+	/dashboard/student/assignments
+/page: 
+/dashboard/student/assignments
+	/dashboard/student/attendance/
+page: 
+/dashboard/student/attendance
+	/dashboard/student/face-enroll
+/page: 
+/dashboard/student/face-enroll
+	/dashboard/student/live/page: 
+/dashboard/student/live
+	/dashboard/student/materials/p
+age: 
+/dashboard/student/materials
+	/dashboard/student/opportuniti
+es/page: /dashboard/student/opp
+ortunities
+	/dashboard/student/page: 
+/dashboard/student
+	/dashboard/student/quiz/page: 
+/dashboard/student/quiz
+	/dashboard/student/requests/pa
+ge: /dashboard/student/requests
+	/dashboard/student/results/pag
+e: /dashboard/student/results
+	/dashboard/student/timetable/p
+age: 
+/dashboard/student/timetable
