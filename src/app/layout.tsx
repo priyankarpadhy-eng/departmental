@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 import { Suspense } from 'react'
 import { RouteProgressBar } from '@/components/layout/RouteProgressBar'
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({
   children,
@@ -36,6 +37,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
+            <Analytics />
           </AuthProvider>
         </ThemeProvider>
         <Toaster
