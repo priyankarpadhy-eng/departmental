@@ -1,40 +1,53 @@
-import { NextResponse } from 'next/server';
-export const dynamic = 'force-dynamic';
-import connectDB from '@/lib/mongodb';
-import Profile from '@/models/Profile';
-import { NewsEvent, GalleryPhoto } from '@/models/Public';
-import mongoose from 'mongoose';
+import { NextResponse } from 'next/server'
+import { adminDb } from '@/lib/firebase/admin'
+
+function formatDoc(doc: any) {
+  const data = doc.data()
+  // Recursively convert Firestore timestamps to ISO strings
+  const formatted = { ...data, id: doc.id }
+  
+  Object.keys(formatted).forEach(key => {
+    const val = formatted[key]
+    if (val && typeof val === 'object' && '_seconds' in val) {
+      formatted[key] = new Date(val._seconds * 1000).toISOString()
+    } else if (val && typeof val.toDate === 'function') {
+      formatted[key] = val.toDate().toISOString()
+    }
+  })
+  return formatted
+}
 
 export async function GET() {
   try {
-    await connectDB();
+    const [facSnap, noticeSnap, hodSnap, eventSnap, gallerySnap, settingsSnap] = await Promise.all([
+      adminDb.collection('profiles').where('role', '==', 'faculty').limit(8).get(),
+      adminDb.collection('announcements').orderBy('created_at', 'desc').limit(5).get(),
+      adminDb.collection('profiles').where('role', '==', 'hod').limit(1).get(),
+      adminDb.collection('news_events').orderBy('created_at', 'desc').limit(3).get(),
+      adminDb.collection('gallery').orderBy('created_at', 'desc').limit(6).get(),
+      adminDb.collection('settings').doc('landing').get()
+    ])
 
-    const [faculties, events, gallery, settings, hod] = await Promise.all([
-      Profile.find({ role: 'faculty' }).limit(8).lean(),
-      NewsEvent.find({ is_published: true }).sort({ created_at: -1 }).limit(3).lean(),
-      GalleryPhoto.find({}).sort({ created_at: -1 }).limit(6).lean(),
-      mongoose.connection.db?.collection('settings').findOne({ _id: 'landing' as any }) || null,
-      Profile.findOne({ role: 'hod' }).lean()
-    ]);
-
-    // Announcements might be in a separate collection, let's check
-    const announcements = await mongoose.connection.db?.collection('announcements')
-      .find({})
-      .sort({ created_at: -1 })
-      .limit(5)
-      .toArray() || [];
+    const faculties = facSnap.docs.map(formatDoc)
+    const announcements = noticeSnap.docs.map(formatDoc)
+    const hod = !hodSnap.empty ? formatDoc(hodSnap.docs[0]) : null
+    const events = eventSnap.docs.map(formatDoc)
+    const gallery = gallerySnap.docs.map(formatDoc)
+    const settings = settingsSnap.exists ? settingsSnap.data() : null
 
     return NextResponse.json({
       faculties,
+      announcements,
+      hod,
       events,
       gallery,
-      settings,
-      hod,
-      announcements,
-      ts: new Date().toISOString()
-    });
+      settings
+    })
   } catch (error: any) {
-    console.error('Landing API Error:', error);
-    return NextResponse.json({ error: 'Failed to fetch landing data' }, { status: 500 });
+    console.error('Landing API Error:', error)
+    return NextResponse.json({ 
+      error: 'Failed to fetch', 
+      details: error?.message || 'Unknown'
+    }, { status: 500 })
   }
 }

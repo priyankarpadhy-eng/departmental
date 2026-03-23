@@ -41,7 +41,8 @@ export function DefaultersHodClient() {
         const enhanced = docs.map(d => ({
           ...d,
           student_name: studentMap[(d as any).student_id]?.full_name || 'Unknown',
-          roll_no: studentMap[(d as any).student_id]?.roll_no || '—'
+          roll_no: studentMap[(d as any).student_id]?.roll_no || '—',
+          registration_no: studentMap[(d as any).student_id]?.registration_no || null
         }))
 
         setDefaulters(enhanced)
@@ -95,7 +96,12 @@ export function DefaultersHodClient() {
                   return (
                     <tr key={d.id}>
                       <td>{d.student_name}</td>
-                      <td className="secondary-text">{d.roll_no}</td>
+                      <td className="secondary-text">
+                        <div>{d.roll_no}</div>
+                        {d.registration_no && (
+                          <div style={{ fontSize: '10px', color: 'var(--text-tertiary)' }}>{d.registration_no}</div>
+                        )}
+                      </td>
                       <td>{d.course_name}</td>
                       <td className="secondary-text">{d.attended_sessions}</td>
                       <td className="secondary-text">{d.total_sessions}</td>

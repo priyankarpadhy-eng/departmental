@@ -8,6 +8,8 @@ interface IDCardProps {
   idNumber: string
   department: string
   batch: string
+  rollNo?: string
+  regNo?: string
   imageUrl?: string
   accentColor?: string
 }
@@ -18,6 +20,8 @@ export function DigitalIDCard({
   idNumber, 
   department, 
   batch, 
+  rollNo,
+  regNo,
   imageUrl, 
   accentColor = '#0F6E56' 
 }: IDCardProps) {
@@ -122,25 +126,41 @@ export function DigitalIDCard({
             <div style={{ fontSize: '10px', opacity: 0.6, fontWeight: 500 }}>DEPT PORTAL V2</div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <div>
-              <div style={{ fontSize: '10px', opacity: 0.7, marginBottom: '2px' }}>ID NUMBER</div>
-              <div style={{ fontSize: '14px', fontWeight: 500, fontFamily: 'monospace' }}>{idNumber}</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: '8px' }}>
+            <div style={{ flex: 1 }}>
+              {rollNo ? (
+                <>
+                  <div style={{ fontSize: '9px', opacity: 0.7, marginBottom: '1px' }}>ROLL NO</div>
+                  <div style={{ fontSize: '13px', fontWeight: 500, fontFamily: 'monospace' }}>{rollNo}</div>
+                </>
+              ) : (
+                <>
+                  <div style={{ fontSize: '9px', opacity: 0.7, marginBottom: '1px' }}>ID NUMBER</div>
+                  <div style={{ fontSize: '13px', fontWeight: 500, fontFamily: 'monospace' }}>{idNumber}</div>
+                </>
+              )}
               
-              <div style={{ marginTop: '12px' }}>
+              {regNo && (
+                <div style={{ marginTop: '8px' }}>
+                  <div style={{ fontSize: '9px', opacity: 0.7, marginBottom: '1px' }}>REGISTRATION NO</div>
+                  <div style={{ fontSize: '13px', fontWeight: 500, fontFamily: 'monospace' }}>{regNo}</div>
+                </div>
+              )}
+
+              <div style={{ marginTop: '8px' }}>
                 <div style={{ fontSize: '9px', opacity: 0.7 }}>DEPARTMENT</div>
                 <div style={{ fontSize: '11px', fontWeight: 500 }}>{department}</div>
               </div>
             </div>
 
-            <div style={{ textAlign: 'right' }}>
+            <div style={{ textAlign: 'right', flexShrink: 0 }}>
               <div style={{ 
-                width: '50px', 
-                height: '50px', 
+                width: '60px', 
+                height: '60px', 
                 background: 'white', 
                 padding: '4px',
-                borderRadius: '4px',
-                marginBottom: '8px',
+                borderRadius: '6px',
+                marginBottom: '4px',
                 marginLeft: 'auto'
               }}>
                 {/* Fake QR Code */}

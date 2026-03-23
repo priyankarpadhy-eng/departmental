@@ -18,8 +18,10 @@ export interface Profile {
   dept_id: string | null
   batch_id: string | null
   roll_no: string | null
+  registration_no: string | null
   graduation_year: number | null
   designation: string | null
+  expertise: string | null
   verification_status: 'pending' | 'verified' | 'rejected' | null
   rejection_reason?: string | null
   current_company: string | null

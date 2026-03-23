@@ -79,13 +79,15 @@ export function AdminLandingClient() {
         }
 
         // Fetch Events
-        const eventSnap = await getDocs(query(collection(db, 'news_events'), orderBy('created_at', 'desc')))
+        const eventSnap = await getDocs(collection(db, 'news_events'))
         const freshEvents = eventSnap.docs.map(d => ({ id: d.id, ...d.data() } as NewsEvent))
+        freshEvents.sort((a,b) => (b.created_at||'').localeCompare(a.created_at||''))
         setEvents(freshEvents)
 
         // Fetch Gallery
-        const gallerySnap = await getDocs(query(collection(db, 'gallery'), orderBy('created_at', 'desc')))
+        const gallerySnap = await getDocs(collection(db, 'gallery'))
         const freshGallery = gallerySnap.docs.map(d => ({ id: d.id, ...d.data() } as GalleryPhoto))
+        freshGallery.sort((a,b) => b.created_at.localeCompare(a.created_at))
         setGallery(freshGallery)
 
         // 2. Update cache

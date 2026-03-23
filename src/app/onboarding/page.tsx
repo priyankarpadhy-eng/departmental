@@ -21,6 +21,7 @@ export default function OnboardingPage() {
     dept_id: 'CE',
     batch_id: '',
     roll_no: '',
+    registration_no: '',
     designation: '',
     graduation_year: '',
     current_company: '',
@@ -39,6 +40,7 @@ export default function OnboardingPage() {
         dept_id: profile.dept_id || '',
         batch_id: profile.batch_id || '',
         roll_no: profile.roll_no || '',
+        registration_no: profile.registration_no || '',
         designation: profile.designation || '',
         graduation_year: profile.graduation_year?.toString() || '',
         current_company: profile.current_company || '',
@@ -82,6 +84,7 @@ export default function OnboardingPage() {
       if (profile?.role === 'student') {
         updateData.batch_id = form.batch_id
         updateData.roll_no = form.roll_no
+        updateData.registration_no = form.registration_no
       } else if (profile?.role === 'faculty') {
         updateData.designation = form.designation
       } else if (profile?.role === 'alumni') {
@@ -160,7 +163,11 @@ export default function OnboardingPage() {
               </div>
               <div className="form-group">
                 <label className="form-label">Roll Number</label>
-                <input className="form-input" required value={form.roll_no} onChange={e => setForm(p => ({ ...p, roll_no: e.target.value }))} placeholder="e.g. 21CS001" />
+                <input className="form-input" required value={form.roll_no} onChange={e => setForm(p => ({ ...p, roll_no: e.target.value }))} placeholder="e.g. 2101105001" />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Registration Number</label>
+                <input className="form-input" required value={form.registration_no} onChange={e => setForm(p => ({ ...p, registration_no: e.target.value }))} placeholder="e.g. 2101105001" />
               </div>
             </>
           )}

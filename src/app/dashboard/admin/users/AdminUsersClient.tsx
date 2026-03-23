@@ -35,7 +35,7 @@ export function AdminUsersClient({ users: initialUsers, departments, batches }: 
   // Create user form state
   const [newUser, setNewUser] = useState({
     full_name: '', email: '', role: 'student' as UserRole,
-    dept_id: 'CE', batch_id: '', roll_no: '', designation: '',
+    dept_id: 'CE', batch_id: '', roll_no: '', registration_no: '', designation: '',
   })
   const [creating, setCreating] = useState(false)
 
@@ -45,7 +45,8 @@ export function AdminUsersClient({ users: initialUsers, departments, batches }: 
       const matchSearch = !search ||
         (u.full_name || '').toLowerCase().includes(search.toLowerCase()) ||
         (u.email || '').toLowerCase().includes(search.toLowerCase()) ||
-        (u.roll_no || '').toLowerCase().includes(search.toLowerCase())
+        (u.roll_no || '').toLowerCase().includes(search.toLowerCase()) ||
+        (u.registration_no || '').toLowerCase().includes(search.toLowerCase())
       const matchRole = roleFilter === 'all' || u.role === roleFilter
       return matchView && matchSearch && matchRole
     })
@@ -71,6 +72,7 @@ export function AdminUsersClient({ users: initialUsers, departments, batches }: 
         dept_id: newUser.dept_id || 'CE',
         batch_id: newUser.batch_id || null,
         roll_no: newUser.roll_no || null,
+        registration_no: newUser.registration_no || null,
         designation: newUser.designation || null,
         is_active: true,
         verification_status: 'verified',
@@ -101,7 +103,7 @@ export function AdminUsersClient({ users: initialUsers, departments, batches }: 
 
       toast.success(`Profile created! Now ask ${newUser.full_name} to Sign Up using ${newUser.email}`)
       setShowCreate(false)
-      setNewUser({ full_name: '', email: '', role: 'student', dept_id: '', batch_id: '', roll_no: '', designation: '' })
+      setNewUser({ full_name: '', email: '', role: 'student', dept_id: '', batch_id: '', roll_no: '', registration_no: '', designation: '' })
     } catch (err: any) {
       toast.error(err.message)
     } finally {
@@ -284,7 +286,12 @@ export function AdminUsersClient({ users: initialUsers, departments, batches }: 
                   {user.role === 'alumni' ? (
                     <div>{user.graduation_year} — {user.current_company || 'N/A'}</div>
                   ) : (
-                    user.roll_no || user.designation || '—'
+                    <div>
+                      {user.roll_no || user.designation || '—'}
+                      {user.registration_no && (
+                        <div style={{ fontSize: '10px', color: 'var(--text-tertiary)' }}>Reg: {user.registration_no}</div>
+                      )}
+                    </div>
                   )}
                 </td>
                 <td className="secondary-text">{timeAgo(user.last_login)}</td>
@@ -376,6 +383,10 @@ export function AdminUsersClient({ users: initialUsers, departments, batches }: 
                   <div className="form-group">
                     <label className="form-label">Roll number (used as default password)</label>
                     <input className="form-input" value={newUser.roll_no} onChange={e => setNewUser(p => ({ ...p, roll_no: e.target.value }))} placeholder="e.g. 21CS001" />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Registration number</label>
+                    <input className="form-input" value={newUser.registration_no} onChange={e => setNewUser(p => ({ ...p, registration_no: e.target.value }))} placeholder="e.g. 2101105001" />
                   </div>
                 </>
               )}

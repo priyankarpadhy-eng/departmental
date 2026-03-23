@@ -16,11 +16,40 @@ service cloud.firestore {
       return isSignedIn() && getUserData().role == role;
     }
 
-    // Profiles Collection
+    // --- PUBLIC COLLECTIONS --- (Readable by anyone for landing page)
+    
+    match /settings/landing {
+      allow read: if true;
+    }
+    
+    match /news_events/{id} {
+      allow read: if true;
+      allow write: if hasRole('admin') || hasRole('hod');
+    }
+    
+    match /announcements/{id} {
+      allow read: if true;
+      allow write: if hasRole('admin') || hasRole('hod');
+    }
+    
+    match /gallery/{id} {
+      allow read: if true;
+      allow write: if hasRole('admin') || hasRole('hod');
+    }
+    
+    match /departments/{id} {
+      allow read: if true;
+      allow write: if hasRole('admin');
+    }
+
+    // Profiles: Shared rules for Public vs Private visibility
     match /profiles/{userId} {
-      allow read: if isSignedIn();
+      // Allow public to read faculty profiles for landing page
+      allow read: if true; 
       allow write: if hasRole('admin') || request.auth.uid == userId;
     }
+
+    // --- PROTECTED COLLECTIONS --- (Requires Login)
 
     // Attendance
     match /attendance_sessions/{sessionId} {
@@ -39,7 +68,6 @@ service cloud.firestore {
     }
 
     // Academic Structure
-    match /departments/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
     match /batches/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
     match /semesters/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
     match /courses/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin'); }
@@ -54,13 +82,21 @@ service cloud.firestore {
     }
 
     match /mentorship_requests/{requestId} {
-      allow read: if isSignedIn() && (resource.data.student_id == request.auth.uid || resource.data.alumni_id == request.auth.uid || hasRole('admin'));
+      allow read: if isSignedIn() && (
+        resource.data.student_id == request.auth.uid ||
+        resource.data.alumni_id == request.auth.uid ||
+        hasRole('admin') || hasRole('hod')
+      );
       allow create: if isSignedIn();
-      allow update, delete: if isSignedIn() && (resource.data.student_id == request.auth.uid || hasRole('admin'));
+      allow update, delete: if isSignedIn() && (
+        resource.data.student_id == request.auth.uid ||
+        resource.data.alumni_id == request.auth.uid ||
+        hasRole('admin')
+      );
     }
 
-    // Announcements & Resources
-    match /announcements/{id} { allow read: if isSignedIn(); allow write: if hasRole('admin') || hasRole('hod'); }
+    // Resources & Classroom
+    match /study_materials/{id} { allow read: if isSignedIn(); allow write: if hasRole('faculty') || hasRole('admin'); }
     match /materials/{id} { allow read: if isSignedIn(); allow write: if hasRole('faculty') || hasRole('admin'); }
     match /assignments/{id} { allow read: if isSignedIn(); allow write: if hasRole('faculty') || hasRole('admin'); }
     match /submissions/{id} { 
@@ -68,11 +104,74 @@ service cloud.firestore {
       allow create: if isSignedIn();
       allow update, delete: if isSignedIn() && (resource.data.student_id == request.auth.uid || hasRole('faculty') || hasRole('admin'));
     }
+
+    // Results & Gradebook
+    match /results/{id} {
+      allow read: if isSignedIn(); // alumni can read their historical results
+      allow write: if hasRole('faculty') || hasRole('admin');
+    }
     
     // Live Sessions
     match /live_sessions/{sessionId} {
       allow read: if isSignedIn();
       allow write: if hasRole('admin') || hasRole('faculty');
+    }
+
+    // Requests & Approvals
+    match /requests/{id} {
+      allow read: if isSignedIn(); // alumni can read their own old requests
+      allow write: if hasRole('admin') || hasRole('hod');
+    }
+    match /leave_requests/{id} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('hod') || hasRole('faculty');
+    }
+    match /student_requests/{id} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('hod') || hasRole('student');
+    }
+
+    // Quiz System
+    match /quizzes/{id} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty');
+    }
+    match /quiz/{id} { // Alternative collection name used in some places
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty');
+    }
+    match /quiz_questions/{id} {
+      allow read: if isSignedIn();
+      allow write: if hasRole('admin') || hasRole('faculty');
+    }
+    match /quiz_attempts/{id} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && (request.resource.data.student_id == request.auth.uid || hasRole('faculty') || hasRole('admin'));
+    }
+
+    // Careers & Alumni
+    match /job_postings/{id} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && (hasRole('alumni') || hasRole('admin') || hasRole('faculty'));
+      allow update, delete: if isSignedIn() && (
+        resource.data.alumni_id == request.auth.uid ||
+        hasRole('admin')
+      );
+    }
+
+    // Alumni profiles directory
+    match /alumni_profiles/{id} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && (
+        resource.data.profile_id == request.auth.uid ||
+        hasRole('admin')
+      );
+    }
+
+    // Logs & Auditing
+    match /audit_logs/{id} {
+      allow read: if hasRole('admin') || hasRole('hod');
+      allow write: if isSignedIn();
     }
 
     // Presence

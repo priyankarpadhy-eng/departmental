@@ -276,7 +276,12 @@ export function AttendanceSessionClient({ sessionId }: Props) {
                         </div>
                       </div>
                     </td>
-                    <td className="secondary-text">{s.roll_no || '—'}</td>
+                    <td className="secondary-text">
+                      <div>{s.roll_no || '—'}</div>
+                      {s.registration_no && (
+                        <div style={{ fontSize: '10px', color: 'var(--text-tertiary)' }}>{s.registration_no}</div>
+                      )}
+                    </td>
                     <td>
                       <span className={`badge ${isPresent ? 'badge-success' : record?.status === 'absent' ? 'badge-error' : 'badge-neutral'}`}>
                         {record?.status || 'Not marked'}

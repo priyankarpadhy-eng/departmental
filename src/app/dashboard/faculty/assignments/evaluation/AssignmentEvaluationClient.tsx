@@ -102,7 +102,10 @@ export function AssignmentEvaluationClient({ assignmentId }: Props) {
                 <tr key={s.id}>
                   <td>
                     <div style={{ fontWeight: 500 }}>{s.student?.full_name || 'Unknown'}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>{s.student?.roll_no}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
+                      {s.student?.roll_no}
+                      {s.student?.registration_no && ` / ${s.student.registration_no}`}
+                    </div>
                   </td>
                   <td className="secondary-text">{new Date(s.submitted_at).toLocaleString()}</td>
                   <td>

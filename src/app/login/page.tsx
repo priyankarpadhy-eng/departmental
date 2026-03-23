@@ -22,6 +22,8 @@ function LoginContent() {
   const [loading, setLoading] = useState(false)
   const [mode, setMode] = useState<'login' | 'signup' | 'reset'>('login')
   const [role, setRole] = useState<UserRole>('student')
+  const [rollNo, setRollNo] = useState('')
+  const [regNo, setRegNo] = useState('')
   const [resetSent, setResetSent] = useState(false)
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -73,6 +75,8 @@ function LoginContent() {
           ...profileData,
           id: user.uid,
           full_name: fullName || profileData.full_name,
+          roll_no: role === 'student' ? (rollNo || profileData.roll_no) : profileData.roll_no,
+          registration_no: role === 'student' ? (regNo || profileData.registration_no) : profileData.registration_no,
           updated_at: new Date().toISOString(),
         });
         console.log("Profile linked successfully.");
@@ -90,7 +94,8 @@ function LoginContent() {
           must_change_password: false,
           dept_id: 'CE',
           batch_id: null,
-          roll_no: null,
+          roll_no: role === 'student' ? rollNo : null,
+          registration_no: role === 'student' ? regNo : null,
           graduation_year: null,
           designation: null
         });
@@ -338,6 +343,31 @@ function LoginContent() {
                   <option value="alumni">Alumni</option>
                 </select>
               </div>
+
+              {role === 'student' && (
+                <>
+                  <div className="form-group">
+                    <label className="form-label">Roll Number</label>
+                    <input
+                      className="form-input"
+                      placeholder="e.g. 2101106123"
+                      value={rollNo}
+                      onChange={e => setRollNo(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Registration Number</label>
+                    <input
+                      className="form-input"
+                      placeholder="e.g. 2101106123"
+                      value={regNo}
+                      onChange={e => setRegNo(e.target.value)}
+                      required
+                    />
+                  </div>
+                </>
+              )}
 
               <div className="form-group">
                 <label className="form-label">Password</label>

@@ -302,6 +302,8 @@ export default function StudentDashboard() {
               idNumber={user?.uid.slice(0, 10).toUpperCase() || 'ID-000000'}
               department={profile?.department?.code || 'CS / ENGINEERING'}
               batch={String(profile?.graduation_year || 2026)}
+              rollNo={profile?.roll_no || undefined}
+              regNo={profile?.registration_no || undefined}
               imageUrl={profile?.photo_url || undefined}
             />
           </div>
