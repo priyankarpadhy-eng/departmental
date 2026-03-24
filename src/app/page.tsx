@@ -726,7 +726,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-
       {/* ──────────────── FACULTY ──────────────── */}
       {settings.show_faculties && faculties.length > 0 && (
         <section id="faculty" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
@@ -741,7 +740,6 @@ export default function LandingPage() {
           </div>
         </section>
       )}
-
 
       {/* ──────────────── NOTICES ──────────────── */}
       {notices.length > 0 && (
