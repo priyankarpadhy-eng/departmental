@@ -23,6 +23,7 @@ export function AdminLandingClient() {
   const [activeTab, setActiveTab] = useState<'hero' | 'events' | 'gallery' | 'migration'>('hero')
   const [loading, setLoading] = useState(true)
   const [migrating, setMigrating] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const [migrationResult, setMigrationResult] = useState<any>(null)
 
   // Hero & Global State
@@ -118,24 +119,43 @@ export function AdminLandingClient() {
   const handleAddEvent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const newEvent = {
-        title: formData.get('title') as string,
-        body: formData.get('body') as string,
-        event_date: formData.get('date') as string,
-        type: 'event',
-        is_published: true,
-        created_at: new Date().toISOString(),
-        dept_id: null,
-        created_by: null,
-        image_url: null
-    }
+    const file = formData.get('file') as File
+
+    setUploading(true)
+    const toastId = toast.loading('Publishing event...')
+
     try {
+      let fileUrl = null;
+      if (file && file.size > 0) {
+        toast.loading('Uploading attachment to B2 S3...', { id: toastId })
+        const uploadData = new FormData()
+        uploadData.append('file', file)
+        const res = await fetch('/api/storage/b2/upload', { method: 'POST', body: uploadData })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Failed to upload attachment')
+        fileUrl = `/api/storage/b2/download?key=${encodeURIComponent(data.fileKey)}`
+      }
+
+      const newEvent = {
+          title: formData.get('title') as string,
+          body: formData.get('body') as string,
+          event_date: formData.get('date') as string,
+          type: 'event',
+          is_published: true,
+          created_at: new Date().toISOString(),
+          image_url: fileUrl, // Attach document/image
+          dept_id: null,
+          created_by: null,
+      }
+      
       const docRef = await addDoc(collection(db, 'news_events'), newEvent)
       setEvents(prev => [{ id: docRef.id, ...newEvent } as NewsEvent, ...prev])
-      toast.success('Event added')
+      toast.success('Event published!', { id: toastId })
       e.currentTarget.reset()
-    } catch (err) {
-      toast.error('Failed to add event')
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to add event', { id: toastId })
+    } finally {
+      setUploading(false)
     }
   }
 
@@ -153,21 +173,44 @@ export function AdminLandingClient() {
   const handleAddGallery = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const newItem = {
-        title: formData.get('title') as string,
-        image_url: formData.get('url') as string,
-        album: 'Landing',
-        created_at: new Date().toISOString(),
-        dept_id: null,
-        uploaded_by: null
+    const file = formData.get('photo') as File
+
+    if (!file || file.size === 0) {
+      toast.error('Please select an image file to upload')
+      return
     }
+
+    setUploading(true)
+    const toastId = toast.loading('Uploading image securely to B2...')
+    
     try {
+      const uploadData = new FormData()
+      uploadData.append('file', file)
+      const res = await fetch('/api/storage/b2/upload', { method: 'POST', body: uploadData })
+      const data = await res.json()
+      
+      if (!res.ok) throw new Error(data.error || 'Failed to upload photo')
+      
+      const imageUrl = `/api/storage/b2/download?key=${encodeURIComponent(data.fileKey)}`
+      
+      const newItem = {
+          title: formData.get('title') as string,
+          description: formData.get('description') as string || null,
+          image_url: imageUrl,
+          album: 'Landing',
+          created_at: new Date().toISOString(),
+          dept_id: null,
+          uploaded_by: null
+      }
+      
       const docRef = await addDoc(collection(db, 'gallery'), newItem)
       setGallery(prev => [{ id: docRef.id, ...newItem } as GalleryPhoto, ...prev])
-      toast.success('Image added to gallery')
+      toast.success('Image added to gallery!', { id: toastId })
       e.currentTarget.reset()
-    } catch (err) {
-      toast.error('Failed to add image')
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to add image', { id: toastId })
+    } finally {
+      setUploading(false)
     }
   }
 
@@ -292,7 +335,14 @@ export function AdminLandingClient() {
                         <label className="form-label">Description</label>
                         <textarea name="body" className="form-input" rows={4} required placeholder="Details about the event..." />
                     </div>
-                    <button type="submit" className="btn btn-filled" style={{ background: '#1A1A18' }}>Add Event</button>
+                    <div className="form-group">
+                        <label className="form-label">Attach File/Notice (Optional)</label>
+                        <input name="file" type="file" className="form-input" style={{ padding: '8px' }} />
+                        <p className="secondary-text" style={{ fontSize: '10px' }}>Upload a PDF document or image for this notice.</p>
+                    </div>
+                    <button type="submit" disabled={uploading} className="btn btn-filled" style={{ background: '#1A1A18', opacity: uploading ? 0.7 : 1 }}>
+                      {uploading ? 'Processing...' : 'Publish Event'}
+                    </button>
                 </form>
             </div>
             <div className="card">
@@ -336,11 +386,17 @@ export function AdminLandingClient() {
                         <input name="title" className="form-input" required placeholder="e.g. Students in Lab" />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">Image URL</label>
-                        <input name="url" className="form-input" required placeholder="https://..." />
-                        <p className="secondary-text" style={{ fontSize: '10px' }}>You can use images from Unsplash or upload elsewhere and paste URL.</p>
+                        <label className="form-label">Location / Subtitle</label>
+                        <input name="description" className="form-input" placeholder="e.g. Civil Engineering, IGIT SARANG" />
                     </div>
-                    <button type="submit" className="btn btn-filled" style={{ background: '#1A1A18' }}>Add Photo</button>
+                    <div className="form-group">
+                        <label className="form-label">Upload File</label>
+                        <input name="photo" type="file" accept="image/*" required className="form-input" style={{ padding: '8px' }} />
+                        <p className="secondary-text" style={{ fontSize: '10px' }}>Image will be encrypted and stored in Backblaze B2.</p>
+                    </div>
+                    <button type="submit" disabled={uploading} className="btn btn-filled" style={{ background: '#1A1A18', opacity: uploading ? 0.7 : 1 }}>
+                      {uploading ? 'Uploading...' : 'Upload Photo'}
+                    </button>
                 </form>
             </div>
             <div className="card">

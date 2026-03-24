@@ -170,7 +170,7 @@ service cloud.firestore {
 
     // --- SHARED DRIVE ---
     match /shared_drive/{id} {
-      allow read: if isSignedIn();
+      allow read: if true;
       allow create: if isSignedIn();
       allow update: if isSignedIn() && (resource.data.uploadedBy == request.auth.uid || hasRole('admin') || hasRole('hod') || hasRole('faculty'));
       allow delete: if hasRole('admin') || hasRole('hod') || hasRole('faculty') || (resource.data.uploadedBy == request.auth.uid);

@@ -14,13 +14,13 @@ interface SharedFile {
   title?: string
   description?: string
   size: number
-  url: string
+  fileKey: string // The secure B2 key
   uploadedBy: string
   uploaderName: string
   createdAt: any
 }
 
-const STORAGE_LIMIT_GB = 50
+const STORAGE_LIMIT_GB = 10
 const STORAGE_LIMIT_BYTES = STORAGE_LIMIT_GB * 1024 * 1024 * 1024
 
 export default function CloudStorageClient() {
@@ -90,14 +90,14 @@ export default function CloudStorageClient() {
     if (!selectedFile || !profile?.id) return
 
     setUploading(true)
-    const toastId = toast.loading('Uploading to Central Mega Storage...')
+    const toastId = toast.loading('Uploading to Central Storage (B2)...')
 
     try {
       const formData = new FormData()
       formData.append('file', selectedFile)
       formData.append('folder', 'Department_Shared_Tank')
 
-      const response = await fetch('/api/storage/mega/upload', {
+      const response = await fetch('/api/storage/b2/upload', {
         method: 'POST',
         body: formData,
       })
@@ -114,7 +114,7 @@ export default function CloudStorageClient() {
         title: uploadForm.title || selectedFile.name,
         description: uploadForm.description,
         size: selectedFile.size,
-        url: data.url,
+        fileKey: data.fileKey, // Store the private B2 key
         uploadedBy: profile.id,
         uploaderName: profile.full_name || 'Anonymous',
         createdAt: serverTimestamp()
@@ -279,7 +279,7 @@ export default function CloudStorageClient() {
                   
                   <div style={{ display: 'flex', gap: '6px' }}>
                     <span className="badge badge-neutral" style={{ fontSize: '10px' }}>{formatBytes(file.size)}</span>
-                    <a href={file.url} target="_blank" rel="noreferrer" className="btn btn-sm btn-outlined" style={{ padding: '6px' }} title="Download File">
+                    <a href={`/api/storage/b2/download?key=${encodeURIComponent(file.fileKey)}`} target="_blank" rel="noreferrer" className="btn btn-sm btn-outlined" style={{ padding: '6px' }} title="Download File">
                       <Download size={14} /> 
                     </a>
                     {canDelete(file) && (

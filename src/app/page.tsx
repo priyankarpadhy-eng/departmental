@@ -10,6 +10,7 @@ import type { UserRole, Profile, NewsEvent, GalleryPhoto } from '@/types'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { useTheme } from '@/context/ThemeContext'
 import { Footer } from '@/components/landing/Footer'
+import LandingStorageSearch from '@/components/landing/LandingStorageSearch'
 
 const ROLE_ROUTES: Record<UserRole, string> = {
   admin: '/dashboard/admin',
@@ -393,8 +394,8 @@ export default function LandingPage() {
         </Link>
 
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-          {['HOD', 'Gallery', 'Faculty', 'Features'].map((item) => (
-            <motion.a key={item} href={`#${item.toLowerCase()}`}
+          {['Storage', 'HOD', 'Gallery', 'Faculty', 'Features'].map((item) => (
+            <motion.a key={item} href={item === 'Storage' ? '#central-tank' : `#${item.toLowerCase()}`}
               whileHover={{ color: '#B9FF66' }}
               style={{ textDecoration: 'none', color: T.muted, fontWeight: 600, fontSize: '14px', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', transition: 'color 0.2s' }}
             >{item}</motion.a>
@@ -490,14 +491,17 @@ export default function LandingPage() {
           transition={{ duration: 0.8, delay: 0.85 }}
           style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '20px', maxWidth: '800px', margin: '80px auto 0' }}
         >
-          {[
-            { value: '60+',  label: 'Expert Faculty',    icon: '👨‍🎓' },
-            { value: '2000+', label: 'Students',          icon: '🎓' },
-            { value: '25+',  label: 'Years Legacy',      icon: '🏛️' },
-            { value: '95%',  label: 'Placement Rate',    icon: '💼' },
-          ].map(s => <StatCard key={s.label} {...s} isDark={isDark} />)}
-        </motion.div>
-      </section>
+            {[
+              { value: '15+',   label: 'Expert Faculty',    icon: '👨‍🎓' },
+              { value: '400+',  label: 'Students',          icon: '🎓' },
+              { value: `${new Date().getFullYear() - 1983}+`,  label: 'Years Legacy',      icon: '🏛️' },
+              { value: '30+',   label: 'Placements 2026',   icon: '💼' },
+            ].map(s => <StatCard key={s.label} {...s} isDark={isDark} />)}
+          </motion.div>
+        </section>
+  
+        {/* ──────────────── CENTRAL STORAGE SEARCH ──────────────── */}
+        <LandingStorageSearch isDark={isDark} T={T} />
 
       {/* ──────────────── HOD SECTION ──────────────── */}
       <section id="hod" style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
@@ -583,9 +587,9 @@ export default function LandingPage() {
                   alt=""
                 />
                 
-                {/* Sharp Foreground Image showing "Perfectly" */}
+                {/* Sharp Foreground Image optimized to Fill Container gracefully */}
                 <img src={(activeGallery[currentGalleryIdx] as any)?.image_url || ''} alt="Gallery"
-                  style={{ position: 'relative', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', zIndex: 1, boxShadow: '0 0 40px rgba(0,0,0,0.5)' }} />
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }} />
                 
                 {/* Gradient Overlay for Text Readability */}
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 40%)', zIndex: 2 }} />
@@ -597,7 +601,7 @@ export default function LandingPage() {
                   </motion.div>
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
                     style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '18px' }}>📍</span> Civil Engineering, IGIT SARANG
+                    <span style={{ fontSize: '18px' }}>📍</span> {(activeGallery[currentGalleryIdx] as any)?.description || 'Civil Engineering, IGIT SARANG'}
                   </motion.div>
                 </div>
                 

@@ -399,6 +399,7 @@ export interface GalleryPhoto {
   id: string
   dept_id: string | null
   title: string | null
+  description?: string | null
   image_url: string
   album: string
   uploaded_by: string | null

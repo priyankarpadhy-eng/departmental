@@ -290,8 +290,8 @@ export default function AdminDashboard() {
                 </div>
             ) : recentLogs.length > 0 ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {recentLogs.map((log: any) => (
-                  <div key={log.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                {recentLogs.map((log: any, index: number) => (
+                  <div key={log.id || log._id || index} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                     <div className="avatar avatar-sm" style={{ background: 'var(--surface-secondary)', flexShrink: 0, marginTop: '2px' }}>
                       {(log.full_name || 'A').charAt(0).toUpperCase()}
                     </div>
