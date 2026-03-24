@@ -30,9 +30,14 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
   const [results, setResults] = useState<SharedFile[]>([])
   const [selectedPreview, setSelectedPreview] = useState<SharedFile | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
     async function fetchFiles() {
       try {
         const q = query(collection(db, 'shared_drive'), orderBy('createdAt', 'desc'))
@@ -46,6 +51,7 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
       }
     }
     fetchFiles()
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useEffect(() => {
@@ -71,152 +77,158 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
   }
 
   return (
-    <section id="central-tank" style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div style={{ 
-            display: 'inline-flex', alignItems: 'center', gap: '10px', 
-            background: isDark ? 'rgba(226, 75, 74, 0.12)' : 'rgba(226, 75, 74, 0.08)', 
-            border: `1px solid ${RED_ACCENT_BORDER}`, 
-            color: RED_ACCENT, padding: '6px 20px', borderRadius: '99px', fontSize: '14px', 
-            fontWeight: 800, marginBottom: '24px' 
-          }}>
-            <HardDrive size={18} /> Central Storage
-          </div>
-          <h2 style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 900, marginBottom: '16px', color: T.text, transition: 'color 0.4s' }}>
-            Instant Resource Access
-          </h2>
-          <p style={{ color: T.muted, fontSize: '17px', marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px', transition: 'color 0.4s' }}>
-            Browse and download course materials, department archives, and research papers shared by the community.
-          </p>
-        </motion.div>
+    <>
+      <section id="central-tank" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div style={{ 
+              display: 'inline-flex', alignItems: 'center', gap: '10px', 
+              background: isDark ? 'rgba(226, 75, 74, 0.12)' : 'rgba(226, 75, 74, 0.08)', 
+              border: `1px solid ${RED_ACCENT_BORDER}`, 
+              color: RED_ACCENT, padding: '6px 20px', borderRadius: '99px', fontSize: isMobile ? '12px' : '14px', 
+              fontWeight: 800, marginBottom: '24px' 
+            }}>
+              <HardDrive size={18} /> Central Storage
+            </div>
+            <h2 style={{ fontSize: isMobile ? '28px' : 'clamp(32px, 4vw, 44px)', fontWeight: 900, marginBottom: '16px', color: T.text, transition: 'color 0.4s' }}>
+              Instant Resource Access
+            </h2>
+            <p style={{ color: T.muted, fontSize: isMobile ? '14px' : '17px', marginBottom: isMobile ? '32px' : '48px', maxWidth: '600px', margin: '0 auto 48px', transition: 'color 0.4s' }}>
+              Browse and download course materials, department archives, and research papers shared by the community.
+            </p>
+          </motion.div>
 
-        {/* Search Bar Wrapper with Dynamic Border */}
-        <motion.div 
-          layout
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
-          style={{ 
-            position: 'relative', 
-            maxWidth: '700px', 
-            margin: '0 auto',
-            padding: '8px',
-            borderRadius: '32px',
-            background: searchQuery ? (isDark ? 'rgba(226, 75, 74, 0.15)' : 'rgba(226, 75, 74, 0.1)') : 'transparent',
-            border: `1.5px solid ${searchQuery ? RED_ACCENT : 'transparent'}`,
-            boxShadow: searchQuery ? (isDark ? `0 0 50px ${RED_ACCENT}22` : `0 15px 40px ${RED_ACCENT}15`) : 'none',
-            transition: 'background 0.4s, border 0.4s, box-shadow 0.4s'
-          }}
-        >
-          <div style={{ 
-            display: 'flex', alignItems: 'center', gap: '16px', 
-            background: isDark ? 'rgba(15,15,22,0.9)' : '#FFFFFF', 
-            border: `1.5px solid ${searchQuery ? RED_ACCENT : T.border}`, 
-            borderRadius: '24px', padding: '16px 28px', 
-            backdropFilter: 'blur(20px)',
-            transition: 'all 0.3s ease',
-            boxShadow: searchQuery ? 'inset 0 0 15px rgba(226, 75, 74, 0.05)' : 'none'
-          }}>
-            <Search size={22} style={{ color: searchQuery ? RED_ACCENT : T.muted }} />
-            <input 
-              type="text" 
-              placeholder="Search resource name, topic or keywords..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', fontSize: '18px', fontWeight: 600, color: T.text, transition: 'color 0.4s' }}
-            />
-            {loading && <Loader2 size={20} className="spin" style={{ color: T.muted, animation: 'spin 1.5s linear infinite' }} />}
-          </div>
+          {/* Search Bar Wrapper with Dynamic Border */}
+          <motion.div 
+            layout
+            initial={{ opacity: 0, y: 30 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }}
+            style={{ 
+              position: 'relative', 
+              maxWidth: '700px', 
+              margin: '0 auto',
+              padding: isMobile ? '6px' : '8px',
+              borderRadius: '32px',
+              background: searchQuery ? (isDark ? 'rgba(226, 75, 74, 0.15)' : 'rgba(226, 75, 74, 0.1)') : 'transparent',
+              border: `1.5px solid ${searchQuery ? RED_ACCENT : 'transparent'}`,
+              boxShadow: searchQuery ? (isDark ? `0 0 50px ${RED_ACCENT}22` : `0 15px 40px ${RED_ACCENT}15`) : 'none',
+              transition: 'background 0.4s, border 0.4s, box-shadow 0.4s'
+            }}
+          >
+            <div style={{ 
+              display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', 
+              background: isDark ? 'rgba(15,15,22,0.9)' : '#FFFFFF', 
+              border: `1.5px solid ${searchQuery ? RED_ACCENT : T.border}`, 
+              borderRadius: '24px', padding: isMobile ? '12px 20px' : '16px 28px', 
+              backdropFilter: 'blur(20px)',
+              transition: 'all 0.3s ease',
+              boxShadow: searchQuery ? 'inset 0 0 15px rgba(226, 75, 74, 0.05)' : 'none'
+            }}>
+              <Search size={isMobile ? 18 : 22} style={{ color: searchQuery ? RED_ACCENT : T.muted }} />
+              <input 
+                type="text" 
+                placeholder={isMobile ? "Search materials..." : "Search resource name, topic or keywords..."}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', fontSize: isMobile ? '15px' : '18px', fontWeight: 600, color: T.text, transition: 'color 0.4s' }}
+              />
+              {loading && <Loader2 size={20} className="spin" style={{ color: T.muted, animation: 'spin 1.5s linear infinite' }} />}
+            </div>
 
-          {/* Results Overlay */}
-          <AnimatePresence>
-            {searchQuery && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                style={{ 
-                  zIndex: 10,
-                  marginTop: '12px',
-                  overflow: 'hidden'
-                }}
-              >
-                <div style={{ 
-                  background: isDark ? 'rgba(15,15,22,0.85)' : '#FFFFFF', 
-                  border: `1.5px solid ${T.border}`, borderRadius: '24px', 
-                  padding: '8px', backdropFilter: 'blur(24px)'
-                }}>
-                  {results.length > 0 ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                      {results.map(file => (
-                        <motion.div 
-                          layout
-                          key={file.id} 
-                          whileHover={{ background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(226, 75, 74, 0.03)' }}
-                          style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '14px 20px', borderRadius: '16px', cursor: 'default', textAlign: 'left' }}
-                        >
-                          <div style={{ 
-                            width: '44px', height: '44px', borderRadius: '12px', 
-                            background: RED_ACCENT_SOFT, 
-                            display: 'flex', alignItems: 'center', justifyContent: 'center' 
-                          }}>
-                            <FileText size={20} style={{ color: RED_ACCENT }} />
-                          </div>
-                          <div style={{ flex: 1, minWidth: 0, cursor: 'pointer' }} onClick={() => setSelectedPreview(file)}>
-                            <div style={{ fontWeight: 800, color: T.text, fontSize: '15px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{file.title || file.name}</div>
-                            <div style={{ fontSize: '12px', color: T.muted }}>{formatBytes(file.size)} • By {file.uploaderName}</div>
-                          </div>
-                          <div style={{ display: 'flex', gap: '8px' }}>
-                            <motion.button 
-                              onClick={() => setSelectedPreview(file)}
-                              whileHover={{ scale: 1.1, background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)' }} 
-                              whileTap={{ scale: 0.9 }} 
-                              style={{ 
-                                width: '40px', height: '40px', borderRadius: '50%', border: 'none', cursor: 'pointer',
-                                background: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)', 
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.text,
-                                transition: 'all 0.2s ease'
-                              }}
-                              title="Preview File"
-                            >
-                              <Eye size={18} />
-                            </motion.button>
-                            <a href={`/api/storage/b2/download?key=${encodeURIComponent(file.fileKey)}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-                              <motion.div 
-                                whileHover={{ scale: 1.1, background: RED_ACCENT, color: '#fff' }} 
+            {/* Results Overlay */}
+            <AnimatePresence>
+              {searchQuery && (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  style={{ 
+                    zIndex: 10,
+                    marginTop: '12px',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <div style={{ 
+                    background: isDark ? 'rgba(15,15,22,0.85)' : '#FFFFFF', 
+                    border: `1.5px solid ${T.border}`, borderRadius: '24px', 
+                    padding: '8px', backdropFilter: 'blur(24px)'
+                  }}>
+                    {results.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        {results.map(file => (
+                          <motion.div 
+                            layout
+                            key={file.id} 
+                            whileHover={{ background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(226, 75, 74, 0.03)' }}
+                            style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '10px' : '16px', padding: isMobile ? '10px 12px' : '14px 20px', borderRadius: '16px', cursor: 'default', textAlign: 'left' }}
+                          >
+                            <div style={{ 
+                              width: isMobile ? '36px' : '44px', height: isMobile ? '36px' : '44px', borderRadius: '10px', 
+                              background: RED_ACCENT_SOFT, 
+                              display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+                            }}>
+                              <FileText size={isMobile ? 18 : 20} style={{ color: RED_ACCENT }} />
+                            </div>
+                            <div style={{ flex: 1, minWidth: 0, cursor: 'pointer' }} onClick={() => setSelectedPreview(file)}>
+                              <div style={{ fontWeight: 800, color: T.text, fontSize: isMobile ? '14px' : '15px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{file.title || file.name}</div>
+                              <div style={{ fontSize: '11px', color: T.muted }}>{formatBytes(file.size)} • {file.uploaderName}</div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '6px' }}>
+                              <motion.button 
+                                onClick={() => setSelectedPreview(file)}
+                                whileHover={{ scale: 1.1, background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)' }} 
                                 whileTap={{ scale: 0.9 }} 
                                 style={{ 
-                                  width: '40px', height: '40px', borderRadius: '50%', 
-                                  background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)', 
+                                  width: '36px', height: '36px', borderRadius: '50%', border: 'none', cursor: 'pointer',
+                                  background: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)', 
                                   display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.text,
                                   transition: 'all 0.2s ease'
                                 }}
+                                title="Preview"
                               >
-                                <Download size={18} />
-                              </motion.div>
-                            </a>
-                          </div>
-                        </motion.div>
-                      ))}
-                      <div style={{ padding: '12px', textAlign: 'center', borderTop: `1px solid ${T.border}`, marginTop: '4px' }}>
-                        <p style={{ fontSize: '12px', color: T.muted }}>Results are filtered to show the top matching resources.</p>
+                                <Eye size={16} />
+                              </motion.button>
+                              <a href={`/api/storage/b2/download?key=${encodeURIComponent(file.fileKey)}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+                                <motion.div 
+                                  whileHover={{ scale: 1.1, background: RED_ACCENT, color: '#fff' }} 
+                                  whileTap={{ scale: 0.9 }} 
+                                  style={{ 
+                                    width: '36px', height: '36px', borderRadius: '50%', 
+                                    background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)', 
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: T.text,
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                >
+                                  <Download size={16} />
+                                </motion.div>
+                              </a>
+                            </div>
+                          </motion.div>
+                        ))}
+                        <div style={{ padding: '12px', textAlign: 'center', borderTop: `1px solid ${T.border}`, marginTop: '4px' }}>
+                          <p style={{ fontSize: '11px', color: T.muted }}>Top matching resources shown.</p>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div style={{ padding: '40px 20px', textAlign: 'center' }}>
-                      <Cloud size={40} style={{ color: T.muted, marginBottom: '12px', opacity: 0.5 }} />
-                      <p style={{ fontWeight: 700, color: T.text }}>No matching resources found.</p>
-                      <p style={{ fontSize: '13px', color: T.muted }}>Try searching for generic terms like "Math" or "Report".</p>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </div>
+                    ) : (
+                      <div style={{ padding: '32px 16px', textAlign: 'center' }}>
+                        <Cloud size={32} style={{ color: T.muted, marginBottom: '8px', opacity: 0.5 }} />
+                        <p style={{ fontWeight: 700, color: T.text, fontSize: '14px' }}>No matches found.</p>
+                        <p style={{ fontSize: '12px', color: T.muted }}>Try generic terms.</p>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        `}} />
+      </section>
 
       {/* Modern Black/Blur File Previewer Modal - Portal for z-index safety */}
       {mounted && createPortal(
@@ -228,9 +240,9 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
               exit={{ opacity: 0 }}
               onClick={() => setSelectedPreview(null)}
               style={{
-                position: 'fixed', inset: 0, zIndex: 999999, // ultra high z-index
+                position: 'fixed', inset: 0, zIndex: 999999,
                 background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(24px)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px'
+                display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '0' : '20px'
               }}
             >
               <motion.div
@@ -239,42 +251,42 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
                 onClick={(e) => e.stopPropagation()}
                 style={{
-                  width: '100%', maxWidth: '1100px', height: '90vh',
+                  width: '100%', maxWidth: '1100px', height: isMobile ? '100vh' : '90vh',
                   background: isDark ? '#0A0A0F' : '#FFFFFF',
-                  borderRadius: '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
-                  border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                  borderRadius: isMobile ? '0' : '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
+                  border: isMobile ? 'none' : `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                   boxShadow: '0 40px 100px rgba(0,0,0,0.5)'
                 }}
               >
                 <div style={{ 
-                  padding: '20px 30px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                  padding: isMobile ? '16px 20px' : '20px 30px', borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: RED_ACCENT_SOFT, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <FileText size={24} style={{ color: RED_ACCENT }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', minWidth: 0 }}>
+                    <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px', borderRadius: '10px', background: RED_ACCENT_SOFT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <FileText size={isMobile ? 20 : 24} style={{ color: RED_ACCENT }} />
                     </div>
-                    <div>
-                      <h3 style={{ fontSize: '18px', fontWeight: 800, color: T.text, margin: 0, padding: 0 }}>{selectedPreview.title || selectedPreview.name}</h3>
-                      <p style={{ fontSize: '13px', color: T.muted, margin: 0, marginTop: '4px' }}>By {selectedPreview.uploaderName} • {formatBytes(selectedPreview.size)}</p>
+                    <div style={{ minWidth: 0 }}>
+                      <h3 style={{ fontSize: isMobile ? '15px' : '18px', fontWeight: 800, color: T.text, margin: 0, padding: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{selectedPreview.title || selectedPreview.name}</h3>
+                      <p style={{ fontSize: '12px', color: T.muted, margin: 0, marginTop: '2px' }}>{formatBytes(selectedPreview.size)}</p>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', gap: '12px' }}>
+                  <div style={{ display: 'flex', gap: '8px' }}>
                     <a href={`/api/storage/b2/download?key=${encodeURIComponent(selectedPreview.fileKey)}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                       <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                         style={{ 
                           background: RED_ACCENT, color: '#fff', border: 'none', 
-                          padding: '10px 24px', borderRadius: '12px', fontWeight: 700, 
-                          display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' 
+                          padding: isMobile ? '10px 14px' : '10px 24px', borderRadius: '12px', fontWeight: 700, 
+                          display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: isMobile ? '12px' : '14px'
                         }}>
-                        <Download size={18} /> Download
+                        <Download size={16} /> {!isMobile && 'Download'}
                       </motion.button>
                     </a>
                     <motion.button onClick={() => setSelectedPreview(null)}
                       whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.1)' }} whileTap={{ scale: 0.95 }}
                       style={{ 
-                        width: '44px', height: '44px', borderRadius: '12px', border: `1px solid ${T.border}`, 
+                        width: '40px', height: '40px', borderRadius: '12px', border: `1px solid ${T.border}`, 
                         background: 'transparent', color: T.text, cursor: 'pointer',
                         display: 'flex', alignItems: 'center', justifyContent: 'center' 
                       }}>
@@ -288,24 +300,20 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
                       const ext = selectedPreview.name.split('.').pop()?.toLowerCase();
                       const url = `/api/storage/b2/download?key=${encodeURIComponent(selectedPreview.fileKey)}`;
                       
-                      // Handle Images
                       if (['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext || '')) {
                         return <img src={url} alt="Preview" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                       }
                       
-                      // Handle PDFs natively via iframe
                       if (ext === 'pdf') {
                          return <iframe src={url} style={{ width: '100%', height: '100%', border: 'none' }} title="PDF Previewer" />
                       }
 
-                      // Fallback for word, excel, and text types that don't easily render cross-origin in iframes without public URLs natively
                       return (
                         <div style={{ textAlign: 'center', padding: '40px' }}>
-                           <FileText size={64} style={{ color: 'rgba(0,0,0,0.2)', marginBottom: '16px' }} />
-                           <h4 style={{ color: '#333', fontSize: '20px', fontWeight: 600 }}>No Preview Available</h4>
-                           <p style={{ color: '#666', marginTop: '8px', maxWidth: '400px', margin: '8px auto' }}>
-                             This file type ({ext?.toUpperCase() || 'Unknown'}) cannot be previewed directly in the browser. 
-                             Please download it to view the contents.
+                           <FileText size={isMobile ? 48 : 64} style={{ color: 'rgba(0,0,0,0.2)', marginBottom: '16px' }} />
+                           <h4 style={{ color: '#333', fontSize: isMobile ? '18px' : '20px', fontWeight: 600 }}>No Preview</h4>
+                           <p style={{ color: '#666', marginTop: '8px', maxWidth: '300px', margin: '8px auto', fontSize: '13px' }}>
+                             This file type ({ext?.toUpperCase()}) cannot be previewed. Please download to view.
                            </p>
                         </div>
                       )
@@ -317,10 +325,6 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
         </AnimatePresence>,
         document.body
       )}
-
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      `}} />
-    </section>
+    </>
   )
 }

@@ -395,7 +395,7 @@ export default function LandingPage() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-          padding: isScrolled ? '14px 8%' : '20px 8%',
+          padding: isScrolled ? (isMobile ? '12px 5%' : '14px 8%') : (isMobile ? '16px 5%' : '20px 8%'),
           background: isScrolled ? T.navBg : (isDark ? 'rgba(10,10,15,0.5)' : 'rgba(248,250,245,0.5)'),
           backdropFilter: 'blur(24px)',
           borderBottom: `1px solid ${isScrolled ? T.navBorder : 'transparent'}`,
@@ -403,59 +403,115 @@ export default function LandingPage() {
           transition: 'all 0.4s ease',
         }}
       >
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: isMobile ? '8px' : '10px' }}>
           <motion.div whileHover={{ rotate: 10, scale: 1.1 }} style={{
-            width: '36px', height: '36px', borderRadius: '10px',
+            width: isMobile ? '32px' : '36px', height: isMobile ? '32px' : '36px', borderRadius: '10px',
             background: 'linear-gradient(135deg, #B9FF66, #91cc4a)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 900, fontSize: '18px', color: '#191A23',
+            fontWeight: 900, fontSize: isMobile ? '16px' : '18px', color: '#191A23',
           }}>C</motion.div>
-          <span style={{ fontWeight: 800, fontSize: '14px', color: T.text, letterSpacing: '0.5px', transition: 'color 0.4s' }}>CIVIL DEPT</span>
+          <span style={{ fontWeight: 800, fontSize: isMobile ? '13px' : '14px', color: T.text, letterSpacing: '0.5px', transition: 'color 0.4s' }}>CIVIL DEPT</span>
         </Link>
 
-        <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-          {['Storage', 'HOD', 'Gallery', 'Faculty', 'Features'].map((item) => (
-            <motion.a key={item} href={item === 'Storage' ? '#central-tank' : `#${item.toLowerCase()}`}
-              whileHover={{ color: '#B9FF66' }}
-              style={{ textDecoration: 'none', color: T.muted, fontWeight: 600, fontSize: '14px', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', transition: 'color 0.2s' }}
-            >{item}</motion.a>
-          ))}
-        </div>
+        {!isMobile && (
+          <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+            {['Storage', 'HOD', 'Gallery', 'Faculty', 'Features'].map((item) => (
+              <motion.a key={item} href={item === 'Storage' ? '#central-tank' : `#${item.toLowerCase()}`}
+                whileHover={{ color: '#B9FF66' }}
+                style={{ textDecoration: 'none', color: T.muted, fontWeight: 600, fontSize: '14px', padding: '8px 14px', borderRadius: '10px', cursor: 'pointer', transition: 'color 0.2s' }}
+              >{item}</motion.a>
+            ))}
+          </div>
+        )}
 
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <motion.button onClick={toggle}
-            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-            style={{ border: `1px solid ${T.border}`, background: T.faint, color: T.text, padding: '8px 14px', borderRadius: '10px', fontWeight: 700, cursor: 'pointer', fontSize: '15px', transition: 'all 0.3s' }}
-          >{isDark ? '☀️' : '🌙'}</motion.button>
+        <div style={{ display: 'flex', gap: isMobile ? '8px' : '10px', alignItems: 'center' }}>
+          {!isMobile && (
+            <motion.button onClick={toggle}
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+              style={{ border: `1px solid ${T.border}`, background: T.faint, color: T.text, padding: '8px 14px', borderRadius: '10px', fontWeight: 700, cursor: 'pointer', fontSize: '15px', transition: 'all 0.3s' }}
+            >{isDark ? '☀️' : '🌙'}</motion.button>
+          )}
 
           {user ? (
             <motion.button onClick={handleDashboardRedirect}
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-              style={{ background: '#B9FF66', color: '#191A23', padding: '10px 22px', borderRadius: '12px', border: 'none', fontWeight: 900, cursor: 'pointer', fontSize: '14px' }}
-            >Dashboard →</motion.button>
+              style={{ background: '#B9FF66', color: '#191A23', padding: isMobile ? '8px 14px' : '10px 22px', borderRadius: '12px', border: 'none', fontWeight: 900, cursor: 'pointer', fontSize: isMobile ? '12px' : '14px' }}
+            >{isMobile ? 'Dashboard' : 'Dashboard →'}</motion.button>
           ) : (
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href="/login" style={{
                 textDecoration: 'none', border: '1.5px solid #B9FF66',
                 background: isDark ? 'transparent' : 'rgba(185,255,102,0.08)',
-                color: isDark ? '#B9FF66' : '#16a34a', padding: '10px 22px',
-                borderRadius: '12px', fontWeight: 900, fontSize: '14px', display: 'block', transition: 'all 0.3s',
+                color: isDark ? '#B9FF66' : '#16a34a', padding: isMobile ? '8px 14px' : '10px 22px',
+                borderRadius: '12px', fontWeight: 900, fontSize: isMobile ? '12px' : '14px', display: 'block', transition: 'all 0.3s',
               }}>Login</Link>
             </motion.div>
           )}
+
+          {isMobile && (
+            <motion.button 
+              onClick={() => setMenuOpen(!menuOpen)}
+              whileTap={{ scale: 0.9 }}
+              style={{ width: '40px', height: '40px', borderRadius: '12px', background: T.faint, border: `1px solid ${T.border}`, color: T.text, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                {menuOpen ? <line x1="18" y1="6" x2="6" y2="18" /> : (
+                  <>
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                  </>
+                )}
+              </svg>
+            </motion.button>
+          )}
         </div>
+
+        {/* Mobile Sidebar */}
+        <AnimatePresence>
+          {isMobile && menuOpen && (
+            <>
+              <motion.div 
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                onClick={() => setMenuOpen(false)}
+                style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', zIndex: 1001 }}
+              />
+              <motion.div 
+                initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: '280px', background: T.bg, zIndex: 1002, padding: '80px 24px 40px', display: 'flex', flexDirection: 'column', gap: '8px', borderLeft: `1px solid ${T.border}`, boxShadow: '-10px 0 30px rgba(0,0,0,0.1)' }}
+              >
+                <div style={{ marginBottom: '32px' }}>
+                  <div style={{ color: T.muted, fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '16px' }}>Explore</div>
+                  {['Storage', 'HOD', 'Gallery', 'Faculty', 'Features'].map(item => (
+                    <Link key={item} href={item === 'Storage' ? '#central-tank' : `#${item.toLowerCase()}`}
+                      onClick={() => setMenuOpen(false)}
+                      style={{ textDecoration: 'none', color: T.text, fontWeight: 700, fontSize: '17px', padding: '12px 16px', borderRadius: '12px', display: 'block', transition: 'all 0.2s', background: 'transparent' }}
+                    >{item}</Link>
+                  ))}
+                </div>
+                
+                <div style={{ marginTop: 'auto' }}>
+                  <button onClick={() => { toggle(); setMenuOpen(false); }} style={{ width: '100%', border: `1px solid ${T.border}`, background: T.faint, color: T.text, padding: '16px', borderRadius: '16px', fontWeight: 800, cursor: 'pointer', fontSize: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                    {isDark ? '☀️ Light' : '🌙 Dark'} Mode
+                  </button>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* ──────────────── HERO ──────────────── */}
-      <section style={{ padding: '160px 8% 100px', position: 'relative', zIndex: 1 }}>
+      <section style={{ padding: isMobile ? '120px 5% 60px' : '160px 8% 100px', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 20, scale: 0.85 }} animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
+            transition={{ duration: 0.6, delay: 0.2 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: isMobile ? '20px' : '32px' }}>
             <span style={{
               background: isDark ? 'rgba(185,255,102,0.1)' : 'rgba(22,163,74,0.08)',
               border: isDark ? '1px solid rgba(185,255,102,0.3)' : '1px solid rgba(22,163,74,0.25)',
               color: isDark ? '#B9FF66' : '#16a34a', padding: '6px 18px',
-              borderRadius: '99px', fontSize: '13px', fontWeight: 700,
+              borderRadius: '99px', fontSize: isMobile ? '11px' : '13px', fontWeight: 700,
             }}>
               🎓 IGIT SARANG · Civil Engineering
             </span>
@@ -465,8 +521,8 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontSize: 'clamp(38px, 5.5vw, 68px)', fontWeight: 900, lineHeight: 1.08,
-              letterSpacing: '-3px', marginBottom: '24px',
+              fontSize: isMobile ? '34px' : 'clamp(38px, 5.5vw, 68px)', fontWeight: 900, lineHeight: 1.1,
+              letterSpacing: isMobile ? '-1.5px' : '-3px', marginBottom: '24px',
             }}
           >
             <span className={isDark ? 'hero-title-dark' : 'hero-title-light'}>
@@ -476,28 +532,28 @@ export default function LandingPage() {
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            style={{ fontSize: '18px', color: T.muted, lineHeight: 1.7, maxWidth: '600px', margin: '0 auto 44px', fontWeight: 400, transition: 'color 0.4s' }}
+            style={{ fontSize: isMobile ? '15px' : '18px', color: T.muted, lineHeight: 1.7, maxWidth: '600px', margin: '0 auto 44px', fontWeight: 400, transition: 'color 0.4s' }}
           >{settings.subtitle}</motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
-            style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
+            style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}
           >
             {user ? (
               <motion.button onClick={handleDashboardRedirect}
                 whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(185,255,102,0.35)' }} whileTap={{ scale: 0.96 }}
-                style={{ background: 'linear-gradient(135deg,#B9FF66,#91cc4a)', color: '#191A23', padding: '16px 40px', borderRadius: '16px', border: 'none', fontWeight: 900, fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
+                style={{ background: 'linear-gradient(135deg,#B9FF66,#91cc4a)', color: '#191A23', padding: isMobile ? '14px 28px' : '16px 40px', borderRadius: '16px', border: 'none', fontWeight: 900, fontSize: isMobile ? '14px' : '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
               >Manage Workspace <span>→</span></motion.button>
             ) : (
               <>
-                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(185,255,102,0.3)' }} whileTap={{ scale: 0.96 }}>
-                  <Link href="/login" style={{ background: 'linear-gradient(135deg,#B9FF66,#91cc4a)', color: '#191A23', padding: '16px 36px', borderRadius: '16px', fontWeight: 900, fontSize: '16px', textDecoration: 'none', display: 'inline-block' }}>Login Access →</Link>
+                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(185,255,102,0.3)' }} whileTap={{ scale: 0.96 }} style={{ width: isMobile ? '100%' : 'auto' }}>
+                  <Link href="/login" style={{ background: 'linear-gradient(135deg,#B9FF66,#91cc4a)', color: '#191A23', padding: isMobile ? '14px' : '16px 36px', borderRadius: '16px', fontWeight: 900, fontSize: isMobile ? '14px' : '16px', textDecoration: 'none', display: 'block', textAlign: 'center' }}>Login Access →</Link>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }} style={{ width: isMobile ? '100%' : 'auto' }}>
                   <Link href="/login" style={{
                     border: `1.5px solid ${T.border}`, background: T.faint,
-                    color: T.text, padding: '16px 36px', borderRadius: '16px',
-                    fontWeight: 800, fontSize: '16px', textDecoration: 'none', display: 'inline-block',
+                    color: T.text, padding: isMobile ? '14px' : '16px 36px', borderRadius: '16px',
+                    fontWeight: 800, fontSize: isMobile ? '14px' : '16px', textDecoration: 'none', display: 'block', textAlign: 'center',
                     backdropFilter: 'blur(12px)', transition: 'all 0.3s',
                   }}>Create Account</Link>
                 </motion.div>
@@ -509,7 +565,7 @@ export default function LandingPage() {
         {/* Stats Row */}
         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.85 }}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '20px', maxWidth: '800px', margin: '80px auto 0' }}
+          style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap: isMobile ? '8px' : '20px', maxWidth: '800px', margin: isMobile ? '40px auto 0' : '80px auto 0' }}
         >
             {[
               { value: '15+',   label: 'Expert Faculty',    icon: '👨‍🎓' },
@@ -519,6 +575,7 @@ export default function LandingPage() {
             ].map(s => <StatCard key={s.label} {...s} isDark={isDark} />)}
           </motion.div>
         </section>
+
   
         {/* ──────────────── CENTRAL STORAGE SEARCH ──────────────── */}
         <LandingStorageSearch isDark={isDark} T={T} />
@@ -647,14 +704,14 @@ export default function LandingPage() {
       </section>
 
       {/* ──────────────── FEATURES ──────────────── */}
-      <section id="features" style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
+      <section id="features" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
         <FadeUp>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px' }}>
-            <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: '26px' }}>Features</div>
-            <p style={{ color: T.muted, fontSize: '15px' }}>Integrated tools designed to streamline academic workflows.</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', marginBottom: isMobile ? '32px' : '48px' }}>
+            <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Features</div>
+            <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Integrated academic tools.</p>
           </div>
         </FadeUp>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit,minmax(280px,1fr))', gap: '24px' }}>
           {features.map((f, i) => (
             <motion.a key={f.title}
               href={f.href.startsWith('http') ? f.href : undefined}
@@ -669,27 +726,29 @@ export default function LandingPage() {
         </div>
       </section>
 
+
       {/* ──────────────── FACULTY ──────────────── */}
       {settings.show_faculties && faculties.length > 0 && (
-        <section id="faculty" style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
+        <section id="faculty" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
           <FadeUp>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px' }}>
-              <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: '26px' }}>Faculty</div>
-              <p style={{ color: T.muted, fontSize: '15px' }}>Meet the experts guiding the next generation of engineers.</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', marginBottom: isMobile ? '32px' : '48px' }}>
+              <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Faculty</div>
+              <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Inspiring minds.</p>
             </div>
           </FadeUp>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(190px,1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(auto-fill,minmax(190px,1fr))', gap: isMobile ? '12px' : '20px' }}>
             {faculties.map(fac => <FacultyCard key={fac.id} prof={fac} isDark={isDark} />)}
           </div>
         </section>
       )}
 
+
       {/* ──────────────── NOTICES ──────────────── */}
       {notices.length > 0 && (
-        <section style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
+        <section style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
           <FadeUp>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '36px' }}>
-              <div style={{ background: '#6479FF', color: '#FFFFFF', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: '24px' }}>Notices</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: isMobile ? '24px' : '36px' }}>
+              <div style={{ background: '#6479FF', color: '#FFFFFF', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '24px' }}>Notices</div>
             </div>
           </FadeUp>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -699,6 +758,7 @@ export default function LandingPage() {
           </div>
         </section>
       )}
+
 
 
 
