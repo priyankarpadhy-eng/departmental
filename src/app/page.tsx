@@ -236,12 +236,37 @@ export default function LandingPage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const [isMobile, setIsMobile] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  const activeGallery = gallery.length > 0 ? gallery : [
+    { id: 'p1', image_url: 'https://images.unsplash.com/photo-1590159491612-da7d25e0c06a?q=80&w=2000&auto=format&fit=crop', title: 'Department Entrance' },
+    { id: 'p2', image_url: 'https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=2000&auto=format&fit=crop', title: 'Construction Lab' },
+    { id: 'p3', image_url: 'https://plus.unsplash.com/premium_photo-1661962283999-906969543884?q=80&w=2000&auto=format&fit=crop', title: 'Surveying Session' },
+  ]
+
   // Auto-advance gallery
   useEffect(() => {
     if (gallery.length <= 1) return
     const timer = setInterval(() => setCurrentGalleryIdx(p => (p + 1) % gallery.length), 4500)
     return () => clearInterval(timer)
   }, [gallery.length])
+
+  // Preload gallery images to ensure they are fetched only once and kept in memory
+  useEffect(() => {
+    activeGallery.forEach((photo: any) => {
+      if (photo.image_url) {
+        const img = new Image();
+        img.src = photo.image_url;
+      }
+    });
+  }, [activeGallery]);
 
   useEffect(() => {
     async function fetchStatics() {
@@ -278,11 +303,6 @@ export default function LandingPage() {
     if (profile?.role) router.push(ROLE_ROUTES[profile.role as UserRole] || '/login')
   }
 
-  const activeGallery = gallery.length > 0 ? gallery : [
-    { id: 'p1', image_url: 'https://images.unsplash.com/photo-1590159491612-da7d25e0c06a?q=80&w=2000&auto=format&fit=crop', title: 'Department Entrance' },
-    { id: 'p2', image_url: 'https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=2000&auto=format&fit=crop', title: 'Construction Lab' },
-    { id: 'p3', image_url: 'https://plus.unsplash.com/premium_photo-1661962283999-906969543884?q=80&w=2000&auto=format&fit=crop', title: 'Surveying Session' },
-  ]
 
   const features = [
     { title: 'Latest Announcements', desc: notices[0]?.title || 'Stay updated with departmental news, circulars, and academic updates in real-time.', icon: '📢', accent: '#B9FF66', href: '/announcements' },
@@ -504,33 +524,33 @@ export default function LandingPage() {
         <LandingStorageSearch isDark={isDark} T={T} />
 
       {/* ──────────────── HOD SECTION ──────────────── */}
-      <section id="hod" style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
+      <section id="hod" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
         <FadeUp>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '48px' }}>
-            <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: '26px' }}>HOD</div>
-            <p style={{ color: T.muted, fontSize: '15px' }}>Visionary leadership guiding our department towards technical excellence.</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: isMobile ? '32px' : '48px' }}>
+            <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>HOD</div>
+            <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Visionary leadership guiding our department.</p>
           </div>
         </FadeUp>
         <FadeUp delay={0.15}>
-          <motion.div whileHover={{ boxShadow: isDark ? '0 30px 80px rgba(0,0,0,0.5)' : '0 20px 60px rgba(0,0,0,0.12)' }}
+          <motion.div whileHover={isMobile ? {} : { boxShadow: isDark ? '0 30px 80px rgba(0,0,0,0.5)' : '0 20px 60px rgba(0,0,0,0.12)' }}
             style={{
               background: isDark
                 ? 'linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(185,255,102,0.04) 100%)'
                 : 'linear-gradient(135deg,#FFFFFF 0%,rgba(185,255,102,0.06) 100%)',
               border: isDark ? '1px solid rgba(185,255,102,0.2)' : '1px solid rgba(0,0,0,0.08)',
-              borderRadius: '32px', padding: '52px',
-              display: 'grid', gridTemplateColumns: '200px 1fr', gap: '48px', alignItems: 'center',
+              borderRadius: '32px', padding: isMobile ? '32px 24px' : '52px',
+              display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '32px' : '48px', alignItems: 'center',
               backdropFilter: isDark ? 'blur(20px)' : 'none',
               position: 'relative', overflow: 'hidden',
               boxShadow: isDark ? 'none' : '0 4px 30px rgba(0,0,0,0.06)',
               transition: 'all 0.4s',
             }}
           >
-            <div style={{ position: 'absolute', top: 0, right: 0, width: '280px', height: '280px', borderRadius: '50%',
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '200px', height: '200px', borderRadius: '50%',
               background: isDark ? 'radial-gradient(circle,rgba(185,255,102,0.08) 0%,transparent 70%)' : 'radial-gradient(circle,rgba(185,255,102,0.18) 0%,transparent 70%)',
               pointerEvents: 'none' }} />
-            <div style={{ textAlign: 'center' }}>
-              <motion.div whileHover={{ scale: 1.06 }} style={{ width: '160px', height: '160px', borderRadius: '24px', overflow: 'hidden', margin: '0 auto', border: '3px solid rgba(185,255,102,0.45)', boxShadow: '0 0 40px rgba(185,255,102,0.15)' }}>
+            <div style={{ textAlign: 'center', flexShrink: 0 }}>
+              <motion.div whileHover={{ scale: 1.06 }} style={{ width: isMobile ? '140px' : '160px', height: isMobile ? '140px' : '160px', borderRadius: '24px', overflow: 'hidden', margin: '0 auto', border: '3px solid rgba(185,255,102,0.45)', boxShadow: '0 0 40px rgba(185,255,102,0.15)' }}>
                 <img
                   src={settings.hod_photo_url || hod?.photo_url || `https://ui-avatars.com/api/?name=Dr+G+K+Pothal&background=B9FF66&color=191A23&size=512`}
                   alt="HOD" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -540,12 +560,12 @@ export default function LandingPage() {
               <div style={{ marginTop: '16px', fontWeight: 800, fontSize: '16px', color: T.text }}>{settings.hod_name}</div>
               <div style={{ fontSize: '12px', color: '#16a34a', fontWeight: 700, marginTop: '4px' }}>Head of Department</div>
             </div>
-            <div>
+            <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
               <div style={{ fontSize: '48px', color: '#B9FF66', fontWeight: 900, lineHeight: 0.5, marginBottom: '16px' }}>"</div>
-              <p style={{ fontSize: '18px', lineHeight: 1.8, color: T.muted, fontStyle: 'italic', transition: 'color 0.4s' }}>{settings.hod_quote}</p>
-              <div style={{ marginTop: '28px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <span style={{ background: isDark ? 'rgba(185,255,102,0.1)' : 'rgba(22,163,74,0.08)', border: isDark ? '1px solid rgba(185,255,102,0.2)' : '1px solid rgba(22,163,74,0.2)', padding: '6px 16px', borderRadius: '99px', fontSize: '12px', color: isDark ? '#B9FF66' : '#16a34a', fontWeight: 700 }}>Civil Engineering</span>
-                <span style={{ background: isDark ? 'rgba(100,121,255,0.1)' : 'rgba(100,121,255,0.08)', border: isDark ? '1px solid rgba(100,121,255,0.2)' : '1px solid rgba(100,121,255,0.2)', padding: '6px 16px', borderRadius: '99px', fontSize: '12px', color: '#6479FF', fontWeight: 700 }}>IGIT SARANG</span>
+              <p style={{ fontSize: isMobile ? '16px' : '18px', lineHeight: 1.8, color: T.muted, fontStyle: 'italic', transition: 'color 0.4s' }}>{settings.hod_quote}</p>
+              <div style={{ marginTop: '28px', display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-start' }}>
+                <span style={{ background: isDark ? 'rgba(185,255,102,0.1)' : 'rgba(22,163,74,0.08)', border: isDark ? '1px solid rgba(185,255,102,0.2)' : '1px solid rgba(22,163,74,0.2)', padding: '6px 14px', borderRadius: '99px', fontSize: '11px', color: isDark ? '#B9FF66' : '#16a34a', fontWeight: 700 }}>Civil Engineering</span>
+                <span style={{ background: isDark ? 'rgba(100,121,255,0.1)' : 'rgba(100,121,255,0.08)', border: isDark ? '1px solid rgba(100,121,255,0.2)' : '1px solid rgba(100,121,255,0.2)', padding: '6px 14px', borderRadius: '99px', fontSize: '11px', color: '#6479FF', fontWeight: 700 }}>IGIT SARANG</span>
               </div>
             </div>
           </motion.div>
@@ -553,68 +573,75 @@ export default function LandingPage() {
       </section>
 
       {/* ──────────────── GALLERY ──────────────── */}
-      <section id="gallery" style={{ padding: '0 8% 120px', position: 'relative', zIndex: 1 }}>
+      <section id="gallery" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
         <FadeUp>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '40px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: '26px' }}>Gallery</div>
-              <p style={{ color: T.muted, fontSize: '15px' }}>Capturing moments of innovation and learning.</p>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isMobile ? '24px' : '40px', flexDirection: isMobile ? 'column' : 'row', gap: '16px', textAlign: isMobile ? 'center' : 'left' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexDirection: isMobile ? 'column' : 'row' }}>
+              <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Gallery</div>
+              <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Capturing moments of innovation.</p>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
               {[{ label: '←', fn: () => setCurrentGalleryIdx(p => (p - 1 + activeGallery.length) % activeGallery.length) },
                 { label: '→', fn: () => setCurrentGalleryIdx(p => (p + 1) % activeGallery.length) }].map(btn => (
                 <motion.button key={btn.label} onClick={btn.fn}
                   whileHover={{ scale: 1.1, background: '#B9FF66', color: '#191A23' }} whileTap={{ scale: 0.9 }}
-                  style={{ width: '46px', height: '46px', borderRadius: '14px', background: T.surface, color: T.text, border: `1px solid ${T.border}`, cursor: 'pointer', fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s', boxShadow: T.shadow }}
+                  style={{ width: '42px', height: '42px', borderRadius: '12px', background: T.surface, color: T.text, border: `1px solid ${T.border}`, cursor: 'pointer', fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s', boxShadow: T.shadow }}
                 >{btn.label}</motion.button>
               ))}
             </div>
           </div>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', height: 'min(650px, 75vh)', border: `1px solid ${T.border}`, boxShadow: isDark ? 'none' : '0 12px 60px rgba(0,0,0,0.12)', background: '#000' }}>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div key={currentGalleryIdx}
-                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', height: isMobile ? '400px' : 'min(650px, 75vh)', border: `1px solid ${T.border}`, boxShadow: isDark ? 'none' : '0 12px 60px rgba(0,0,0,0.12)', background: '#000' }}>
+            {activeGallery.map((photo, i) => (
+              <motion.div 
+                key={photo.id || i}
+                initial={false}
+                animate={{ 
+                  opacity: i === currentGalleryIdx ? 1 : 0,
+                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+                }}
+                style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: i === currentGalleryIdx ? 'auto' : 'none' }}
               >
-                {/* Blurred Background for Premium Dynamic Fit */}
-                <motion.img 
-                  initial={{ scale: 1.2 }} animate={{ scale: 1.1 }}
-                  src={(activeGallery[currentGalleryIdx] as any)?.image_url || ''} 
+                {/* Blurred Background */}
+                <img 
+                  src={(photo as any)?.image_url || ''} 
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(40px) brightness(0.5) saturate(1.2)', opacity: 0.6 }} 
                   alt=""
                 />
                 
-                {/* Sharp Foreground Image optimized to Fill Container gracefully */}
-                <img src={(activeGallery[currentGalleryIdx] as any)?.image_url || ''} alt="Gallery"
+                {/* Sharp Foreground Image */}
+                <img src={(photo as any)?.image_url || ''} alt="Gallery"
                   style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 }} />
                 
-                {/* Gradient Overlay for Text Readability */}
+                {/* Gradient Overlay */}
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 40%)', zIndex: 2 }} />
                 
-                <div style={{ position: 'absolute', bottom: '40px', left: '48px', zIndex: 3 }}>
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-                    style={{ fontSize: '28px', fontWeight: 900, color: '#FFFFFF', marginBottom: '8px', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
-                    {(activeGallery[currentGalleryIdx] as any)?.title || 'Departmental Highlight'}
+                <div style={{ position: 'absolute', bottom: isMobile ? '24px' : '40px', left: isMobile ? '24px' : '48px', right: isMobile ? '24px' : 'auto', zIndex: 3 }}>
+                  <motion.div 
+                    animate={{ opacity: i === currentGalleryIdx ? 1 : 0, y: i === currentGalleryIdx ? 0 : 20 }}
+                    transition={{ delay: 0.2 }}
+                    style={{ fontSize: isMobile ? '20px' : '28px', fontWeight: 900, color: '#FFFFFF', marginBottom: '8px', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
+                    {(photo as any)?.title || 'Departmental Highlight'}
                   </motion.div>
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                    style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '18px' }}>📍</span> {(activeGallery[currentGalleryIdx] as any)?.description || 'Civil Engineering, IGIT SARANG'}
+                  <motion.div 
+                    animate={{ opacity: i === currentGalleryIdx ? 1 : 0, y: i === currentGalleryIdx ? 0 : 20 }}
+                    transition={{ delay: 0.3 }}
+                    style={{ fontSize: isMobile ? '12px' : '14px', color: 'rgba(255,255,255,0.8)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: isMobile ? '16px' : '18px' }}>📍</span> {(photo as any)?.description || 'Civil Engineering, IGIT SARANG'}
                   </motion.div>
-                </div>
-                
-                <div style={{ position: 'absolute', bottom: '44px', right: '48px', display: 'flex', gap: '10px', zIndex: 3 }}>
-                  {activeGallery.map((_, i) => (
-                    <motion.div key={i} onClick={() => setCurrentGalleryIdx(i)}
-                      animate={{ width: i === currentGalleryIdx ? '32px' : '10px', background: i === currentGalleryIdx ? '#B9FF66' : 'rgba(255,255,255,0.3)', opacity: i === currentGalleryIdx ? 1 : 0.6 }}
-                      style={{ height: '10px', borderRadius: '50px', cursor: 'pointer', transition: 'all 0.3s' }}
-                    />
-                  ))}
                 </div>
               </motion.div>
-            </AnimatePresence>
+            ))}
+            
+            <div style={{ position: 'absolute', bottom: isMobile ? '20px' : '44px', right: isMobile ? '50%' : '48px', transform: isMobile ? 'translateX(50%)' : 'none', display: 'flex', gap: '8px', zIndex: 10 }}>
+              {activeGallery.map((_, i) => (
+                <motion.div key={i} onClick={() => setCurrentGalleryIdx(i)}
+                  animate={{ width: i === currentGalleryIdx ? (isMobile ? '24px' : '32px') : '8px', background: i === currentGalleryIdx ? '#B9FF66' : 'rgba(255,255,255,0.3)', opacity: i === currentGalleryIdx ? 1 : 0.6 }}
+                  style={{ height: '8px', borderRadius: '50px', cursor: 'pointer', transition: 'all 0.3s' }}
+                />
+              ))}
+            </div>
           </div>
         </FadeUp>
       </section>
