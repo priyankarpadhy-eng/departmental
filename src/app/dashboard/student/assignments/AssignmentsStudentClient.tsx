@@ -17,6 +17,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { Topbar } from '@/components/layout/Topbar'
 import { useAuth } from '@/context/AuthContext'
 import toast from 'react-hot-toast'
+import { Cloud } from 'lucide-react'
 import type { Assignment, Submission } from '@/types'
 
 export function AssignmentsStudentClient() {
@@ -156,18 +157,28 @@ export function AssignmentsStudentClient() {
                           Download Brief
                         </a>
                       )}
-                      <label className="btn btn-sm btn-filled" style={{ background: '#0F6E56', borderColor: '#0F6E56', cursor: 'pointer' }}>
-                        {uploading === assignment.id ? 'Uploading...' : 'Upload File'}
-                        <input 
-                          type="file" 
-                          hidden 
-                          disabled={!!uploading}
-                          onChange={(e) => {
-                            const file = e.target.files?.[0]
-                            if (file) handleUpload(assignment.id, file)
-                          }} 
-                        />
-                      </label>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <label className="btn btn-sm btn-filled" style={{ background: '#0F6E56', borderColor: '#0F6E56', cursor: 'pointer' }}>
+                          <input 
+                            type="file" 
+                            hidden 
+                            disabled={!!uploading}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0]
+                              if (file) handleUpload(assignment.id, file)
+                            }} 
+                          />
+                          {uploading === assignment.id ? 'Uploading...' : 'Upload File'}
+                        </label>
+                        <button 
+                          className="btn btn-sm btn-outlined" 
+                          style={{ '--role-accent': '#0F6E56' } as React.CSSProperties}
+                          onClick={() => toast('Cloud Picker selected! (Requires Drive/Mega/Supabase Link)')}
+                        >
+                          <Cloud className="w-4 h-4 mr-1" />
+                          Cloud
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>

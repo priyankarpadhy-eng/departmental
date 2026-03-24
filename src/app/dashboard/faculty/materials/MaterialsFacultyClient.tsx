@@ -16,6 +16,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { Topbar } from '@/components/layout/Topbar'
 import { useAuth } from '@/context/AuthContext'
 import toast from 'react-hot-toast'
+import { Cloud } from 'lucide-react'
 
 export function MaterialsFacultyClient() {
   const { user } = useAuth()
@@ -180,7 +181,18 @@ export function MaterialsFacultyClient() {
               </div>
               <div className="form-group">
                 <label className="form-label">File</label>
-                <input type="file" className="form-input" required onChange={e => setNewMat(p => ({ ...p, file: e.target.files?.[0] || null }))} />
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input type="file" className="form-input" style={{ flex: 1 }} onChange={e => setNewMat(p => ({ ...p, file: e.target.files?.[0] || null }))} />
+                  <button 
+                    type="button" 
+                    className="btn btn-outlined" 
+                    style={{ '--role-accent': '#185FA5' } as React.CSSProperties}
+                    onClick={() => toast('Cloud Picker selected! (Requires Drive/Mega/Supabase Link)')}
+                  >
+                    <Cloud className="w-4 h-4 mr-1" />
+                    Cloud
+                  </button>
+                </div>
               </div>
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                 <button type="button" className="btn btn-ghost" style={{ flex: 1 }} onClick={() => setShowUpload(false)}>Cancel</button>
