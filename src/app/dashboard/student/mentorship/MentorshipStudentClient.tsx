@@ -8,6 +8,8 @@ import {
   where, 
   getDocs, 
   addDoc,
+  updateDoc,
+  doc,
   serverTimestamp
 } from 'firebase/firestore'
 import { Topbar } from '@/components/layout/Topbar'
@@ -21,6 +23,7 @@ export function MentorshipStudentClient() {
   const [search, setSearch] = useState('')
   const [showRequest, setShowRequest] = useState<any>(null)
   const [requestText, setRequestText] = useState('')
+  const [myRequests, setMyRequests] = useState<any[]>([])
 
   useEffect(() => {
     async function fetchAlumni() {
@@ -34,8 +37,17 @@ export function MentorshipStudentClient() {
         setLoading(false)
       }
     }
+    async function fetchMyRequests() {
+      if (!user) return
+      try {
+        const q = query(collection(db, 'mentorship_requests'), where('student_id', '==', user.uid))
+        const snap = await getDocs(q)
+        setMyRequests(snap.docs.map(d => ({ id: d.id, ...d.data() })))
+      } catch (err) { console.error(err) }
+    }
     fetchAlumni()
-  }, [])
+    fetchMyRequests()
+  }, [user])
 
   const filteredAlumni = alumni.filter(a => 
     a.full_name?.toLowerCase().includes(search.toLowerCase()) ||
@@ -45,20 +57,36 @@ export function MentorshipStudentClient() {
   async function handleSendRequest() {
     if (!user || !showRequest) return
     try {
-      await addDoc(collection(db, 'mentorship_requests'), {
+      const data = {
         student_id: user.uid,
         student_name: profile?.full_name,
+        student_email: user.email,
         alumni_id: showRequest.id,
         alumni_name: showRequest.full_name,
         message: requestText,
         status: 'pending',
         created_at: new Date().toISOString()
-      })
+      }
+      const docRef = await addDoc(collection(db, 'mentorship_requests'), data)
+      setMyRequests(prev => [{ id: docRef.id, ...data }, ...prev])
       toast.success('Mentorship request sent!')
       setShowRequest(null)
       setRequestText('')
     } catch (err) {
       toast.error('Failed to send request')
+    }
+  }
+
+  async function handleConfirmAlumni(requestId: string) {
+    try {
+      await updateDoc(doc(db, 'mentorship_requests', requestId), {
+        status: 'accepted',
+        updated_at: new Date().toISOString()
+      })
+      setMyRequests(prev => prev.map(r => r.id === requestId ? { ...r, status: 'accepted' } : r))
+      toast.success('Mentorship relationship finalized! 🤝')
+    } catch (err) {
+      toast.error('Confirmation failed')
     }
   }
 
@@ -68,6 +96,33 @@ export function MentorshipStudentClient() {
     <>
       <Topbar title="Alumni Mentorship" accentColor="#5D3FD3" />
       <div className="content-container">
+        
+        {myRequests.length > 0 && (
+          <div style={{ marginBottom: '40px' }}>
+            <h2 className="section-heading" style={{ marginBottom: '16px' }}>My Mentorship Requests</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {myRequests.map(r => (
+                <div key={r.id} className="card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderLeft: r.status === 'alumni_accepted' ? '4px solid #6366F1' : r.status === 'accepted' ? '4px solid #16A34A' : '4px solid var(--border-color)' }}>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: '15px' }}>{r.alumni_name}</div>
+                    <div style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>{r.status === 'pending' ? 'Request sent... waiting for alumni' : r.status === 'alumni_accepted' ? 'Alumni has approved! You can now accept them.' : r.status === 'accepted' ? 'Connected' : 'Declined'}</div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {r.status === 'alumni_accepted' && (
+                      <button onClick={() => handleConfirmAlumni(r.id)} className="btn btn-filled" style={{ background: '#16A34A', borderColor: '#16A34A', fontSize: '12px', padding: '6px 16px' }}>
+                        Accept Mentor 🤝
+                      </button>
+                    )}
+                    <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: r.status === 'accepted' ? '#16A34A' : r.status === 'alumni_accepted' ? '#6366F1' : 'var(--text-tertiary)' }}>
+                      {r.status.replace('_', ' ')}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="section-row" style={{ marginBottom: '24px' }}>
           <div>
             <h2 className="section-heading">Mentor Directory</h2>

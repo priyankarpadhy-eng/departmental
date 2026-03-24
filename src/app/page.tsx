@@ -568,25 +568,44 @@ export default function LandingPage() {
           </div>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', height: '520px', border: `1px solid ${T.border}`, boxShadow: isDark ? 'none' : '0 8px 40px rgba(0,0,0,0.1)' }}>
-            <AnimatePresence mode="wait">
+          <div style={{ position: 'relative', borderRadius: '32px', overflow: 'hidden', height: 'min(650px, 75vh)', border: `1px solid ${T.border}`, boxShadow: isDark ? 'none' : '0 12px 60px rgba(0,0,0,0.12)', background: '#000' }}>
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div key={currentGalleryIdx}
-                initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.94 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                style={{ position: 'absolute', inset: 0 }}
+                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
+                {/* Blurred Background for Premium Dynamic Fit */}
+                <motion.img 
+                  initial={{ scale: 1.2 }} animate={{ scale: 1.1 }}
+                  src={(activeGallery[currentGalleryIdx] as any)?.image_url || ''} 
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(40px) brightness(0.5) saturate(1.2)', opacity: 0.6 }} 
+                  alt=""
+                />
+                
+                {/* Sharp Foreground Image showing "Perfectly" */}
                 <img src={(activeGallery[currentGalleryIdx] as any)?.image_url || ''} alt="Gallery"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(0,0,0,0.72) 0%,transparent 55%)' }} />
-                <div style={{ position: 'absolute', bottom: '36px', left: '40px' }}>
-                  <div style={{ fontSize: '26px', fontWeight: 900, color: '#FFFFFF', marginBottom: '6px' }}>{(activeGallery[currentGalleryIdx] as any)?.title || 'Departmental Highlight'}</div>
-                  <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)' }}>📍 Civil Engineering, IGIT SARANG</div>
+                  style={{ position: 'relative', maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', zIndex: 1, boxShadow: '0 0 40px rgba(0,0,0,0.5)' }} />
+                
+                {/* Gradient Overlay for Text Readability */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 40%)', zIndex: 2 }} />
+                
+                <div style={{ position: 'absolute', bottom: '40px', left: '48px', zIndex: 3 }}>
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                    style={{ fontSize: '28px', fontWeight: 900, color: '#FFFFFF', marginBottom: '8px', textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
+                    {(activeGallery[currentGalleryIdx] as any)?.title || 'Departmental Highlight'}
+                  </motion.div>
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+                    style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '18px' }}>📍</span> Civil Engineering, IGIT SARANG
+                  </motion.div>
                 </div>
-                <div style={{ position: 'absolute', bottom: '40px', right: '36px', display: 'flex', gap: '8px' }}>
+                
+                <div style={{ position: 'absolute', bottom: '44px', right: '48px', display: 'flex', gap: '10px', zIndex: 3 }}>
                   {activeGallery.map((_, i) => (
                     <motion.div key={i} onClick={() => setCurrentGalleryIdx(i)}
-                      animate={{ width: i === currentGalleryIdx ? '28px' : '8px', background: i === currentGalleryIdx ? '#B9FF66' : 'rgba(255,255,255,0.4)' }}
-                      style={{ height: '8px', borderRadius: '99px', cursor: 'pointer' }}
+                      animate={{ width: i === currentGalleryIdx ? '32px' : '10px', background: i === currentGalleryIdx ? '#B9FF66' : 'rgba(255,255,255,0.3)', opacity: i === currentGalleryIdx ? 1 : 0.6 }}
+                      style={{ height: '10px', borderRadius: '50px', cursor: 'pointer', transition: 'all 0.3s' }}
                     />
                   ))}
                 </div>

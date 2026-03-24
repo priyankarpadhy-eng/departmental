@@ -12,6 +12,8 @@ import {
 } from 'firebase/firestore'
 import { Topbar } from '@/components/layout/Topbar'
 import { useAuth } from '@/context/AuthContext'
+import { AttendanceReportTable } from '@/components/attendance/AttendanceReportTable'
+import { AttendanceDetailedReportTable } from '@/components/attendance/AttendanceDetailedReportTable'
 
 export function GradebookHODClient() {
   const { profile } = useAuth()
@@ -20,6 +22,8 @@ export function GradebookHODClient() {
   const [selectedBatch, setSelectedBatch] = useState('')
   const [selectedOffering, setSelectedOffering] = useState('')
   const [results, setResults] = useState<any[]>([])
+  const [activeTab, setActiveTab] = useState<'grades' | 'attendance'>('grades')
+  const [attendanceSubTab, setAttendanceSubTab] = useState<'sessions' | 'detailed'>('sessions')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -92,7 +96,25 @@ export function GradebookHODClient() {
     <>
       <Topbar title="Department Gradebook" accentColor="#534AB7" />
       <div className="content-container">
-        <div className="card" style={{ marginBottom: '24px' }}>
+        
+        <div style={{ display: 'flex', gap: '2px', marginBottom: '24px', borderBottom: '1px solid var(--border-color)', background: 'var(--surface-secondary)', borderRadius: '12px 12px 0 0', overflow: 'hidden' }}>
+          <button 
+            onClick={() => setActiveTab('grades')}
+            style={{ padding: '12px 24px', border: 'none', background: activeTab === 'grades' ? 'white' : 'transparent', color: activeTab === 'grades' ? '#534AB7' : 'var(--text-tertiary)', fontWeight: 600, borderBottom: activeTab === 'grades' ? '2px solid #534AB7' : 'none', cursor: 'pointer' }}
+          >
+            Student Grades
+          </button>
+          <button 
+            onClick={() => setActiveTab('attendance')}
+            style={{ padding: '12px 24px', border: 'none', background: activeTab === 'attendance' ? 'white' : 'transparent', color: activeTab === 'attendance' ? '#534AB7' : 'var(--text-tertiary)', fontWeight: 600, borderBottom: activeTab === 'attendance' ? '2px solid #534AB7' : 'none', cursor: 'pointer' }}
+          >
+            Attendance History
+          </button>
+        </div>
+
+        {activeTab === 'grades' ? (
+          <>
+            <div className="card" style={{ marginBottom: '24px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             <div className="form-group">
               <label className="form-label">Filter by Batch</label>
@@ -155,6 +177,39 @@ export function GradebookHODClient() {
             </tbody>
           </table>
         </div>
+          </>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+             <div style={{ display: 'flex', gap: '16px', marginBottom: '8px' }}>
+                <button 
+                  onClick={() => setAttendanceSubTab('sessions')}
+                  className={`btn btn-sm ${attendanceSubTab === 'sessions' ? 'btn-filled' : 'btn-outlined'}`}
+                  style={{ borderRadius: '20px' }}
+                >
+                  Session Summary
+                </button>
+                <button 
+                  onClick={() => setAttendanceSubTab('detailed')}
+                  className={`btn btn-sm ${attendanceSubTab === 'detailed' ? 'btn-filled' : 'btn-outlined'}`}
+                  style={{ borderRadius: '20px' }}
+                >
+                  Student Detailed Log (Name/Roll/Status)
+                </button>
+             </div>
+
+             {attendanceSubTab === 'sessions' ? (
+                <>
+                  <h2 className="section-heading">Detailed Attendance Log (Departement-wide)</h2>
+                  <AttendanceReportTable role="hod" />
+                </>
+             ) : (
+                <>
+                  <h2 className="section-heading">Department-wide Student Records</h2>
+                  <AttendanceDetailedReportTable role="hod" />
+                </>
+             )}
+          </div>
+        )}
       </div>
     </>
   )

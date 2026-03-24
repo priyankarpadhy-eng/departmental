@@ -347,8 +347,8 @@ export function AdminLandingClient() {
                 <h3 className="section-heading" style={{ marginBottom: '20px' }}>Current Photos</h3>
                 <div className="gallery-grid-admin" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '12px' }}>
                     {gallery.map(p => (
-                        <div key={p.id} style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-color)' }}>
-                            <img src={p.image_url} alt={p.title || ''} style={{ width: '100%', aspectRatio: '1', objectFit: 'cover' }} />
+                        <div key={p.id} style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-color)', background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '160px' }}>
+                            <img src={p.image_url} alt={p.title || ''} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                             <button 
                                 onClick={() => handleDeleteGallery(p.id)}
                                 style={{ position: 'absolute', top: '4px', right: '4px', background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '4px', cursor: 'pointer', padding: '4px' }}

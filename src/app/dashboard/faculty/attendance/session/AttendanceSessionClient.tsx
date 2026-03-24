@@ -178,13 +178,14 @@ export function AttendanceSessionClient({ sessionId }: Props) {
             {session.is_open && (
               <button 
                 onClick={() => {
-                  const qrModal = document.getElementById('qr-modal');
-                  if (qrModal) qrModal.style.display = 'flex';
+                  const modalId = session.session_type === 'otp' ? 'otp-modal' : 'qr-modal';
+                  const modal = document.getElementById(modalId);
+                  if (modal) modal.style.display = 'flex';
                 }} 
                 className="btn btn-filled" 
                 style={{ background: '#185FA5', borderColor: '#185FA5' }}
               >
-                Show QR Code
+                {session.session_type === 'otp' ? 'Show OTP Code' : 'Show QR Code'}
               </button>
             )}
             {session.is_open && (
@@ -196,7 +197,56 @@ export function AttendanceSessionClient({ sessionId }: Props) {
           </div>
         </div>
 
-        {/* QR Code Modal Overlay */}
+        {/* OTP Display Highlight */}
+        {session.session_type === 'otp' && session.otp && (
+          <div className="card" style={{ marginBottom: '24px', textAlign: 'center', background: 'linear-gradient(135deg, #1A5FA5 0%, #114177 100%)', color: 'white', border: 'none', boxShadow: '0 8px 32px rgba(24,95,165,0.3)' }}>
+            <h3 style={{ fontSize: '13px', opacity: 0.8, fontWeight: 700, letterSpacing: '2px', marginBottom: '12px' }}>SESSION OTP CODE</h3>
+            <div style={{ fontSize: '72px', fontWeight: 900, letterSpacing: '12px', textShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>{session.otp}</div>
+            <p style={{ fontSize: '13px', opacity: 0.9, marginTop: '12px' }}>
+              {session.is_open ? 'Students can enter this code to mark attendance.' : 'This session is now closed.'}
+            </p>
+          </div>
+        )}
+
+        {/* OTP Modal */}
+        <div 
+          id="otp-modal" 
+          style={{ 
+            display: 'none', 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            width: '100%', 
+            height: '100%', 
+            background: 'rgba(0,0,0,0.9)', 
+            zIndex: 9999, 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            backdropFilter: 'blur(10px)'
+          }}
+          onClick={(e) => {
+             if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
+          }}
+        >
+          <div style={{ textAlign: 'center', color: 'white' }}>
+            <h2 style={{ fontSize: '24px', marginBottom: '40px', fontWeight: 400, opacity: 0.8 }}>Enter this code for Attendance</h2>
+            <div style={{ fontSize: '120px', fontWeight: 900, letterSpacing: '20px', marginBottom: '40px' }}>
+              {session.otp}
+            </div>
+            <p style={{ fontSize: '18px', opacity: 0.7 }}>{session.course_name}</p>
+            <button 
+              className="btn btn-filled" 
+              style={{ marginTop: '60px', padding: '16px 40px' }}
+              onClick={() => {
+                const modal = document.getElementById('otp-modal');
+                if (modal) modal.style.display = 'none';
+              }}
+            >
+              Close Code
+            </button>
+          </div>
+        </div>
         <div 
           id="qr-modal" 
           style={{ 

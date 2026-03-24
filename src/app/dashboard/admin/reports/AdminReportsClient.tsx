@@ -11,6 +11,8 @@ import {
 } from 'firebase/firestore'
 import { Topbar } from '@/components/layout/Topbar'
 import toast from 'react-hot-toast'
+import { AttendanceReportTable } from '@/components/attendance/AttendanceReportTable'
+import { AttendanceDetailedReportTable } from '@/components/attendance/AttendanceDetailedReportTable'
 
 export function AdminReportsClient() {
   const [stats, setStats] = useState<any>({
@@ -20,6 +22,7 @@ export function AdminReportsClient() {
     materials: 0
   })
   const [recentLogs, setRecentLogs] = useState<any[]>([])
+  const [reportType, setReportType] = useState<'sessions' | 'detailed'>('sessions')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -79,10 +82,11 @@ export function AdminReportsClient() {
           </div>
         </div>
 
-        <div className="card">
+        <div className="card" style={{ marginBottom: '32px' }}>
           <h2 className="section-heading" style={{ marginBottom: '16px' }}>Recent Audit Activity</h2>
           <div className="data-table-container">
             <table className="data-table">
+              {/* ... existing table code ... */}
               <thead>
                 <tr>
                   <th>Timestamp</th>
@@ -114,6 +118,32 @@ export function AdminReportsClient() {
               </tbody>
             </table>
           </div>
+        </div>
+
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+             <h2 className="section-heading">Platform Attendance Overview</h2>
+             <div style={{ display: 'flex', gap: '8px' }}>
+                <button 
+                  onClick={() => setReportType('sessions')}
+                  className={`btn btn-sm ${reportType === 'sessions' ? 'btn-filled' : 'btn-outlined'}`}
+                >
+                  Session Summary
+                </button>
+                <button 
+                  onClick={() => setReportType('detailed')}
+                  className={`btn btn-sm ${reportType === 'detailed' ? 'btn-filled' : 'btn-outlined'}`}
+                >
+                  Student Detailed Log
+                </button>
+             </div>
+          </div>
+
+          {reportType === 'sessions' ? (
+             <AttendanceReportTable role="admin" />
+          ) : (
+             <AttendanceDetailedReportTable role="admin" />
+          )}
         </div>
       </div>
     </>

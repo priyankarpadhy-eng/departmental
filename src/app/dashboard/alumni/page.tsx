@@ -12,6 +12,7 @@ export default function AlumniDashboard() {
   const [alumniProfile, setAlumniProfile] = useState<any>(null)
   const [myJobs, setMyJobs] = useState<any[]>([])
   const [mentorshipReqs, setMentorshipReqs] = useState<any[]>([])
+  const [actingOn, setActingOn] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -42,6 +43,24 @@ export default function AlumniDashboard() {
 
     fetchData()
   }, [profile, user])
+
+  async function handleMentorshipAction(requestId: string, status: 'alumni_accepted' | 'rejected') {
+    setActingOn(requestId)
+    try {
+      const { updateDoc, doc } = await import('firebase/firestore')
+      await updateDoc(doc(db, 'mentorship_requests', requestId), {
+        status,
+        updated_at: new Date().toISOString()
+      })
+      setMentorshipReqs(prev => prev.filter(r => r.id !== requestId))
+      const { default: toast } = await import('react-hot-toast')
+      toast.success(status === 'alumni_accepted' ? 'Approved! Awaiting student confirmation.' : 'Declined')
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setActingOn(null)
+    }
+  }
 
   if (loading) {
     return <div style={{ padding: '40px', textAlign: 'center' }}>Loading alumni overview...</div>
@@ -145,8 +164,22 @@ export default function AlumniDashboard() {
                     <div style={{ fontSize: '13px', fontWeight: 500 }}>{req.student_name}</div>
                     <div style={{ fontSize: '12px', color: 'var(--text-secondary)', margin: '4px 0' }}>{(req.message || '').slice(0, 80)}…</div>
                     <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-                      <button className="btn btn-sm btn-filled" style={{ background: '#0F6E56', borderColor: '#0F6E56', fontSize: '11px' }}>Accept</button>
-                      <button className="btn btn-sm btn-ghost" style={{ fontSize: '11px' }}>Decline</button>
+                      <button 
+                        disabled={actingOn === req.id}
+                        onClick={() => handleMentorshipAction(req.id, 'alumni_accepted')}
+                        className="btn btn-sm btn-filled" 
+                        style={{ background: '#6366F1', borderColor: '#6366F1', fontSize: '11px' }}
+                      >
+                        {actingOn === req.id ? '...' : 'Approve'}
+                      </button>
+                      <button 
+                        disabled={actingOn === req.id}
+                        onClick={() => handleMentorshipAction(req.id, 'rejected')}
+                        className="btn btn-sm btn-ghost" 
+                        style={{ fontSize: '11px', color: '#DC2626' }}
+                      >
+                        Decline
+                      </button>
                     </div>
                   </div>
                 ))}

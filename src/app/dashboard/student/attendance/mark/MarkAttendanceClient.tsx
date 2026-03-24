@@ -26,6 +26,9 @@ export function MarkAttendanceClient() {
   const [scanning, setScanning] = useState(false)
   const [status, setStatus] = useState('Initializing QR Scanner...')
   const [activeSessions, setActiveSessions] = useState<any[]>([])
+  const [tab, setTab] = useState<'qr' | 'otp'>('qr')
+  const [otpValue, setOtpValue] = useState('')
+  const [submittingOtp, setSubmittingOtp] = useState(false)
   const scannerRef = useRef<Html5Qrcode | null>(null)
 
   useEffect(() => {
@@ -120,7 +123,43 @@ export function MarkAttendanceClient() {
     }
   }
 
-  const markAttendance = async (sessionId: string) => {
+  const handleOTPSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (otpValue.length !== 6) {
+      toast.error('Please enter a 6-digit code')
+      return
+    }
+
+    setSubmittingOtp(true)
+    try {
+      // Find the session with this OTP among active sessions
+      // Since 'in' query for offeringIds is limited, we might need to broaden or refine this.
+      // But for now, we'll check activeSessions first
+      let session = activeSessions.find(s => s.otp === otpValue)
+
+      if (!session) {
+        // If not found in activeSessions (maybe too many offerings), search directly
+        const otpQ = query(collection(db, 'attendance_sessions'), where('otp', '==', otpValue), where('is_open', '==', true))
+        const otpSnap = await getDocs(otpQ)
+        if (!otpSnap.empty) {
+          session = { id: otpSnap.docs[0].id, ...otpSnap.docs[0].data() }
+        }
+      }
+
+      if (!session) {
+        toast.error('Invalid or expired OTP')
+        return
+      }
+
+      await markAttendance(session.id, 'otp_code')
+    } catch (err) {
+      toast.error('Verification failed')
+    } finally {
+      setSubmittingOtp(false)
+    }
+  }
+
+  const markAttendance = async (sessionId: string, method: string = 'qr_scanner') => {
     if (!user || !profile) return
 
     try {
@@ -128,7 +167,7 @@ export function MarkAttendanceClient() {
       const sessionDoc = await getDoc(doc(db, 'attendance_sessions', sessionId))
       if (!sessionDoc.exists() || !sessionDoc.data()?.is_open) {
         toast.error('This session is now closed')
-        startScanner()
+        if (tab === 'qr') startScanner()
         return
       }
 
@@ -151,8 +190,13 @@ export function MarkAttendanceClient() {
         session_id: sessionId,
         student_id: user.uid,
         student_name: profile.full_name || 'Student',
+        roll_no: profile.roll_no || 'N/A',
+        registration_no: profile.registration_no || 'N/A',
+        course_name: sessionData.course_name,
+        batch_id: sessionData.batch_id,
+        batch_name: sessionData.batch_name,
         status: 'present',
-        method: 'qr_scanner',
+        method: method,
         marked_at: new Date().toISOString()
       }
 
@@ -187,7 +231,7 @@ export function MarkAttendanceClient() {
     } catch (err) {
       console.error('Attendance error:', err)
       toast.error('Failed to mark attendance')
-      startScanner()
+      if (tab === 'qr') startScanner()
     }
   }
 
@@ -196,36 +240,90 @@ export function MarkAttendanceClient() {
       <Topbar title="Mark Attendance" accentColor="#0F6E56" />
       <div className="content-container">
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
-            <h2 className="section-heading" style={{ marginBottom: '8px' }}>QR Code Scanner</h2>
-            <p className="secondary-text" style={{ marginBottom: '30px' }}>Position the QR code inside the frame to mark your attendance.</p>
-            
-            <div 
-              id="qr-reader" 
-              style={{ 
-                width: '100%', 
-                maxWidth: '400px', 
-                margin: '0 auto', 
-                borderRadius: '16px', 
-                overflow: 'hidden',
-                background: '#000'
-              }} 
-            />
-
-            <div style={{ marginTop: '30px', padding: '16px', borderRadius: '12px', background: 'var(--surface-secondary)' }}>
-                <div style={{ fontSize: '12px', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>
-                    Scanner Status
-                </div>
-                <div style={{ fontSize: '15px', fontWeight: 500 }}>{status}</div>
+          <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', borderBottom: '1px solid var(--border-color)' }}>
+              <button 
+                onClick={() => setTab('qr')} 
+                style={{ flex: 1, padding: '16px', border: 'none', background: tab === 'qr' ? 'rgba(15, 110, 86, 0.1)' : 'transparent', color: tab === 'qr' ? '#0F6E56' : 'var(--text-tertiary)', fontWeight: 600, borderBottom: tab === 'qr' ? '2px solid #0F6E56' : 'none', cursor: 'pointer' }}
+              >
+                Scan QR Code
+              </button>
+              <button 
+                onClick={() => setTab('otp')} 
+                style={{ flex: 1, padding: '16px', border: 'none', background: tab === 'otp' ? 'rgba(15, 110, 86, 0.1)' : 'transparent', color: tab === 'otp' ? '#0F6E56' : 'var(--text-tertiary)', fontWeight: 600, borderBottom: tab === 'otp' ? '2px solid #0F6E56' : 'none', cursor: 'pointer' }}
+              >
+                Enter OTP Code
+              </button>
             </div>
 
-            <button 
-                className="btn btn-ghost" 
-                style={{ marginTop: '20px' }}
-                onClick={() => router.push('/dashboard/student/attendance')}
-            >
-                Cancel and Go Back
-            </button>
+            <div style={{ padding: '40px', textAlign: 'center' }}>
+              {tab === 'qr' ? (
+                <>
+                  <h2 className="section-heading" style={{ marginBottom: '8px' }}>QR Code Scanner</h2>
+                  <p className="secondary-text" style={{ marginBottom: '30px' }}>Position the QR code inside the frame to mark your attendance.</p>
+                  
+                  <div 
+                    id="qr-reader" 
+                    style={{ 
+                      width: '100%', 
+                      maxWidth: '400px', 
+                      margin: '0 auto', 
+                      borderRadius: '16px', 
+                      overflow: 'hidden',
+                      background: '#000'
+                    }} 
+                  />
+                  <div style={{ marginTop: '30px', padding: '16px', borderRadius: '12px', background: 'var(--surface-secondary)' }}>
+                      <div style={{ fontSize: '12px', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>
+                          Scanner Status
+                      </div>
+                      <div style={{ fontSize: '15px', fontWeight: 500 }}>{status}</div>
+                  </div>
+                </>
+              ) : (
+                <form onSubmit={handleOTPSubmit} style={{ maxWidth: '320px', margin: '0 auto' }}>
+                  <h2 className="section-heading" style={{ marginBottom: '8px' }}>Enter Session OTP</h2>
+                  <p className="secondary-text" style={{ marginBottom: '30px' }}>Ask your faculty for the 6-digit session code.</p>
+                  
+                  <input 
+                    type="text" 
+                    maxLength={6} 
+                    placeholder="000000"
+                    value={otpValue}
+                    onChange={e => setOtpValue(e.target.value.replace(/\D/g, ''))}
+                    style={{ 
+                      width: '100%', 
+                      fontSize: '48px', 
+                      textAlign: 'center', 
+                      letterSpacing: '12px', 
+                      fontWeight: 800, 
+                      padding: '20px', 
+                      borderRadius: '16px', 
+                      border: '2px solid var(--border-color)',
+                      background: 'var(--surface-secondary)',
+                      color: '#0F6E56',
+                      outline: 'none'
+                    }}
+                  />
+                  <button 
+                    type="submit" 
+                    disabled={otpValue.length !== 6 || submittingOtp}
+                    className="btn btn-filled" 
+                    style={{ width: '100%', marginTop: '30px', background: '#0F6E56', borderColor: '#0F6E56', padding: '16px' }}
+                  >
+                    {submittingOtp ? 'Verifying...' : 'Mark Attendance'}
+                  </button>
+                </form>
+              )}
+
+              <button 
+                  className="btn btn-ghost" 
+                  style={{ marginTop: '30px' }}
+                  onClick={() => router.push('/dashboard/student/attendance')}
+              >
+                  Cancel and Go Back
+              </button>
+            </div>
           </div>
         </div>
       </div>

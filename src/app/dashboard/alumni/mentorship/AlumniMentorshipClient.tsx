@@ -10,22 +10,24 @@ import toast from 'react-hot-toast'
 const ACCENT = '#854F0B'
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
-  pending:  { label: 'Pending',  color: '#D97706', bg: '#FFFBEB' },
-  accepted: { label: 'Accepted', color: '#16A34A', bg: '#F0FDF4' },
-  rejected: { label: 'Declined', color: '#DC2626', bg: '#FEF2F2' },
+  pending:         { label: 'Pending',         color: '#D97706', bg: '#FFFBEB' },
+  alumni_accepted: { label: 'Awaiting Student', color: '#6366F1', bg: '#EEF2FF' },
+  accepted:        { label: 'Mentorship Live', color: '#16A34A', bg: '#F0FDF4' },
+  rejected:        { label: 'Declined',        color: '#DC2626', bg: '#FEF2F2' },
 }
 
 export function AlumniMentorshipClient() {
   const { user, profile } = useAuth()
   const [requests, setRequests] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState<'pending' | 'accepted' | 'rejected'>('pending')
+  const [activeTab, setActiveTab] = useState<'pending' | 'alumni_accepted' | 'accepted' | 'rejected'>('pending')
 
   useEffect(() => {
     if (!user) return
     async function fetchRequests() {
       try {
         // No orderBy to avoid index requirement — sort in memory
+        if (!user) return
         const q = query(collection(db, 'mentorship_requests'), where('alumni_id', '==', user.uid))
         const snap = await getDocs(q)
         const data = snap.docs
@@ -49,7 +51,9 @@ export function AlumniMentorshipClient() {
         updated_at: new Date().toISOString(),
       })
       setRequests(prev => prev.map(r => r.id === requestId ? { ...r, status: newStatus } : r))
-      toast.success(`Request ${newStatus === 'accepted' ? 'Accepted ✓' : 'Declined'}`)
+      const msg = newStatus === 'alumni_accepted' ? 'Approved! Awaiting student confirmation.' : 
+                  newStatus === 'accepted' ? 'Mentorship Finalized ✓' : 'Declined'
+      toast.success(msg)
     } catch (err: any) {
       console.error(err)
       toast.error(err?.message || 'Action failed')
@@ -58,9 +62,10 @@ export function AlumniMentorshipClient() {
 
   const filtered = requests.filter(r => r.status === activeTab)
   const counts = {
-    pending:  requests.filter(r => r.status === 'pending').length,
-    accepted: requests.filter(r => r.status === 'accepted').length,
-    rejected: requests.filter(r => r.status === 'rejected').length,
+    pending:         requests.filter(r => r.status === 'pending').length,
+    alumni_accepted: requests.filter(r => r.status === 'alumni_accepted').length,
+    accepted:        requests.filter(r => r.status === 'accepted').length,
+    rejected:        requests.filter(r => r.status === 'rejected').length,
   }
 
   return (
@@ -69,19 +74,19 @@ export function AlumniMentorshipClient() {
       <div className="content-container">
 
         {/* Stats row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '28px' }}>
+        <div style={{ display: 'flex', gap: '16px', marginBottom: '28px' }}>
           {(Object.entries(STATUS_CONFIG) as [string, any][]).map(([key, cfg]) => (
             <button key={key} onClick={() => setActiveTab(key as any)}
               style={{
                 background: activeTab === key ? cfg.bg : 'var(--card-bg)',
                 border: activeTab === key ? `2px solid ${cfg.color}` : '2px solid transparent',
-                borderRadius: '16px', padding: '20px 24px', cursor: 'pointer', textAlign: 'left',
+                borderRadius: '16px', padding: '16px 20px', cursor: 'pointer', textAlign: 'left',
                 boxShadow: activeTab === key ? `0 4px 16px ${cfg.color}22` : '0 1px 4px rgba(0,0,0,0.06)',
-                transition: 'all 0.2s',
+                transition: 'all 0.2s', flex: 1
               }}
             >
-              <div style={{ fontSize: '28px', fontWeight: 900, color: cfg.color, lineHeight: 1 }}>{(counts as any)[key]}</div>
-              <div style={{ fontSize: '13px', fontWeight: 600, color: cfg.color, marginTop: '4px' }}>{cfg.label} Requests</div>
+              <div style={{ fontSize: '24px', fontWeight: 900, color: cfg.color, lineHeight: 1 }}>{(counts as any)[key]}</div>
+              <div style={{ fontSize: '11px', fontWeight: 600, color: cfg.color, marginTop: '4px', whiteSpace: 'nowrap' }}>{cfg.label}</div>
             </button>
           ))}
         </div>
@@ -135,8 +140,8 @@ export function AlumniMentorshipClient() {
 
                       {r.status === 'pending' && (
                         <div style={{ display: 'flex', gap: '10px' }}>
-                          <button className="btn btn-filled" style={{ flex: 1, background: '#16A34A', borderColor: '#16A34A', fontSize: '13px' }} onClick={() => handleStatus(r.id, 'accepted')}>
-                            ✓ Accept Request
+                          <button className="btn btn-filled" style={{ flex: 1, background: '#6366F1', borderColor: '#6366F1', fontSize: '13px' }} onClick={() => handleStatus(r.id, 'alumni_accepted')}>
+                            ✓ Approve Request
                           </button>
                           <button className="btn btn-outlined" style={{ flex: 1, color: '#DC2626', borderColor: '#DC2626', fontSize: '13px' }} onClick={() => handleStatus(r.id, 'rejected')}>
                             ✗ Decline
@@ -145,7 +150,8 @@ export function AlumniMentorshipClient() {
                       )}
                       {r.status !== 'pending' && (
                         <div style={{ fontSize: '12px', fontWeight: 600, color: cfg.color, textAlign: 'center', paddingTop: '4px' }}>
-                          {r.status === 'accepted' ? '🤝 You accepted this request' : '❌ You declined this request'}
+                          {r.status === 'alumni_accepted' ? '⏳ Awaiting student confirmation' : 
+                          r.status === 'accepted' ? '🤝 Mentorship Active' : '❌ You declined this request'}
                         </div>
                       )}
                     </div>
