@@ -55,6 +55,11 @@ const facultyNavItems = [
     label: 'Central Storage',
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
   },
+  {
+    href: '/verify',
+    label: 'Verify Documents',
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  },
 ]
 
 export default function FacultyLayout({ children }: { children: React.ReactNode }) {

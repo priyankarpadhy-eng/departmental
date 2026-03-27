@@ -2,20 +2,57 @@
 
 import Link from 'next/link'
 import { useState, useEffect, Suspense } from 'react'
-import { auth } from '@/lib/firebase/config'
+import { auth, db } from '@/lib/firebase/config'
 import { 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   sendPasswordResetEmail,
 } from 'firebase/auth'
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
-import { useAuth } from '@/context/AuthContext'
+import { doc, setDoc } from 'firebase/firestore'
+import { motion, AnimatePresence } from 'framer-motion'
+import { 
+  ArrowLeft, 
+  Mail, 
+  Lock, 
+  User, 
+  GraduationCap, 
+  Briefcase, 
+  Users, 
+  History, 
+  ChevronRight, 
+  CheckCircle2,
+  Database,
+  ShieldCheck,
+  UserCheck
+} from 'lucide-react'
 import type { UserRole } from '@/types'
 import toast from 'react-hot-toast'
-import { db } from '@/lib/firebase/config'
 import { useRouter, useSearchParams } from 'next/navigation'
 
+// Premium Theme Tokens (Matching Landing Page)
+const getTheme = (isDark: boolean) => ({
+  background: isDark ? '#050508' : '#F9FAFB',
+  card: isDark ? 'rgba(15, 15, 22, 0.75)' : 'rgba(255, 255, 255, 0.8)',
+  text: isDark ? '#F3F4F6' : '#111827',
+  muted: isDark ? '#9CA3AF' : '#6B7280',
+  border: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+  faint: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.02)',
+  accent: '#B9FF66',
+  accentDark: '#91cc4a',
+})
+
+const FadeUp = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+  >
+    {children}
+  </motion.div>
+)
+
 function LoginContent() {
+  const [isDark, setIsDark] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
@@ -28,49 +65,43 @@ function LoginContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
+  const T = getTheme(isDark)
+
   useEffect(() => {
+    setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches)
     const error = searchParams.get('error')
     if (error) toast.error(decodeURIComponent(error))
   }, [searchParams])
 
-  // Removed syncSession for SPA/Static Hosting mode
-
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      toast.success('Welcome back!');
-      const redirectTo = searchParams.get('redirectTo') || '/';
-      router.push(redirectTo);
+      await signInWithEmailAndPassword(auth, email, password)
+      toast.success('Welcome back!')
+      const redirectTo = searchParams.get('redirectTo') || '/'
+      router.push(redirectTo)
     } catch (error: any) {
-      toast.error(error.message);
-      setLoading(false);
+      toast.error(error.message)
+      setLoading(false)
     }
   }
 
   async function handleSignUp(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
-    
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const user = userCredential.user
 
-      console.log("Creating/linking profile for UID:", user.uid);
-      
-      const { collection, query, where, getDocs, deleteDoc } = await import('firebase/firestore');
-      
-      const q = query(collection(db, 'profiles'), where('email', '==', email));
-      const querySnapshot = await getDocs(q);
+      const { collection, query, where, getDocs, deleteDoc } = await import('firebase/firestore')
+      const q = query(collection(db, 'profiles'), where('email', '==', email))
+      const querySnapshot = await getDocs(q)
       
       if (!querySnapshot.empty) {
-        console.log("Found existing profile to link.");
-        const existingDoc = querySnapshot.docs[0];
-        const profileData = existingDoc.data();
-        
-        await deleteDoc(existingDoc.ref);
+        const existingDoc = querySnapshot.docs[0]
+        const profileData = existingDoc.data()
+        await deleteDoc(existingDoc.ref)
         await setDoc(doc(db, 'profiles', user.uid), {
           ...profileData,
           id: user.uid,
@@ -78,10 +109,8 @@ function LoginContent() {
           roll_no: role === 'student' ? (rollNo || profileData.roll_no) : profileData.roll_no,
           registration_no: role === 'student' ? (regNo || profileData.registration_no) : profileData.registration_no,
           updated_at: new Date().toISOString(),
-        });
-        console.log("Profile linked successfully.");
+        })
       } else {
-        console.log("Creating new profile.");
         await setDoc(doc(db, 'profiles', user.uid), {
           id: user.uid,
           email: user.email,
@@ -98,16 +127,13 @@ function LoginContent() {
           registration_no: role === 'student' ? regNo : null,
           graduation_year: null,
           designation: null
-        });
-        console.log("New profile created successfully.");
+        })
       }
-
-      toast.success('Account created successfully!');
-      router.push('/');
+      toast.success('Account created successfully!')
+      router.push('/')
     } catch (error: any) {
-      console.error("Signup error:", error);
-      toast.error(error.message);
-      setLoading(false);
+      toast.error(error.message)
+      setLoading(false)
     }
   }
 
@@ -118,409 +144,276 @@ function LoginContent() {
       return
     }
     setLoading(true)
-
     try {
-      await sendPasswordResetEmail(auth, email);
-      setResetSent(true);
+      await sendPasswordResetEmail(auth, email)
+      setResetSent(true)
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.message)
     }
     setLoading(false)
   }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: 'var(--surface-tertiary)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '24px',
-      }}
-    >
-      <div style={{ width: '100%', maxWidth: '400px', position: 'relative' }}>
-        <Link 
-          href="/" 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '8px', 
-            color: 'var(--text-secondary)', 
-            textDecoration: 'none', 
-            fontSize: '13px',
-            marginBottom: '24px',
-            width: 'fit-content',
-            transition: 'color 0.2s ease'
-          }}
-          onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
-          onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Home
-        </Link>
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div
-            style={{
-              width: '48px',
-              height: '48px',
-              background: '#1A1A18',
-              borderRadius: '12px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '16px',
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 3L2 9l10 6 10-6-10-6zM2 17l10 6 10-6M2 13l10 6 10-6"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-          <h1 className="page-title" style={{ marginBottom: '8px', fontSize: '24px' }}>
-            Civil Engineering | IGIT
-          </h1>
-          <p className="secondary-text" style={{ fontSize: '14px' }}>
-            Official Departmental Portal
-          </p>
-        </div>
+    <div style={{
+      minHeight: '100vh',
+      background: T.background,
+      color: T.text,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      fontFamily: 'inherit',
+      transition: 'background 0.4s ease'
+    }}>
+      {/* Background Glow */}
+      <div style={{ position: 'fixed', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '600px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(185,255,102,0.08) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
-        <div className="card card-lg" style={{ padding: '32px' }}>
-          {/* Mode Toggle */}
-          <div style={{ 
-            display: 'flex', 
-            background: 'var(--surface-secondary)', 
-            padding: '4px', 
-            borderRadius: '12px', 
-            marginBottom: '32px' 
+      <div style={{ width: '100%', maxWidth: '440px', position: 'relative', zIndex: 1 }}>
+        
+        {/* Header Badge */}
+        <FadeUp>
+          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+            <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '24px', padding: '8px 16px', borderRadius: '12px', background: T.faint, border: `1px solid ${T.border}`, color: T.muted, fontSize: '13px', fontWeight: 600, transition: 'all 0.3s' }}>
+              <ArrowLeft size={16} /> Back to Portal
+            </Link>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+              <span style={{ background: isDark ? 'rgba(185,255,102,0.1)' : 'rgba(22,163,74,0.08)', border: isDark ? '1px solid rgba(185,255,102,0.3)' : '1px solid rgba(22,163,74,0.25)', color: isDark ? T.accent : '#16a34a', padding: '6px 16px', borderRadius: '99px', fontSize: '12px', fontWeight: 800 }}>
+                🎓 CIVIL ENGINEERING · IGIT
+              </span>
+            </div>
+            <h1 style={{ fontSize: '32px', fontWeight: 900, marginBottom: '8px', letterSpacing: '-1px' }}>
+              {mode === 'login' ? 'Welcome Back' : mode === 'signup' ? 'Join Community' : 'Reset Access'}
+            </h1>
+            <p style={{ color: T.muted, fontSize: '15px' }}>
+              Official access point for departmental resources.
+            </p>
+          </div>
+        </FadeUp>
+
+        {/* Main Card */}
+        <FadeUp delay={0.1}>
+          <div style={{
+            background: T.card,
+            backdropFilter: 'blur(24px)',
+            borderRadius: '24px',
+            border: `1px solid ${T.border}`,
+            padding: '36px',
+            boxShadow: isDark ? '0 20px 50px rgba(0,0,0,0.3)' : '0 20px 50px rgba(0,0,0,0.05)',
+            position: 'relative',
+            overflow: 'hidden'
           }}>
-            <button 
-              onClick={() => setMode('login')}
-              style={{
-                flex: 1,
-                padding: '10px',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: mode === 'login' ? '600' : '400',
-                background: mode === 'login' ? 'var(--surface-primary)' : 'transparent',
-                color: mode === 'login' ? 'var(--text-primary)' : 'var(--text-secondary)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: mode === 'login' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none'
-              }}
-            >
-              Sign In
-            </button>
-            <button 
-              onClick={() => setMode('signup')}
-              style={{
-                flex: 1,
-                padding: '10px',
-                border: 'none',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: mode === 'signup' ? '600' : '400',
-                background: mode === 'signup' ? 'var(--surface-primary)' : 'transparent',
-                color: mode === 'signup' ? 'var(--text-primary)' : 'var(--text-secondary)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: mode === 'signup' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none'
-              }}
-            >
-              Create Account
-            </button>
-          </div>
-          {mode === 'login' && (
-            <>
-              {!resetSent && (
-                <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  <div className="form-group">
-                    <label className="form-label">Email address</label>
-                    <input
-                      type="email"
-                      className="form-input"
-                      placeholder="you@department.edu"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      required
-                      autoComplete="email"
-                      autoFocus
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Password</label>
-                    <input
-                      type="password"
-                      className="form-input"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={e => setPassword(e.target.value)}
-                      required
-                      autoComplete="current-password"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn btn-filled btn-lg"
-                    disabled={loading}
-                    style={{
-                      width: '100%',
-                      justifyContent: 'center',
-                      background: '#1A1A18',
-                      borderColor: '#1A1A18',
-                      marginTop: '4px',
-                    }}
-                  >
-                    {loading ? 'Signing in…' : 'Sign in'}
-                  </button>
-
-                  <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
-                    <button
-                      type="button"
-                      className="btn btn-ghost"
-                      onClick={() => setMode('reset')}
-                      style={{ fontSize: '13px', color: 'var(--text-secondary)' }}
-                    >
-                      Forgot password?
-                    </button>
-                  </div>
-                </form>
-              )}
-            </>
-          )}
-
-          {mode === 'signup' && (
-            <form onSubmit={handleSignUp} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div>
-                <h2 className="section-heading" style={{ marginBottom: '4px' }}>Create an account</h2>
-                <p className="secondary-text">Join the department portal</p>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Full name</label>
-                <input
-                  className="form-input"
-                  placeholder="John Doe"
-                  value={fullName}
-                  onChange={e => setFullName(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Email address</label>
-                <input
-                  type="email"
-                  className="form-input"
-                  placeholder="you@department.edu"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">I am a</label>
-                <select 
-                  className="form-input" 
-                  value={role} 
-                  onChange={e => setRole(e.target.value as UserRole)}
-                  required
-                >
-                  <option value="student">Student</option>
-                  <option value="faculty">Faculty / Teacher</option>
-                  <option value="alumni">Alumni</option>
-                </select>
-              </div>
-
-              {role === 'student' && (
-                <>
-                  <div className="form-group">
-                    <label className="form-label">Roll Number</label>
-                    <input
-                      className="form-input"
-                      placeholder="e.g. 2101106123"
-                      value={rollNo}
-                      onChange={e => setRollNo(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Registration Number</label>
-                    <input
-                      className="form-input"
-                      placeholder="e.g. 2101106123"
-                      value={regNo}
-                      onChange={e => setRegNo(e.target.value)}
-                      required
-                    />
-                  </div>
-                </>
-              )}
-
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <input
-                  type="password"
-                  className="form-input"
-                  placeholder="At least 8 characters"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  minLength={8}
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-filled btn-lg"
-                disabled={loading}
-                style={{ width: '100%', justifyContent: 'center', background: '#1A1A18', borderColor: '#1A1A18', marginTop: '4px' }}
-              >
-                {loading ? 'Creating account…' : 'Sign up'}
-              </button>
-
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
-                <button
-                  type="button"
-                  className="btn btn-ghost"
-                  onClick={() => setMode('login')}
-                  style={{ fontSize: '13px', color: 'var(--text-secondary)' }}
-                >
-                  Already have an account? Sign in
-                </button>
-              </div>
-            </form>
-          )}
-
-          {mode === 'reset' && (
-            <form onSubmit={handlePasswordReset} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {resetSent ? (
-                <div
-                  style={{
-                    textAlign: 'center',
-                    padding: '24px 0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '12px',
-                  }}
-                >
-                  <p className="body-text" style={{ fontWeight: 500 }}>Check your email</p>
-                  <p className="secondary-text">
-                    We&apos;ve sent a password reset link to <strong>{email}</strong>
-                  </p>
-                  <button
-                    type="button"
-                    className="btn btn-ghost"
-                    onClick={() => { setMode('login'); setResetSent(false) }}
-                    style={{ marginTop: '8px', fontSize: '12px' }}
-                  >
-                    Back to sign in
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div>
-                    <h2 className="section-heading" style={{ marginBottom: '4px' }}>Reset password</h2>
-                    <p className="secondary-text">
-                      Enter your email and we&apos;ll send you a reset link
-                    </p>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Email address</label>
-                    <input
-                      type="email"
-                      className="form-input"
-                      placeholder="you@department.edu"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn btn-filled btn-lg"
-                    disabled={loading}
-                    style={{ width: '100%', justifyContent: 'center', background: '#1A1A18', borderColor: '#1A1A18' }}
-                  >
-                    {loading ? 'Sending…' : 'Send reset link'}
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-ghost"
-                    onClick={() => setMode('login')}
-                    style={{ width: '100%', justifyContent: 'center', fontSize: '12px' }}
-                  >
-                    Back to sign in
-                  </button>
-                </>
-              )}
-            </form>
-          )}
-        </div>
-
-        <div
-          style={{
-            marginTop: '24px',
-            display: 'flex',
-            gap: '8px',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          {[
-            { role: 'Admin', color: '#E24B4A' },
-            { role: 'HOD', color: '#534AB7' },
-            { role: 'Faculty', color: '#185FA5' },
-            { role: 'Student', color: '#0F6E56' },
-            { role: 'Alumni', color: '#854F0B' },
-          ].map(({ role, color }) => (
-            <span
-              key={role}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px',
-                fontSize: '11px',
-                color: 'var(--text-tertiary)',
-              }}
-            >
-              <span
+            
+            {/* Tab Control */}
+            <div style={{ display: 'flex', background: T.faint, padding: '4px', borderRadius: '14px', marginBottom: '32px', position: 'relative' }}>
+              <motion.div
+                layout
                 style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: color,
-                  display: 'inline-block',
+                  position: 'absolute',
+                  top: '4px',
+                  bottom: '4px',
+                  left: mode === 'signup' ? '50%' : '4px',
+                  right: mode === 'signup' ? '4px' : '50%',
+                  background: isDark ? '#1A1A1A' : '#FFFFFF',
+                  borderRadius: '10px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  zIndex: 0
                 }}
               />
-              {role}
-            </span>
-          ))}
-        </div>
+              <button onClick={() => { setMode('login'); setResetSent(false) }} style={{ flex: 1, padding: '10px', border: 'none', background: 'none', cursor: 'pointer', zIndex: 1, fontSize: '14px', fontWeight: mode === 'login' ? 700 : 500, color: mode === 'login' ? T.text : T.muted, transition: 'color 0.3s' }}>
+                Sign In
+              </button>
+              <button onClick={() => setMode('signup')} style={{ flex: 1, padding: '10px', border: 'none', background: 'none', cursor: 'pointer', zIndex: 1, fontSize: '14px', fontWeight: mode === 'signup' ? 700 : 500, color: mode === 'signup' ? T.text : T.muted, transition: 'color 0.3s' }}>
+                Create Account
+              </button>
+            </div>
+
+            <AnimatePresence mode="wait">
+              {mode === 'login' && !resetSent && (
+                <motion.form 
+                  key="login"
+                  initial={{ opacity: 0, x: -10 }} 
+                  animate={{ opacity: 1, x: 0 }} 
+                  exit={{ opacity: 0, x: 10 }}
+                  onSubmit={handleLogin} 
+                  style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+                >
+                  <InputField label="Email Address" icon={<Mail size={18} />} placeholder="name@igit.ac.in" value={email} onChange={setEmail} type="email" T={T} isDark={isDark} />
+                  <div>
+                    <InputField label="Password" icon={<Lock size={18} />} placeholder="••••••••" value={password} onChange={setPassword} type="password" T={T} isDark={isDark} />
+                    <div style={{ textAlign: 'right', marginTop: '8px' }}>
+                      <button type="button" onClick={() => setMode('reset')} style={{ background: 'none', border: 'none', color: T.muted, fontSize: '13px', cursor: 'pointer', fontWeight: 500 }}>Forgot Password?</button>
+                    </div>
+                  </div>
+                  <PrimaryButton loading={loading} text="Sign In Access" T={T} />
+                </motion.form>
+              )}
+
+              {mode === 'signup' && (
+                <motion.form 
+                  key="signup"
+                  initial={{ opacity: 0, x: 10 }} 
+                  animate={{ opacity: 1, x: 0 }} 
+                  exit={{ opacity: 0, x: -10 }}
+                  onSubmit={handleSignUp} 
+                  style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}
+                >
+                  <InputField label="Full Name" icon={<User size={18} />} placeholder="John Doe" value={fullName} onChange={setFullName} T={T} isDark={isDark} />
+                  <InputField label="Email Address" icon={<Mail size={18} />} placeholder="name@igit.ac.in" value={email} onChange={setEmail} type="email" T={T} isDark={isDark} />
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <label style={{ fontSize: '13px', fontWeight: 700, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Member Type</label>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                      {[
+                        { id: 'student', label: 'Student', icon: <GraduationCap size={16} /> },
+                        { id: 'faculty', label: 'Faculty', icon: <Briefcase size={16} /> },
+                        { id: 'alumni', label: 'Alumni', icon: <History size={16} /> }
+                      ].map(r => (
+                        <button key={r.id} type="button" onClick={() => setRole(r.id as UserRole)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', padding: '12px 6px', borderRadius: '12px', border: `1.5px solid ${role === r.id ? T.accent : T.border}`, background: role === r.id ? (isDark ? 'rgba(185,255,102,0.1)' : 'rgba(185,255,102,0.05)') : 'transparent', color: role === r.id ? T.text : T.muted, cursor: 'pointer', transition: 'all 0.2s' }}>
+                          {r.icon}
+                          <span style={{ fontSize: '11px', fontWeight: 700 }}>{r.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {role === 'student' && (
+                    <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                      <InputField label="Roll No" value={rollNo} onChange={setRollNo} T={T} isDark={isDark} />
+                      <InputField label="Reg No" value={regNo} onChange={setRegNo} T={T} isDark={isDark} />
+                    </motion.div>
+                  )}
+
+                  <InputField label="Create Password" icon={<Lock size={18} />} placeholder="Min 8 chars" value={password} onChange={setPassword} type="password" T={T} isDark={isDark} />
+                  <PrimaryButton loading={loading} text="Create Workspace" T={T} />
+                </motion.form>
+              )}
+
+              {mode === 'reset' && (
+                <motion.form 
+                  key="reset"
+                  initial={{ opacity: 0, scale: 0.95 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  onSubmit={handlePasswordReset} 
+                  style={{ display: 'flex', flexDirection: 'column', gap: '20px', textAlign: 'center' }}
+                >
+                  {resetSent ? (
+                    <div style={{ padding: '20px 0' }}>
+                      <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(185,255,102,0.1)', color: T.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                        <CheckCircle2 size={32} />
+                      </div>
+                      <h3 style={{ fontSize: '20px', fontWeight: 800, marginBottom: '10px' }}>Check Your Email</h3>
+                      <p style={{ color: T.muted, fontSize: '14px', lineHeight: 1.6, marginBottom: '24px' }}>We've sent a secure reset link to <br /><strong style={{ color: T.text }}>{email}</strong></p>
+                      <button type="button" onClick={() => { setMode('login'); setResetSent(false) }} style={{ color: T.accent, background: 'none', border: 'none', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}>Return to Login</button>
+                    </div>
+                  ) : (
+                    <>
+                      <InputField label="Verification Email" icon={<Mail size={18} />} placeholder="name@igit.ac.in" value={email} onChange={setEmail} type="email" T={T} isDark={isDark} />
+                      <p style={{ fontSize: '13px', color: T.muted, lineHeight: 1.5 }}>Enter your registered email and we'll send you a link to regain access to your account.</p>
+                      <PrimaryButton loading={loading} text="Send Recovery Link" T={T} />
+                      <button type="button" onClick={() => setMode('login')} style={{ background: 'none', border: 'none', color: T.muted, fontSize: '13px', cursor: 'pointer', fontWeight: 600 }}>Cancel & Return</button>
+                    </>
+                  )}
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
+        </FadeUp>
+
+        {/* Roles Hint */}
+        <FadeUp delay={0.2}>
+          <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: T.muted, fontSize: '12px', fontWeight: 600 }}>
+              <ShieldCheck size={14} style={{ color: '#E24B4A' }} /> Admin Controls
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: T.muted, fontSize: '12px', fontWeight: 600 }}>
+              <UserCheck size={14} style={{ color: '#534AB7' }} /> Verified Access
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: T.muted, fontSize: '12px', fontWeight: 600 }}>
+              <Database size={14} style={{ color: '#0F6E56' }} /> Central Vault
+            </div>
+          </div>
+        </FadeUp>
       </div>
     </div>
   )
 }
 
+function InputField({ label, icon, placeholder, value, onChange, type = 'text', T, isDark }: any) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <label style={{ fontSize: '13px', fontWeight: 700, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</label>
+      <div style={{ position: 'relative' }}>
+        {icon && <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: T.muted }}>{icon}</div>}
+        <input
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          required
+          style={{
+            width: '100%',
+            padding: `14px 16px ${14}px ${icon ? '48px' : '16px'}`,
+            background: T.faint,
+            border: `1.5px solid ${T.border}`,
+            borderRadius: '14px',
+            color: T.text,
+            fontSize: '15px',
+            fontWeight: 500,
+            outline: 'none',
+            transition: 'all 0.3s',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.border = `1.5px solid ${T.accent}`
+            e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.06)' : 'white'
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.border = `1.5px solid ${T.border}`
+            e.currentTarget.style.background = T.faint
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+function PrimaryButton({ loading, text, T }: any) {
+  return (
+    <motion.button
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      disabled={loading}
+      type="submit"
+      style={{
+        width: '100%',
+        padding: '16px',
+        background: `linear-gradient(135deg, ${T.accent}, ${T.accentDark})`,
+        border: 'none',
+        borderRadius: '14px',
+        color: '#191A23',
+        fontSize: '16px',
+        fontWeight: 900,
+        cursor: loading ? 'not-allowed' : 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '10px',
+        boxShadow: '0 8px 24px rgba(185,255,102,0.2)'
+      }}
+    >
+      {loading ? (
+        <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} style={{ width: '20px', height: '20px', border: '2.5px solid rgba(0,0,0,0.1)', borderTopColor: '#000', borderRadius: '50%' }} />
+      ) : (
+        <>
+          {text} <ChevronRight size={18} />
+        </>
+      )}
+    </motion.button>
+  )
+}
+
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div style={{ minHeight: '100vh', background: 'var(--surface-tertiary)' }} />}>
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#050508' }} />}>
       <LoginContent />
     </Suspense>
   )

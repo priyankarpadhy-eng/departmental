@@ -15,6 +15,12 @@ import {
 import { Topbar } from '@/components/layout/Topbar'
 import { useAuth } from '@/context/AuthContext'
 import toast from 'react-hot-toast'
+import dynamic from 'next/dynamic'
+
+const DownloadPDFButton = dynamic(
+  () => import('@/components/pdf/DownloadPDFButton'),
+  { ssr: false }
+)
 
 export function RequestsStudentClient() {
   const { user, profile } = useAuth()
@@ -35,13 +41,16 @@ export function RequestsStudentClient() {
       try {
         const q = query(
           collection(db, 'requests'),
-          where('student_id', '==', user?.uid),
-          orderBy('created_at', 'desc')
+          where('student_id', '==', user?.uid)
         )
         const snap = await getDocs(q)
-        setRequests(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-      } catch (err) {
+        const items = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        // Sort in memory to avoid needing a composite index immediately
+        items.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+        setRequests(items)
+      } catch (err: any) {
         console.error('Error fetching requests:', err)
+        toast.error('Failed to load requests: ' + err.message)
       } finally {
         setLoading(false)
       }
@@ -53,23 +62,34 @@ export function RequestsStudentClient() {
     e.preventDefault()
     setCreating(true)
     try {
+      if (!user) throw new Error('You must be logged in')
+      
+      const date = new Date()
+      const internalId = Math.random().toString(36).substring(2, 6).toUpperCase()
+      const reference_no = `IGIT/CE-02/${date.getFullYear()}/${internalId}`
+
       const data = {
-        student_id: user?.uid,
-        student_name: profile?.full_name,
+        student_id: user.uid,
+        student_name: profile?.full_name || user.displayName || 'Unnamed Student',
+        student_registration_no: profile?.registration_no || 'N/A', // Using profile registration number
         type: newReq.type,
         reason: newReq.reason,
+        description: newReq.reason,
         urgency: newReq.urgency,
         status: 'pending',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+        reference_no: reference_no, // Explicit field for search
+        created_at: date.toISOString(),
+        updated_at: date.toISOString()
       }
+      console.log('Submitting request data:', data)
       const docRef = await addDoc(collection(db, 'requests'), data)
       setRequests(prev => [{ id: docRef.id, ...data }, ...prev])
-      toast.success('Request submitted!')
+      toast.success('Request submitted successfully!')
       setShowCreate(false)
       setNewReq({ type: 'Bonafide Certificate', reason: '', urgency: 'Normal' })
-    } catch (err) {
-      toast.error('Submission failed')
+    } catch (err: any) {
+      console.error('Submission failed detailed error:', err)
+      toast.error(`Submission failed: ${err.message}`)
     } finally {
       setCreating(false)
     }
@@ -100,6 +120,7 @@ export function RequestsStudentClient() {
                 <th>Status</th>
                 <th>Submitted On</th>
                 <th>Last Update</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -123,11 +144,18 @@ export function RequestsStudentClient() {
                   </td>
                   <td className="secondary-text">{new Date(r.created_at).toLocaleDateString()}</td>
                   <td className="secondary-text">{new Date(r.updated_at).toLocaleDateString()}</td>
+                  <td>
+                    {r.status === 'approved' ? (
+                      <DownloadPDFButton request={r} />
+                    ) : (
+                      <span className="secondary-text" style={{ fontSize: '11px' }}>—</span>
+                    )}
+                  </td>
                 </tr>
               ))}
               {requests.length === 0 && (
                 <tr>
-                  <td colSpan={5} style={{ textAlign: 'center', padding: '40px' }} className="secondary-text">
+                  <td colSpan={6} style={{ textAlign: 'center', padding: '40px' }} className="secondary-text">
                     You haven't submitted any requests yet.
                   </td>
                 </tr>

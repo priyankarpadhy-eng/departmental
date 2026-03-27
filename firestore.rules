@@ -117,10 +117,12 @@ service cloud.firestore {
       allow write: if hasRole('admin') || hasRole('faculty');
     }
 
-    // Requests & Approvals
+    // Requests & Approvals (Certificates, etc.)
     match /requests/{id} {
-      allow read: if isSignedIn(); // alumni can read their own old requests
-      allow write: if hasRole('admin') || hasRole('hod');
+      allow read: if true; // Publicly readable for verification purposes
+      allow create: if isSignedIn();
+      allow update: if hasRole('admin') || hasRole('hod');
+      allow delete: if hasRole('admin') || (isSignedIn() && resource.data.student_id == request.auth.uid);
     }
     match /leave_requests/{id} {
       allow read: if isSignedIn();

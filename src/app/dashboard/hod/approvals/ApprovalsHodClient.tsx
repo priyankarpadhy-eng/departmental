@@ -14,6 +14,12 @@ import {
 import { Topbar } from '@/components/layout/Topbar'
 import { useAuth } from '@/context/AuthContext'
 import toast from 'react-hot-toast'
+import dynamic from 'next/dynamic'
+
+const DownloadPDFButton = dynamic(
+  () => import('@/components/pdf/DownloadPDFButton'),
+  { ssr: false }
+)
 
 export function ApprovalsHodClient() {
   const { profile, user } = useAuth()
@@ -24,11 +30,14 @@ export function ApprovalsHodClient() {
   useEffect(() => {
     async function fetchData() {
       try {
+        console.log('Fetching all requests for HOD...')
         const q = query(collection(db, 'requests'), orderBy('created_at', 'desc'), limit(100))
         const snap = await getDocs(q)
+        console.log(`Fetched ${snap.docs.length} requests`)
         setRequests(snap.docs.map(d => ({ id: d.id, ...d.data() })))
-      } catch (err) {
-        console.error('Error fetching requests:', err)
+      } catch (err: any) {
+        console.error('Error fetching requests for HOD:', err)
+        toast.error('Failed to load queue: ' + err.message)
       } finally {
         setLoading(false)
       }
@@ -76,6 +85,7 @@ export function ApprovalsHodClient() {
                 <tr>
                   <th>Student</th>
                   <th>Request Type</th>
+                  <th>Reference</th>
                   <th>Reason</th>
                   <th>Submitted</th>
                   <th>Status</th>
@@ -87,9 +97,10 @@ export function ApprovalsHodClient() {
                   <tr key={r.id}>
                     <td>
                       <div style={{ fontWeight: 500 }}>{r.student_name}</div>
-                      <div className="secondary-text" style={{ fontSize: '11px' }}>ID: {r.student_id?.substring(0,6)}</div>
+                      <div className="secondary-text" style={{ fontSize: '11px' }}>Regd No: {r.student_registration_no || 'N/A'}</div>
                     </td>
                     <td><span className="badge badge-neutral">{r.type}</span></td>
+                    <td><div style={{ fontSize: '11px', fontWeight: 700, color: '#6366f1', fontFamily: 'monospace' }}>{r.reference_no || '-'}</div></td>
                     <td style={{ maxWidth: '300px' }}>
                       <div className="secondary-text" style={{ fontSize: '12px' }}>{r.reason}</div>
                     </td>
@@ -103,9 +114,9 @@ export function ApprovalsHodClient() {
                         {r.status?.toUpperCase()}
                       </span>
                     </td>
-                    <td>
+                    <td style={{ minWidth: '220px' }}>
                       {r.status === 'pending' ? (
-                        <div style={{ display: 'flex', gap: '8px' }}>
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                           <button 
                             onClick={() => handleAction(r.id, 'approved')} 
                             disabled={!!acting}
@@ -122,7 +133,14 @@ export function ApprovalsHodClient() {
                           >
                             Reject
                           </button>
+                          <DownloadPDFButton 
+                            request={r} 
+                            label="View" 
+                            style={{ fontSize: '11px', background: 'rgba(83, 74, 183, 0.1)', color: '#534AB7', padding: '4px 8px', borderRadius: '4px', textDecoration: 'none' }} 
+                          />
                         </div>
+                      ) : r.status === 'approved' ? (
+                        <DownloadPDFButton request={r} />
                       ) : (
                         <span className="secondary-text" style={{ fontSize: '11px' }}>Reviewed</span>
                       )}
