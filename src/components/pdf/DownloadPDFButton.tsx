@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import { CertificateTemplate } from './CertificateTemplate'
+import { Download } from 'lucide-react'
 
  export default function DownloadPDFButton({ request, label, style }: { request: any, label?: string, style?: any }) {
   const [isClient, setIsClient] = useState(false)
@@ -13,24 +14,29 @@ import { CertificateTemplate } from './CertificateTemplate'
 
   if (!isClient) return <span className="secondary-text" style={{ fontSize: '11px' }}>Loading...</span>
 
-  const defaultStyle = {
-    textDecoration: 'none',
-    color: 'var(--brand-primary)',
-    fontWeight: 500,
-    fontSize: '11px',
-    display: 'inline-block',
-    padding: '4px 8px',
-    background: 'rgba(15, 110, 86, 0.1)',
-    borderRadius: '4px'
-  }
-
   return (
     <PDFDownloadLink
       document={<CertificateTemplate request={request} />}
-      fileName={`${request.type.replace(/\s+/g, '_')}_${request.id.substring(0,8)}.pdf`}
-      style={style || defaultStyle}
+      fileName={`${(request.type || 'Document').replace(/\s+/g, '_')}_${(request.id || 'N/A').substring(0, 8)}.pdf`}
+
+      className="btn btn-sm btn-outlined"
+      style={{ 
+        display: 'inline-flex', 
+        alignItems: 'center', 
+        gap: '6px', 
+        textDecoration: 'none',
+        color: 'var(--accent-student)',
+        borderColor: 'var(--accent-student)',
+        ...style 
+      }}
     >
-      {({ loading }) => (loading ? 'Loading...' : (label || 'Download PDF'))}
+      {({ loading, error }) => (
+        <>
+          <Download size={14} />
+          {loading ? 'Generating...' : error ? 'Error!' : (label || 'Download PDF')}
+        </>
+      )}
+
     </PDFDownloadLink>
   )
 }

@@ -121,14 +121,10 @@ const styles = StyleSheet.create({
   },
   watermark: {
     position: 'absolute',
-    top: '40%',
-    left: '10%',
-    fontSize: 70,
-    color: '#000',
+    top: '30%',
+    left: '20%',
+    width: 350,
     opacity: 0.05,
-    transform: 'rotate(-45deg)',
-    zIndex: -1,
-    fontFamily: 'Helvetica-Bold',
   },
   roundSealContainer: {
     position: 'absolute',
@@ -136,8 +132,11 @@ const styles = StyleSheet.create({
     left: 0,
     width: 130,
     height: 130,
-    borderRadius: '100%',
-    border: '3 solid #059669',
+    borderRadius: 65,
+    borderWidth: 3,
+    borderStyle: 'solid',
+    borderColor: '#10B981', // emerald-500 equivalent
+
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -163,7 +162,9 @@ const styles = StyleSheet.create({
     bottom: 25,
     left: 25,
     right: 25,
-    borderTop: '0.5 solid #666',
+    borderTopWidth: 0.5,
+    borderTopColor: '#666',
+
     paddingTop: 8,
     display: 'flex',
     flexDirection: 'row',
@@ -185,19 +186,29 @@ interface CertProps {
   request: any
 }
 
-export const CertificateTemplate = ({ request }: CertProps) => {
-  const dateFormatted = new Date(request.updated_at || request.created_at).toLocaleDateString('en-GB')
-  const refNo = request.reference_no || `IGIT/CE-02/${new Date().getFullYear()}/${request.id?.substring(0, 4).toUpperCase()}`
+export const CertificateTemplate = ({ request = {} }: CertProps) => {
+  // Safe date parsing helper
+  const formatDate = (val: any) => {
+    if (!val) return 'N/A'
+    if (val.seconds) return new Date(val.seconds * 1000).toLocaleDateString('en-GB')
+    const date = new Date(val)
+    return isNaN(date.getTime()) ? 'N/A' : date.toLocaleDateString('en-GB')
+  }
+
+  const dateFormatted = formatDate(request?.updated_at || request?.created_at)
+  const reqId = request?.id || 'NOID'
+  const refNo = request?.reference_no || `IGIT/CE-02/${new Date().getFullYear()}/${reqId.substring(0, 4).toUpperCase()}`
+  
   // Use Next.js local absolute URL to fetch from public folder
-  const logoUrl = typeof window !== 'undefined' ? `${window.location.origin}/igit-logo.png` : '/igit-logo.png'
+  const logoUrl = '/igit-logo.png' // Use absolute path from public
+
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Background Watermark */}
-        <Text style={styles.watermark}>
-          CIVIL DEPARTMENT IGIT SARANG
-        </Text>
+        <Image src={logoUrl} style={styles.watermark} />
+
 
         <View style={styles.headerContainer}>
           <Image src={logoUrl} style={styles.logo} />
@@ -212,17 +223,17 @@ export const CertificateTemplate = ({ request }: CertProps) => {
           <Text style={styles.refText}>Date: {dateFormatted}</Text>
         </View>
         
-        <Text style={styles.docTitle}>{request.type}</Text>
+        <Text style={styles.docTitle}>{request?.type || 'Official Document'}</Text>
         <Text style={styles.subtitle}>-- Student Official Document --</Text>
         
         <View style={styles.infoContainer}>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Student Name:</Text>
-            <Text style={styles.infoValue}>{request.student_name}</Text>
+            <Text style={styles.infoValue}>{request?.student_name || 'N/A'}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Registration No:</Text>
-            <Text style={styles.infoValue}>{request.student_registration_no || 'N/A'}</Text>
+            <Text style={styles.infoValue}>{request?.student_registration_no || 'N/A'}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Degree Program:</Text>
@@ -230,16 +241,16 @@ export const CertificateTemplate = ({ request }: CertProps) => {
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Application Status:</Text>
-            <Text style={styles.infoValue}>{request.status?.charAt(0).toUpperCase() + request.status?.slice(1) || 'Approved'}</Text>
+            <Text style={styles.infoValue}>{request?.status ? (request.status.charAt(0).toUpperCase() + request.status.slice(1)) : 'Approved'}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Reason/Description:</Text>
-            <Text style={styles.infoValue}>{request.reason}</Text>
+            <Text style={styles.infoValue}>{request?.reason || 'Document Request'}</Text>
           </View>
         </View>
 
         <Text style={styles.bodyText}>
-          This is to inform all concerned that the aforementioned student has filed an application through the Department's portal for the provision of {request.type}. 
+          This is to inform all concerned that the aforementioned student has filed an application through the Department's portal for the provision of {request?.type || 'requested documentation'}. 
           The department has verified the details furnished and has officially approved this document. 
         </Text>
 
@@ -268,7 +279,7 @@ export const CertificateTemplate = ({ request }: CertProps) => {
             <Text style={styles.roundSealText}>DIGITALLY SIGNED</Text>
             <Text style={styles.roundSealSub}>DEPT. OF CIVIL ENGG</Text>
             <Text style={styles.roundSealSub}>IGIT SARANG</Text>
-            <Text style={{ ...styles.roundSealSub, fontSize: 5 }}>[ID:{request.id.slice(0, 8).toUpperCase()}]</Text>
+            <Text style={{ ...styles.roundSealSub, fontSize: 5 }}>[ID:{reqId.substring(0, 8).toUpperCase()}]</Text>
           </View>
 
           {/* HOD Signature Proxy */}
@@ -284,7 +295,7 @@ export const CertificateTemplate = ({ request }: CertProps) => {
         {/* Verification Footer at the very bottom */}
         <View style={styles.verifyFooter}>
           <Text style={styles.verifyText}>To verify this document, visit: <Text style={styles.verifyLink}>/verify</Text></Text>
-          <Text style={styles.verifyText}>Tracking ID: {request.reference_no}</Text>
+          <Text style={styles.verifyText}>Tracking ID: {refNo}</Text>
         </View>
       </Page>
     </Document>
