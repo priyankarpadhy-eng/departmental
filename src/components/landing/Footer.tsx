@@ -242,7 +242,7 @@ export function Footer() {
             {/* Personal Dev Pill */}
             <a href="https://www.linkedin.com/in/priyankar-padhy-06aa3137a" target="_blank" rel="noopener noreferrer" className="dev-pill">
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '9px', color: '#6366F1', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px' }}>Lead Developer</div>
+                <div style={{ fontSize: '7.5px', color: '#6366F1', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1px' }}>DEVELOPER FOR THIS PROJECT</div>
                 <div style={{ fontSize: '15px', fontWeight: 900, color: T.text, marginTop: '2px' }}>Priyankar Padhy</div>
                 <div style={{ fontSize: '10px', color: T.muted, fontWeight: 700, marginTop: '2px' }}>43rd Civil Engineering</div>
               </div>
