@@ -14,7 +14,8 @@ import {
   updateDoc,
   deleteDoc,
   writeBatch,
-  increment
+  increment,
+  onSnapshot
 } from 'firebase/firestore'
 import { Topbar } from '@/components/layout/Topbar'
 import { useAuth } from '@/context/AuthContext'
@@ -33,56 +34,60 @@ export function AttendanceSessionClient({ sessionId }: Props) {
   const [records, setRecords] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-
   useEffect(() => {
     if (!sessionId) return
 
-    async function fetchData() {
+    // 1. Fetch Session
+    const sessionRef = doc(db, 'attendance_sessions', sessionId)
+    const unsubSession = onSnapshot(sessionRef, (snap) => {
+      if (snap.exists()) {
+        setSession({ id: snap.id, ...snap.data() })
+      }
+    })
+
+    // 2. Fetch Records in real-time
+    const recordsQ = query(
+      collection(db, 'attendance_records'),
+      where('session_id', '==', sessionId)
+    )
+    const unsubRecords = onSnapshot(recordsQ, (snap) => {
+      const recordMap: Record<string, any> = {}
+      snap.docs.forEach(d => {
+        recordMap[d.data().student_id] = { id: d.id, ...d.data() }
+      })
+      setRecords(recordMap)
+    })
+
+    // 3. Fetch Students once
+    async function fetchStudents() {
       try {
-        // 1. Fetch Session
-        const sessionDoc = await getDoc(doc(db, 'attendance_sessions', sessionId))
-        if (!sessionDoc.exists()) {
-          toast.error('Session not found')
-          return
+        const sessionSnap = await getDoc(sessionRef)
+        const sData = sessionSnap.data()
+        if (sData?.offering_id) {
+          const offeringDoc = await getDoc(doc(db, 'course_offerings', sData.offering_id))
+          const offeringData = offeringDoc.data()
+          if (offeringData?.batch_id) {
+            const studentsQ = query(
+              collection(db, 'profiles'),
+              where('batch_id', '==', offeringData.batch_id),
+              where('role', '==', 'student')
+            )
+            const studentsSnap = await getDocs(studentsQ)
+            setStudents(studentsSnap.docs.map(d => ({ id: d.id, ...d.data() })))
+          }
         }
-        const sessionData = { id: sessionDoc.id, ...(sessionDoc.data() as any) }
-        setSession(sessionData)
-
-        // 2. Fetch Students in the Batch
-        const offeringDoc = await getDoc(doc(db, 'course_offerings', sessionData.offering_id))
-        const offeringData = offeringDoc.data()
-        
-        if (offeringData?.batch_id) {
-          const studentsQ = query(
-            collection(db, 'profiles'),
-            where('batch_id', '==', offeringData.batch_id),
-            where('role', '==', 'student')
-          )
-          const studentsSnap = await getDocs(studentsQ)
-          setStudents(studentsSnap.docs.map(d => ({ id: d.id, ...(d.data() as any) })))
-        }
-
-        // 3. Fetch Existing Records
-        const recordsQ = query(
-          collection(db, 'attendance_records'),
-          where('session_id', '==', sessionId)
-        )
-        const recordsSnap = await getDocs(recordsQ)
-        const recordMap: Record<string, any> = {}
-        recordsSnap.docs.forEach(d => {
-          recordMap[d.data().student_id] = { id: d.id, ...(d.data() as any) }
-        })
-        setRecords(recordMap)
-
       } catch (err) {
-        console.error('Error fetching session details:', err)
-        toast.error('Failed to load session data')
+        console.error(err)
       } finally {
         setLoading(false)
       }
     }
+    fetchStudents()
 
-    fetchData()
+    return () => {
+      unsubSession()
+      unsubRecords()
+    }
   }, [sessionId])
 
   async function toggleAttendance(studentId: string) {

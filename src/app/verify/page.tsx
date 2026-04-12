@@ -133,16 +133,34 @@ export default function VerifyPage() {
                 </motion.div>
                 <div style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '20px', background: '#fff' }}>
                   {[
-                    { label: 'Issued To:', value: result.student_name },
+                    { label: 'Issued To:', value: result.student_name, highlight: true },
+                    { label: 'Registration No:', value: result.student_registration_no || 'N/A', highlight: true },
                     { label: 'Document:', value: result.type },
-                    { label: 'Issue Date:', value: new Date(result.updated_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) },
-                    { label: 'Tracking Hash:', value: result.id.toUpperCase(), mono: true },
+                    { label: 'Issue Date:', value: result.updated_at ? new Date(result.updated_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }) : 'N/A' },
+                    { label: 'Digital ID:', value: result.id.toUpperCase(), mono: true },
                   ].map((row, idx) => (
-                    <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: idx < 3 ? '1px solid #f1f5f9' : 'none', paddingBottom: idx < 3 ? '12px' : '0' }}>
+                    <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px' }}>
                       <span style={{ color: '#64748b', fontSize: '14px', fontWeight: 600 }}>{row.label}</span>
-                      <span style={{ fontWeight: 800, fontSize: '15px', color: row.mono ? '#059669' : '#1e293b', fontFamily: row.mono ? 'monospace' : 'inherit' }}>{row.value}</span>
+                      <span style={{ 
+                        fontWeight: row.highlight ? 900 : 800, 
+                        fontSize: row.highlight ? '16px' : '15px', 
+                        color: row.highlight ? '#0F6E56' : (row.mono ? '#059669' : '#1e293b'), 
+                        fontFamily: row.mono ? 'monospace' : 'inherit',
+                        textTransform: row.highlight ? 'uppercase' : 'none'
+                      }}>
+                        {row.value}
+                      </span>
                     </div>
                   ))}
+
+                  <div style={{ padding: '16px', background: '#fffbeb', border: '1.5px dashed #f59e0b', borderRadius: '12px', marginTop: '10px' }}>
+                    <p style={{ color: '#92400e', fontSize: '12px', fontWeight: 700, textAlign: 'center', lineHeight: 1.5 }}>
+                      🛡️ IDENTITY VERIFICATION<br/>
+                      <span style={{ fontWeight: 500 }}>
+                        If the name or registration number on your document does NOT match the details above, this document is a forgery and is legally invalid.
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             )}

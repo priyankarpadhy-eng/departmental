@@ -18,10 +18,10 @@ interface SharedFile {
   createdAt: any
 }
 
-// Red-based accent tokens
-const RED_ACCENT = '#E24B4A'
-const RED_ACCENT_SOFT = 'rgba(226, 75, 74, 0.1)'
-const RED_ACCENT_BORDER = 'rgba(226, 75, 74, 0.35)'
+// Premium Indigo accent tokens to match the unified theme
+const INDIGO_ACCENT = '#6366F1'
+const INDIGO_ACCENT_SOFT = 'rgba(99, 102, 241, 0.1)'
+const INDIGO_ACCENT_BORDER = 'rgba(99, 102, 241, 0.35)'
 
 export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T: any }) {
   const [files, setFiles] = useState<SharedFile[]>([])
@@ -83,9 +83,9 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div style={{ 
               display: 'inline-flex', alignItems: 'center', gap: '10px', 
-              background: isDark ? 'rgba(226, 75, 74, 0.12)' : 'rgba(226, 75, 74, 0.08)', 
-              border: `1px solid ${RED_ACCENT_BORDER}`, 
-              color: RED_ACCENT, padding: '6px 20px', borderRadius: '99px', fontSize: isMobile ? '12px' : '14px', 
+              background: isDark ? 'rgba(99, 102, 241, 0.12)' : 'rgba(99, 102, 241, 0.08)', 
+              border: `1px solid ${INDIGO_ACCENT_BORDER}`, 
+              color: INDIGO_ACCENT, padding: '6px 20px', borderRadius: '99px', fontSize: isMobile ? '12px' : '14px', 
               fontWeight: 800, marginBottom: '24px' 
             }}>
               <HardDrive size={18} /> Central Storage
@@ -93,7 +93,7 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
             <h2 style={{ fontSize: isMobile ? '28px' : 'clamp(32px, 4vw, 44px)', fontWeight: 900, marginBottom: '16px', color: T.text, transition: 'color 0.4s' }}>
               Instant Resource Access
             </h2>
-            <p style={{ color: T.muted, fontSize: isMobile ? '14px' : '17px', marginBottom: isMobile ? '32px' : '48px', maxWidth: '600px', margin: '0 auto 48px', transition: 'color 0.4s' }}>
+            <p style={{ color: T.muted, fontSize: isMobile ? '14px' : '17px', margin: `0 auto ${isMobile ? '32px' : '48px'}`, maxWidth: '600px', transition: 'color 0.4s' }}>
               Browse and download course materials, department archives, and research papers shared by the community.
             </p>
           </motion.div>
@@ -110,22 +110,22 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
               margin: '0 auto',
               padding: isMobile ? '6px' : '8px',
               borderRadius: '32px',
-              background: searchQuery ? (isDark ? 'rgba(226, 75, 74, 0.15)' : 'rgba(226, 75, 74, 0.1)') : 'transparent',
-              border: `1.5px solid ${searchQuery ? RED_ACCENT : 'transparent'}`,
-              boxShadow: searchQuery ? (isDark ? `0 0 50px ${RED_ACCENT}22` : `0 15px 40px ${RED_ACCENT}15`) : 'none',
+              background: searchQuery ? (isDark ? 'rgba(99, 102, 241, 0.15)' : 'rgba(99, 102, 241, 0.1)') : 'transparent',
+              border: `1.5px solid ${searchQuery ? INDIGO_ACCENT : 'transparent'}`,
+              boxShadow: searchQuery ? (isDark ? `0 0 50px ${INDIGO_ACCENT}22` : `0 15px 40px ${INDIGO_ACCENT}15`) : 'none',
               transition: 'background 0.4s, border 0.4s, box-shadow 0.4s'
             }}
           >
             <div style={{ 
               display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', 
               background: isDark ? 'rgba(15,15,22,0.9)' : '#FFFFFF', 
-              border: `1.5px solid ${searchQuery ? RED_ACCENT : T.border}`, 
+              border: `1.5px solid ${searchQuery ? INDIGO_ACCENT : T.border}`, 
               borderRadius: '24px', padding: isMobile ? '12px 20px' : '16px 28px', 
               backdropFilter: 'blur(20px)',
               transition: 'all 0.3s ease',
-              boxShadow: searchQuery ? 'inset 0 0 15px rgba(226, 75, 74, 0.05)' : 'none'
+              boxShadow: searchQuery ? 'inset 0 0 15px rgba(99, 102, 241, 0.05)' : 'none'
             }}>
-              <Search size={isMobile ? 18 : 22} style={{ color: searchQuery ? RED_ACCENT : T.muted }} />
+              <Search size={isMobile ? 18 : 22} style={{ color: searchQuery ? INDIGO_ACCENT : T.muted }} />
               <input 
                 type="text" 
                 placeholder={isMobile ? "Search materials..." : "Search resource name, topic or keywords..."}
@@ -161,15 +161,15 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
                           <motion.div 
                             layout
                             key={file.id} 
-                            whileHover={{ background: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(226, 75, 74, 0.03)' }}
+                            whileHover={{ background: isDark ? 'rgba(255,255,255,0.05)' : INDIGO_ACCENT_SOFT }}
                             style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '10px' : '16px', padding: isMobile ? '10px 12px' : '14px 20px', borderRadius: '16px', cursor: 'default', textAlign: 'left' }}
                           >
                             <div style={{ 
                               width: isMobile ? '36px' : '44px', height: isMobile ? '36px' : '44px', borderRadius: '10px', 
-                              background: RED_ACCENT_SOFT, 
+                              background: INDIGO_ACCENT_SOFT, 
                               display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
                             }}>
-                              <FileText size={isMobile ? 18 : 20} style={{ color: RED_ACCENT }} />
+                              <FileText size={isMobile ? 18 : 20} style={{ color: INDIGO_ACCENT }} />
                             </div>
                             <div style={{ flex: 1, minWidth: 0, cursor: 'pointer' }} onClick={() => setSelectedPreview(file)}>
                               <div style={{ fontWeight: 800, color: T.text, fontSize: isMobile ? '14px' : '15px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{file.title || file.name}</div>
@@ -192,7 +192,7 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
                               </motion.button>
                               <a href={`/api/storage/b2/download?key=${encodeURIComponent(file.fileKey)}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                                 <motion.div 
-                                  whileHover={{ scale: 1.1, background: RED_ACCENT, color: '#fff' }} 
+                                  whileHover={{ scale: 1.1, background: INDIGO_ACCENT, color: '#fff' }} 
                                   whileTap={{ scale: 0.9 }} 
                                   style={{ 
                                     width: '36px', height: '36px', borderRadius: '50%', 
@@ -264,19 +264,19 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
                   background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', minWidth: 0 }}>
-                    <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px', borderRadius: '10px', background: RED_ACCENT_SOFT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <FileText size={isMobile ? 20 : 24} style={{ color: RED_ACCENT }} />
+                    <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px', borderRadius: '10px', background: INDIGO_ACCENT_SOFT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <FileText size={isMobile ? 20 : 24} style={{ color: INDIGO_ACCENT }} />
                     </div>
                     <div style={{ minWidth: 0 }}>
                       <h3 style={{ fontSize: isMobile ? '15px' : '18px', fontWeight: 800, color: T.text, margin: 0, padding: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{selectedPreview.title || selectedPreview.name}</h3>
-                      <p style={{ fontSize: '12px', color: T.muted, margin: 0, marginTop: '2px' }}>{formatBytes(selectedPreview.size)}</p>
+                      <p style={{ fontSize: '12px', color: T.muted, margin: '2px 0 0 0' }}>{formatBytes(selectedPreview.size)}</p>
                     </div>
                   </div>
                   <div style={{ display: 'flex', gap: '8px' }}>
                     <a href={`/api/storage/b2/download?key=${encodeURIComponent(selectedPreview.fileKey)}`} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                       <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                         style={{ 
-                          background: RED_ACCENT, color: '#fff', border: 'none', 
+                          background: INDIGO_ACCENT, color: '#fff', border: 'none', 
                           padding: isMobile ? '10px 14px' : '10px 24px', borderRadius: '12px', fontWeight: 700, 
                           display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: isMobile ? '12px' : '14px'
                         }}>
@@ -312,7 +312,7 @@ export default function LandingStorageSearch({ isDark, T }: { isDark: boolean; T
                         <div style={{ textAlign: 'center', padding: '40px' }}>
                            <FileText size={isMobile ? 48 : 64} style={{ color: 'rgba(0,0,0,0.2)', marginBottom: '16px' }} />
                            <h4 style={{ color: '#333', fontSize: isMobile ? '18px' : '20px', fontWeight: 600 }}>No Preview</h4>
-                           <p style={{ color: '#666', marginTop: '8px', maxWidth: '300px', margin: '8px auto', fontSize: '13px' }}>
+                           <p style={{ color: '#666', margin: '8px auto', maxWidth: '300px', fontSize: '13px' }}>
                              This file type ({ext?.toUpperCase()}) cannot be previewed. Please download to view.
                            </p>
                         </div>

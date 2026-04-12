@@ -35,6 +35,7 @@ export function AdminLandingClient() {
     hod_photo_url: 'https://ui-avatars.com/api/?name=HOD&size=200',
     show_faculties: true,
     show_gallery: true,
+    logos: [] as string[],
   })
 
   // Events & Gallery State
@@ -113,6 +114,67 @@ export function AdminLandingClient() {
       toast.success('Hero settings updated')
     } catch (err) {
       toast.error('Failed to update')
+    }
+  }
+
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    const toastId = toast.loading('Uploading logo...')
+
+    try {
+      const uploadData = new FormData()
+      uploadData.append('file', file)
+      const res = await fetch('/api/storage/b2/upload', { method: 'POST', body: uploadData })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Upload failed')
+
+      const logoUrl = `/api/storage/b2/download?key=${encodeURIComponent(data.fileKey)}`
+      setHeroSettings(prev => ({
+        ...prev,
+        logos: [...(prev.logos || []), logoUrl]
+      }))
+      toast.success('Logo uploaded!', { id: toastId })
+    } catch (err: any) {
+      toast.error(err.message, { id: toastId })
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const removeLogo = (index: number) => {
+    setHeroSettings(prev => ({
+      ...prev,
+      logos: prev.logos.filter((_, i) => i !== index)
+    }))
+  }
+
+  const handleHodPhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    const toastId = toast.loading('Uploading HOD photo...')
+
+    try {
+      const uploadData = new FormData()
+      uploadData.append('file', file)
+      const res = await fetch('/api/storage/b2/upload', { method: 'POST', body: uploadData })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Upload failed')
+
+      const photoUrl = `/api/storage/b2/download?key=${encodeURIComponent(data.fileKey)}`
+      setHeroSettings(prev => ({
+        ...prev,
+        hod_photo_url: photoUrl
+      }))
+      toast.success('HOD photo updated!', { id: toastId })
+    } catch (err: any) {
+      toast.error(err.message, { id: toastId })
+    } finally {
+      setUploading(false)
     }
   }
 
@@ -292,8 +354,26 @@ export function AdminLandingClient() {
         )}
 
         {activeTab === 'hero' && (
-          <div className="card" style={{ maxWidth: '600px' }}>
-            <h3 className="section-heading" style={{ marginBottom: '20px' }}>Main Section Settings</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <div className="card">
+              <h3 className="section-heading" style={{ marginBottom: '20px' }}>Header Logos</h3>
+              <p className="secondary-text" style={{ fontSize: '11px', marginBottom: '16px' }}>Manage multiple department/institution logos shown in the header.</p>
+              
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
+                {(heroSettings.logos || []).map((url, idx) => (
+                  <div key={idx} style={{ position: 'relative', width: '60px', height: '60px', borderRadius: '8px', border: '1px solid var(--border-color)', background: '#f8f9fa', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                    <img src={url} alt="Logo" style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain' }} />
+                    <button onClick={() => removeLogo(idx)} style={{ position: 'absolute', top: '2px', right: '2px', background: 'white', border: '1px solid #ddd', borderRadius: '4px', cursor: 'pointer', padding: '2px', fontSize: '8px' }}>❌</button>
+                  </div>
+                ))}
+                
+                <label style={{ width: '60px', height: '60px', borderRadius: '8px', border: '1.5px dashed var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '20px', color: 'var(--text-tertiary)' }}>
+                  +
+                  <input type="file" accept="image/*" hidden onChange={handleLogoUpload} disabled={uploading} />
+                </label>
+              </div>
+
+              <h3 className="section-heading" style={{ marginBottom: '20px', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>Main Section Settings</h3>
             <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label className="form-label">Hero Title</label>
                 <input className="form-input" value={heroSettings.title} onChange={e => setHeroSettings({...heroSettings, title: e.target.value})} />
@@ -315,6 +395,37 @@ export function AdminLandingClient() {
             </div>
 
             <button className="btn btn-filled" onClick={saveHeroSettings} style={{ background: '#1A1A18', color: 'white' }}>Save All Changes</button>
+          </div>
+
+          <div className="card">
+              <h3 className="section-heading" style={{ marginBottom: '20px' }}>HOD Profile Settings</h3>
+              <p className="secondary-text" style={{ fontSize: '11px', marginBottom: '20px' }}>Update the Head of Department information shown in the message section.</p>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '24px' }}>
+                <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--border-color)', background: '#eee' }}>
+                  <img src={heroSettings.hod_photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(heroSettings.hod_name || 'H')}&background=6366F1&color=FFFFFF&size=200`} alt="HOD" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                <div>
+                  <label className="btn btn-ghost btn-sm" style={{ cursor: 'pointer', border: '1px solid #ddd' }}>
+                    Change HOD Photo
+                    <input type="file" accept="image/*" hidden onChange={handleHodPhotoUpload} disabled={uploading} />
+                  </label>
+                  <p className="secondary-text" style={{ fontSize: '10px', marginTop: '6px' }}>Recommended: Square image, 400x400px.</p>
+                </div>
+              </div>
+
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                  <label className="form-label">HOD Name</label>
+                  <input className="form-input" value={heroSettings.hod_name} onChange={e => setHeroSettings({...heroSettings, hod_name: e.target.value})} />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                  <label className="form-label">HOD Quote / Message</label>
+                  <textarea className="form-input" rows={5} value={heroSettings.hod_quote} onChange={e => setHeroSettings({...heroSettings, hod_quote: e.target.value})} />
+              </div>
+
+              <button className="btn btn-filled" onClick={saveHeroSettings} style={{ background: '#1A1A18', color: 'white' }}>Update HOD Info</button>
+          </div>
           </div>
         )}
 

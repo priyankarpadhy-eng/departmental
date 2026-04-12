@@ -126,36 +126,39 @@ const styles = StyleSheet.create({
     width: 350,
     opacity: 0.05,
   },
-  roundSealContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: 130,
-    height: 130,
-    borderRadius: 65,
-    borderWidth: 3,
-    borderStyle: 'solid',
-    borderColor: '#10B981', // emerald-500 equivalent
-
+  stampContainer: {
+    borderWidth: 1.5,
+    borderColor: '#000',
+    padding: 10,
+    width: 160,
+    height: 90,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
-    backgroundColor: 'rgba(5, 150, 105, 0.05)',
+    marginBottom: 10,
   },
-  roundSealText: {
-    fontSize: 9,
-    color: '#059669',
+  stampText: {
+    fontSize: 10,
+    color: '#000',
     fontFamily: 'Helvetica-Bold',
     textAlign: 'center',
     textTransform: 'uppercase',
+    marginBottom: 4,
   },
-  roundSealSub: {
-    fontSize: 7,
-    color: '#059669',
-    marginTop: 4,
+  stampSub: {
+    fontSize: 8,
+    color: '#000',
     textAlign: 'center',
+    fontFamily: 'Helvetica',
+  },
+  legalClause: {
+    fontSize: 7,
+    color: '#333',
+    fontFamily: 'Times-Italic',
+    textAlign: 'center',
+    width: 180,
+    marginTop: 5,
   },
   verifyFooter: {
     position: 'absolute',
@@ -274,19 +277,26 @@ export const CertificateTemplate = ({ request = {} }: CertProps) => {
         </View>
 
         <View style={styles.footer}>
-          {/* Circular Digital Seal */}
-          <View style={styles.roundSealContainer}>
-            <Text style={styles.roundSealText}>DIGITALLY SIGNED</Text>
-            <Text style={styles.roundSealSub}>DEPT. OF CIVIL ENGG</Text>
-            <Text style={styles.roundSealSub}>IGIT SARANG</Text>
-            <Text style={{ ...styles.roundSealSub, fontSize: 5 }}>[ID:{reqId.substring(0, 8).toUpperCase()}]</Text>
+          {/* Rectangular Black Stamp */}
+          <View style={{ alignItems: 'center' }}>
+            <View style={styles.stampContainer}>
+              <Text style={styles.stampText}>DIGITALLY SIGNED</Text>
+              <Text style={styles.stampSub}>DEPT. OF CIVIL ENGG</Text>
+              <Text style={styles.stampSub}>IGIT SARANG</Text>
+              <Text style={{ ...styles.stampSub, fontSize: 6, marginTop: 4 }}>ID: {reqId.toUpperCase()}</Text>
+              <Text style={{ ...styles.stampSub, fontSize: 6 }}>DATE: {dateFormatted}</Text>
+            </View>
+            
+            {/* Legal Clause below the stamp */}
+            <Text style={styles.legalClause}>
+              As per IT Act 2000, this digital signature is legally valid and holds the same value as a physical signature.
+            </Text>
           </View>
 
           {/* HOD Signature Proxy */}
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', marginTop: 15 }}>
             <Text style={styles.signatureProxy}>HOD-CE</Text>
             <View style={styles.signatureLineContainer}>
-              <Text style={styles.signatoryText}>{dateFormatted}</Text>
               <Text style={styles.signatoryText}>Head of Department, CE</Text>
             </View>
           </View>

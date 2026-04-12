@@ -38,17 +38,17 @@ const StatCard = ({ value, label, icon, isDark }: { value: string; label: string
     whileHover={{ y: -8, scale: 1.04 }}
     transition={{ type: 'spring', stiffness: 300, damping: 22 }}
     style={{
-      background: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)',
-      border: isDark ? '1px solid rgba(185,255,102,0.18)' : '1px solid rgba(0,0,0,0.1)',
+      background: isDark ? 'rgba(255,255,255,0.04)' : '#FFFFFF',
+      border: isDark ? '1px solid rgba(99, 102, 241, 0.2)' : '1px solid rgba(0,0,0,0.08)',
       borderRadius: '20px', padding: '28px 20px',
       backdropFilter: 'blur(12px)', textAlign: 'center', cursor: 'default',
-      boxShadow: isDark ? 'none' : '0 4px 20px rgba(0,0,0,0.06)',
+      boxShadow: isDark ? 'none' : '0 4px 20px rgba(0,0,0,0.05)',
     }}
   >
     <div style={{ fontSize: '34px', marginBottom: '8px' }}>{icon}</div>
-    <div style={{ fontSize: '30px', fontWeight: 900, color: '#B9FF66', letterSpacing: '-1px',
-      textShadow: isDark ? '0 0 20px rgba(185,255,102,0.4)' : 'none' }}>{value}</div>
-    <div style={{ fontSize: '12px', color: isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)', marginTop: '6px', fontWeight: 600 }}>{label}</div>
+    <div style={{ fontSize: '32px', fontWeight: 900, color: '#6366F1', letterSpacing: '-1.5px',
+      textShadow: isDark ? '0 0 20px rgba(99, 102, 241, 0.3)' : 'none' }}>{value}</div>
+    <div style={{ fontSize: '13px', color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.75)', marginTop: '8px', fontWeight: 700 }}>{label}</div>
   </motion.div>
 )
 
@@ -70,7 +70,7 @@ const ExpandableNotice = ({ notice, delay, T, isDark, index }: any) => {
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: open ? '#B9FF66' : '#6479FF', flexShrink: 0, transition: 'background 0.3s' }} />
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: open ? '#6366F1' : '#64748B', flexShrink: 0, transition: 'background 0.3s' }} />
             <span style={{ fontWeight: 600, fontSize: '15px', color: open ? '#6479FF' : T.text, transition: 'color 0.3s' }}>
               {notice.title || 'Untitled Notice'}
             </span>
@@ -148,7 +148,7 @@ const FeatureCard = ({ title, desc, icon, accent, isDark }: { title: string; des
 )
 
 // ─── Faculty Card ─────────────────────────────────────────────────────────────
-const FacultyCard = ({ prof, isDark }: { prof: any; isDark: boolean }) => (
+const FacultyCard = ({ prof, isDark, T }: { prof: any; isDark: boolean; T: any }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -167,18 +167,18 @@ const FacultyCard = ({ prof, isDark }: { prof: any; isDark: boolean }) => (
   >
     <div style={{
       width: '80px', height: '80px', borderRadius: '50%',
-      border: '3px solid rgba(185,255,102,0.5)', overflow: 'hidden', flexShrink: 0,
+      border: `3px solid ${T.accent}33`, overflow: 'hidden', flexShrink: 0,
     }}>
       <img
-        src={prof.photo_url || prof.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.full_name || 'F')}&background=B9FF66&color=191A23&size=200`}
+        src={prof.photo_url || prof.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.full_name || 'F')}&background=6366F1&color=FFFFFF&size=200`}
         alt={prof.full_name || 'Faculty'}
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        onError={(e: any) => { e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.full_name || 'F')}&background=B9FF66&color=191A23&size=200` }}
+        onError={(e: any) => { e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(prof.full_name || 'F')}&background=6366F1&color=FFFFFF&size=200` }}
       />
     </div>
     <div>
       <div style={{ fontWeight: 800, color: isDark ? '#FFFFFF' : '#191A23', fontSize: '15px' }}>{prof.full_name}</div>
-      <div style={{ fontSize: '12px', color: '#16a34a', marginTop: '4px', fontWeight: 700 }}>{prof.designation || 'Faculty'}</div>
+      <div style={{ fontSize: '12px', color: T.accent, marginTop: '4px', fontWeight: 700 }}>{prof.designation || 'Faculty'}</div>
       {prof.expertise && <div style={{ fontSize: '11px', color: isDark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.45)', marginTop: '6px' }}>{prof.expertise}</div>}
     </div>
   </motion.div>
@@ -196,6 +196,7 @@ export default function LandingPage() {
   const [events, setEvents] = useState<NewsEvent[]>([])
   const [gallery, setGallery] = useState<GalleryPhoto[]>([])
   const [currentGalleryIdx, setCurrentGalleryIdx] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
   const [hod, setHod] = useState<Profile | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -250,23 +251,25 @@ export default function LandingPage() {
     hod_photo_url: '',
     show_faculties: true,
     show_gallery: true,
+    logos: [],
   })
 
-  // Dynamic theme tokens
+  // Dynamic theme tokens - Premium Indigo & Slate
   const T = {
-    bg:        isDark ? '#0A0A0F'              : '#F8FAF5',
-    surface:   isDark ? 'rgba(255,255,255,0.04)' : '#FFFFFF',
-    border:    isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
-    text:      isDark ? '#FFFFFF'              : '#191A23',
-    muted:     isDark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.5)',
-    faint:     isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)',
-    navBg:     isDark ? 'rgba(10,10,15,0.92)'   : 'rgba(248,250,245,0.92)',
-    navBorder: isDark ? 'rgba(185,255,102,0.15)' : 'rgba(0,0,0,0.1)',
-    orbA:      isDark ? 'rgba(185,255,102,0.10)' : 'rgba(185,255,102,0.18)',
-    orbB:      isDark ? 'rgba(100,121,255,0.09)' : 'rgba(100,121,255,0.12)',
-    shadow:    isDark ? 'none'                  : '0 4px 24px rgba(0,0,0,0.07)',
-    accent:    '#B9FF66',
-    accentDark: '#191A23',
+    bg:        isDark ? '#020617'              : '#FFFFFF',
+    surface:   isDark ? 'rgba(15, 23, 42, 0.6)' : 'rgba(248, 250, 252, 0.8)',
+    border:    isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+    text:      isDark ? '#F1F5F9'              : '#0F172A',
+    muted:     isDark ? '#94A3B8'              : '#64748B',
+    faint:     isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+    navBg:     isDark ? 'rgba(2, 6, 23, 0.85)'  : 'rgba(255, 255, 255, 0.85)',
+    navBorder: isDark ? 'rgba(99, 102, 241, 0.15)' : 'rgba(99, 102, 241, 0.08)',
+    orbA:      isDark ? 'rgba(99, 102, 241, 0.12)' : 'rgba(99, 102, 241, 0.15)',
+    orbB:      isDark ? 'rgba(139, 92, 246, 0.10)' : 'rgba(139, 92, 246, 0.12)',
+    shadow:    isDark ? '0 10px 40px rgba(0,0,0,0.3)' : '0 10px 30px rgba(99, 102, 241, 0.05)',
+    accent:    '#6366F1',
+    accentDark: '#4F46E5',
+    success:   '#6366F1',
   }
 
   const { scrollYProgress } = useScroll()
@@ -293,12 +296,12 @@ export default function LandingPage() {
     { id: 'p3', image_url: 'https://plus.unsplash.com/premium_photo-1661962283999-906969543884?q=80&w=2000&auto=format&fit=crop', title: 'Surveying Session' },
   ]
 
-  // Auto-advance gallery
+  // Auto-advance gallery - respects isPaused state
   useEffect(() => {
-    if (gallery.length <= 1) return
+    if (gallery.length <= 1 || isPaused) return
     const timer = setInterval(() => setCurrentGalleryIdx(p => (p + 1) % gallery.length), 4500)
     return () => clearInterval(timer)
-  }, [gallery.length])
+  }, [gallery.length, isPaused])
 
   // Preload gallery images to ensure they are fetched only once and kept in memory
   useEffect(() => {
@@ -370,18 +373,18 @@ export default function LandingPage() {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #B9FF66; border-radius: 99px; }
+        ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 99px; }
 
         .hero-title-dark {
-          background: linear-gradient(135deg, #FFFFFF 0%, rgba(255,255,255,0.65) 100%);
+          background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
         .hero-title-light {
-          background: linear-gradient(135deg, #0f2010 0%, #1a5c28 100%);
+          background: linear-gradient(135deg, #0F172A 0%, #4338CA 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -445,14 +448,26 @@ export default function LandingPage() {
           transition: 'all 0.4s ease',
         }}
       >
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: isMobile ? '8px' : '10px' }}>
-          <motion.div whileHover={{ rotate: 10, scale: 1.1 }} style={{
-            width: isMobile ? '32px' : '36px', height: isMobile ? '32px' : '36px', borderRadius: '10px',
-            background: 'linear-gradient(135deg, #B9FF66, #91cc4a)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 900, fontSize: isMobile ? '16px' : '18px', color: '#191A23',
-          }}>C</motion.div>
-          <span style={{ fontWeight: 800, fontSize: isMobile ? '13px' : '14px', color: T.text, letterSpacing: '0.5px', transition: 'color 0.4s' }}>CIVIL DEPT</span>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: isMobile ? '10px' : '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {(settings.logos && (settings as any).logos.length > 0) ? (
+              (settings as any).logos.map((url: string, idx: number) => (
+                <img 
+                  key={idx}
+                  src={url} 
+                  alt="Logo" 
+                  style={{ width: isMobile ? '30px' : '38px', height: 'auto', objectFit: 'contain' }} 
+                />
+              ))
+            ) : (
+                <div style={{ 
+                  width: '36px', height: '36px', borderRadius: '8px', 
+                  background: 'rgba(99, 102, 241, 0.1)', border: '1px dashed rgba(99, 102, 241, 0.3)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6366F1', fontSize: '10px', fontWeight: 900
+                }}>LOGO</div>
+            )}
+          </div>
+          <span style={{ fontWeight: 800, fontSize: isMobile ? '13px' : '16px', color: T.text, letterSpacing: '0.3px', transition: 'color 0.4s' }}>Dept. of Civil Engineering</span>
         </Link>
 
         {!isMobile && (
@@ -477,7 +492,7 @@ export default function LandingPage() {
           {user ? (
             <motion.button onClick={handleDashboardRedirect}
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-              style={{ background: '#B9FF66', color: '#191A23', padding: isMobile ? '8px 14px' : '10px 22px', borderRadius: '12px', border: 'none', fontWeight: 900, cursor: 'pointer', fontSize: isMobile ? '12px' : '14px' }}
+              style={{ background: '#6366F1', color: '#FFFFFF', padding: isMobile ? '8px 14px' : '10px 22px', borderRadius: '12px', border: 'none', fontWeight: 900, cursor: 'pointer', fontSize: isMobile ? '12px' : '14px' }}
             >{isMobile ? 'Dashboard' : 'Dashboard →'}</motion.button>
           ) : (
             <div style={{ display: 'flex', gap: '10px' }}>
@@ -488,9 +503,9 @@ export default function LandingPage() {
               }}>Verify</a>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/login" style={{
-                  textDecoration: 'none', border: '1.5px solid #B9FF66',
-                  background: isDark ? 'transparent' : 'rgba(185,255,102,0.08)',
-                  color: isDark ? '#B9FF66' : '#16a34a', padding: isMobile ? '8px 14px' : '10px 22px',
+                  textDecoration: 'none', border: `1.5px solid ${T.accent}`,
+                  background: isDark ? 'transparent' : 'rgba(99, 102, 241, 0.05)',
+                  color: T.accent, padding: isMobile ? '8px 14px' : '10px 22px',
                   borderRadius: '12px', fontWeight: 900, fontSize: isMobile ? '12px' : '14px', display: 'block', transition: 'all 0.3s',
                 }}>Login</Link>
               </motion.div>
@@ -557,9 +572,9 @@ export default function LandingPage() {
           <motion.div initial={{ opacity: 0, y: 20, scale: 0.85 }} animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: isMobile ? '20px' : '32px' }}>
             <span style={{
-              background: isDark ? 'rgba(185,255,102,0.1)' : 'rgba(22,163,74,0.08)',
-              border: isDark ? '1px solid rgba(185,255,102,0.3)' : '1px solid rgba(22,163,74,0.25)',
-              color: isDark ? '#B9FF66' : '#16a34a', padding: '6px 18px',
+              background: 'rgba(99, 102, 241, 0.1)',
+              border: '1px solid rgba(99, 102, 241, 0.25)',
+              color: '#6366F1', padding: '6px 18px',
               borderRadius: '99px', fontSize: isMobile ? '11px' : '13px', fontWeight: 700,
             }}>
               🎓 IGIT SARANG · Civil Engineering
@@ -590,13 +605,13 @@ export default function LandingPage() {
           >
             {user ? (
               <motion.button onClick={handleDashboardRedirect}
-                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(185,255,102,0.35)' }} whileTap={{ scale: 0.96 }}
-                style={{ background: 'linear-gradient(135deg,#B9FF66,#91cc4a)', color: '#191A23', padding: isMobile ? '14px 28px' : '16px 40px', borderRadius: '16px', border: 'none', fontWeight: 900, fontSize: isMobile ? '14px' : '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
+                whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${T.accent}33` }} whileTap={{ scale: 0.96 }}
+                style={{ background: 'linear-gradient(135deg, #6366F1, #4338CA)', color: '#FFFFFF', padding: isMobile ? '14px 28px' : '16px 40px', borderRadius: '16px', border: 'none', fontWeight: 900, fontSize: isMobile ? '14px' : '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}
               >Manage Workspace <span>→</span></motion.button>
             ) : (
               <>
-                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 0 28px rgba(185,255,102,0.3)' }} whileTap={{ scale: 0.96 }} style={{ width: isMobile ? '100%' : 'auto' }}>
-                  <Link href="/login" style={{ background: 'linear-gradient(135deg,#B9FF66,#91cc4a)', color: '#191A23', padding: isMobile ? '14px' : '16px 36px', borderRadius: '16px', fontWeight: 900, fontSize: isMobile ? '14px' : '16px', textDecoration: 'none', display: 'block', textAlign: 'center' }}>Login Access →</Link>
+                <motion.div whileHover={{ scale: 1.05, boxShadow: `0 0 28px ${T.accent}22` }} whileTap={{ scale: 0.96 }} style={{ width: isMobile ? '100%' : 'auto' }}>
+                  <Link href="/login" style={{ background: 'linear-gradient(135deg, #6366F1, #4338CA)', color: '#FFFFFF', padding: isMobile ? '14px' : '16px 36px', borderRadius: '16px', fontWeight: 900, fontSize: isMobile ? '14px' : '16px', textDecoration: 'none', display: 'block', textAlign: 'center' }}>Login Access →</Link>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }} style={{ width: isMobile ? '100%' : 'auto' }}>
                   <Link href="/login" style={{
@@ -630,7 +645,7 @@ export default function LandingPage() {
         <section id="hod" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 100px', position: 'relative', zIndex: 1 }}>
           <FadeUp>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: isMobile ? '32px' : '48px' }}>
-              <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>HOD</div>
+              <div style={{ background: T.accent, color: '#FFFFFF', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>HOD</div>
               <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Visionary leadership guiding our department.</p>
             </div>
           </FadeUp>
@@ -638,9 +653,9 @@ export default function LandingPage() {
             <motion.div whileHover={isMobile ? {} : { boxShadow: isDark ? '0 30px 80px rgba(0,0,0,0.5)' : '0 20px 60px rgba(0,0,0,0.12)' }}
               style={{
                 background: isDark
-                  ? 'linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(185,255,102,0.04) 100%)'
-                  : 'linear-gradient(135deg,#FFFFFF 0%,rgba(185,255,102,0.06) 100%)',
-                border: isDark ? '1px solid rgba(185,255,102,0.2)' : '1px solid rgba(0,0,0,0.08)',
+                  ? 'linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(99, 102, 241, 0.04) 100%)'
+                  : 'linear-gradient(135deg,#FFFFFF 0%,rgba(99, 102, 241, 0.06) 100%)',
+                border: isDark ? '1px solid rgba(99, 102, 241, 0.2)' : '1px solid rgba(0,0,0,0.08)',
                 borderRadius: '32px', padding: isMobile ? '32px 24px' : '52px',
                 display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '32px' : '48px', alignItems: 'center',
                 backdropFilter: isDark ? 'blur(20px)' : 'none',
@@ -650,25 +665,25 @@ export default function LandingPage() {
               }}
             >
               <div style={{ position: 'absolute', top: 0, right: 0, width: '200px', height: '200px', borderRadius: '50%',
-                background: isDark ? 'radial-gradient(circle,rgba(185,255,102,0.08) 0%,transparent 70%)' : 'radial-gradient(circle,rgba(185,255,102,0.18) 0%,transparent 70%)',
+                background: isDark ? 'radial-gradient(circle,rgba(99, 102, 241, 0.08) 0%,transparent 70%)' : 'radial-gradient(circle,rgba(99, 102, 241, 0.18) 0%,transparent 70%)',
                 pointerEvents: 'none' }} />
               <div style={{ textAlign: 'center', flexShrink: 0 }}>
-                <motion.div whileHover={{ scale: 1.06 }} style={{ width: isMobile ? '140px' : '160px', height: isMobile ? '140px' : '160px', borderRadius: '24px', overflow: 'hidden', margin: '0 auto', border: '3px solid rgba(185,255,102,0.45)', boxShadow: '0 0 40px rgba(185,255,102,0.15)' }}>
+                <motion.div whileHover={{ scale: 1.06 }} style={{ width: isMobile ? '140px' : '160px', height: isMobile ? '140px' : '160px', borderRadius: '24px', overflow: 'hidden', margin: '0 auto', border: '3px solid rgba(99, 102, 241, 0.45)', boxShadow: '0 0 40px rgba(99, 102, 241, 0.15)' }}>
                   <img
-                    src={settings.hod_photo_url || hod?.photo_url || `https://ui-avatars.com/api/?name=Dr+G+K+Pothal&background=B9FF66&color=191A23&size=512`}
+                    src={settings.hod_photo_url || hod?.photo_url || `https://ui-avatars.com/api/?name=Dr+G+K+Pothal&background=6366F1&color=FFFFFF&size=512`}
                     alt="HOD" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e: any) => { e.target.src = 'https://ui-avatars.com/api/?name=HOD&background=B9FF66&color=191A23&size=512' }}
+                    onError={(e: any) => { e.target.src = 'https://ui-avatars.com/api/?name=HOD&background=6366F1&color=FFFFFF&size=512' }}
                   />
                 </motion.div>
                 <div style={{ marginTop: '16px', fontWeight: 800, fontSize: '16px', color: T.text }}>{settings.hod_name}</div>
-                <div style={{ fontSize: '12px', color: '#16a34a', fontWeight: 700, marginTop: '4px' }}>Head of Department</div>
+                <div style={{ fontSize: '12px', color: '#6366F1', fontWeight: 700, marginTop: '4px' }}>Head of Department</div>
               </div>
               <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
-                <div style={{ fontSize: '48px', color: '#B9FF66', fontWeight: 900, lineHeight: 0.5, marginBottom: '16px' }}>"</div>
+                <div style={{ fontSize: '48px', color: '#6366F1', fontWeight: 900, lineHeight: 0.5, marginBottom: '16px' }}>"</div>
                 <p style={{ fontSize: isMobile ? '16px' : '18px', lineHeight: 1.8, color: T.muted, fontStyle: 'italic', transition: 'color 0.4s' }}>{settings.hod_quote}</p>
                 <div style={{ marginTop: '28px', display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-start' }}>
-                  <span style={{ background: isDark ? 'rgba(185,255,102,0.1)' : 'rgba(22,163,74,0.08)', border: isDark ? '1px solid rgba(185,255,102,0.2)' : '1px solid rgba(22,163,74,0.2)', padding: '6px 14px', borderRadius: '99px', fontSize: '11px', color: isDark ? '#B9FF66' : '#16a34a', fontWeight: 700 }}>Civil Engineering</span>
-                  <span style={{ background: isDark ? 'rgba(100,121,255,0.1)' : 'rgba(100,121,255,0.08)', border: isDark ? '1px solid rgba(100,121,255,0.2)' : '1px solid rgba(100,121,255,0.2)', padding: '6px 14px', borderRadius: '99px', fontSize: '11px', color: '#6479FF', fontWeight: 700 }}>IGIT SARANG</span>
+                  <span style={{ background: 'rgba(99, 102, 241, 0.1)', border: '1px solid rgba(99, 102, 241, 0.2)', padding: '6px 14px', borderRadius: '99px', fontSize: '11px', color: '#6366F1', fontWeight: 700 }}>Civil Engineering</span>
+                  <span style={{ background: 'rgba(99, 102, 241, 0.1)', border: '1px solid rgba(99, 102, 241, 0.2)', padding: '6px 14px', borderRadius: '99px', fontSize: '11px', color: '#6366F1', fontWeight: 700 }}>IGIT SARANG</span>
                 </div>
               </div>
             </motion.div>
@@ -794,10 +809,27 @@ export default function LandingPage() {
               <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Capturing moments of innovation.</p>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
-              {[{ label: '←', fn: () => setCurrentGalleryIdx(p => (p - 1 + activeGallery.length) % activeGallery.length) },
-                { label: '→', fn: () => setCurrentGalleryIdx(p => (p + 1) % activeGallery.length) }].map(btn => (
+              <motion.button 
+                onClick={() => setIsPaused(!isPaused)}
+                whileHover={{ scale: 1.1, background: isPaused ? '#B9FF66' : T.surface }} 
+                whileTap={{ scale: 0.9 }}
+                style={{ 
+                  width: '42px', height: '42px', borderRadius: '12px', 
+                  background: isPaused ? '#B9FF66' : T.surface, 
+                  color: isPaused ? '#191A23' : T.text, 
+                  border: `1px solid ${T.border}`, 
+                  cursor: 'pointer', fontSize: '18px', 
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', 
+                  transition: 'all 0.3s', boxShadow: T.shadow 
+                }}
+                title={isPaused ? 'Resume Slideshow' : 'Pause Slideshow'}
+              >
+                {isPaused ? '▶' : '⏸'}
+              </motion.button>
+              {[{ label: '←', fn: () => { setCurrentGalleryIdx(p => (p - 1 + activeGallery.length) % activeGallery.length); setIsPaused(true); } },
+                { label: '→', fn: () => { setCurrentGalleryIdx(p => (p + 1) % activeGallery.length); setIsPaused(true); } }].map(btn => (
                 <motion.button key={btn.label} onClick={btn.fn}
-                  whileHover={{ scale: 1.1, background: '#B9FF66', color: '#191A23' }} whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.1, background: T.accent, color: '#FFFFFF' }} whileTap={{ scale: 0.9 }}
                   style={{ width: '42px', height: '42px', borderRadius: '12px', background: T.surface, color: T.text, border: `1px solid ${T.border}`, cursor: 'pointer', fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s', boxShadow: T.shadow }}
                 >{btn.label}</motion.button>
               ))}
@@ -863,7 +895,7 @@ export default function LandingPage() {
       <section id="features" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
         <FadeUp>
           <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', marginBottom: isMobile ? '32px' : '48px' }}>
-            <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Features</div>
+            <div style={{ background: T.accent, color: '#FFFFFF', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Features</div>
             <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Integrated academic tools.</p>
           </div>
         </FadeUp>
@@ -887,12 +919,12 @@ export default function LandingPage() {
         <section id="faculty" style={{ padding: isMobile ? '0 5% 80px' : '0 8% 120px', position: 'relative', zIndex: 1 }}>
           <FadeUp>
             <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '16px', marginBottom: isMobile ? '32px' : '48px' }}>
-              <div style={{ background: '#B9FF66', color: '#191A23', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Faculty</div>
+              <div style={{ background: T.accent, color: '#FFFFFF', padding: '4px 16px', borderRadius: '10px', fontWeight: 900, fontSize: isMobile ? '20px' : '26px' }}>Faculty</div>
               <p style={{ color: T.muted, fontSize: isMobile ? '13px' : '15px' }}>Inspiring minds.</p>
             </div>
           </FadeUp>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(auto-fill,minmax(190px,1fr))', gap: isMobile ? '12px' : '20px' }}>
-            {faculties.map(fac => <FacultyCard key={fac.id} prof={fac} isDark={isDark} />)}
+            {faculties.map(fac => <FacultyCard key={fac.id} prof={fac} isDark={isDark} T={T} />)}
           </div>
         </section>
       )}

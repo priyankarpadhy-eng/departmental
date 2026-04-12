@@ -180,8 +180,8 @@ export function AuditDashboardClient({ onlineAdmins, auditLogs, loginSessions, a
                 </tr>
               </thead>
               <tbody>
-                {filteredLogs.map(log => (
-                  <tr key={log.id}>
+                {filteredLogs.map((log, idx) => (
+                  <tr key={log.id || log._id || idx}>
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div className="avatar avatar-sm" style={{ background: 'var(--surface-secondary)' }}>
@@ -232,8 +232,8 @@ export function AuditDashboardClient({ onlineAdmins, auditLogs, loginSessions, a
               </tr>
             </thead>
             <tbody>
-              {loginSessions.map((s: any) => (
-                <tr key={s.id}>
+              {loginSessions.map((s: any, idx) => (
+                <tr key={s.id || s._id || idx}>
                   <td style={{ fontSize: '12px', fontWeight: 500 }}>{s.admin?.full_name || '—'}</td>
                   <td className="secondary-text" style={{ maxWidth: '180px', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.device || '—'}</td>
                   <td className="secondary-text">{s.ip_address || '—'}</td>

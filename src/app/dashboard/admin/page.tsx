@@ -261,8 +261,8 @@ export default function AdminDashboard() {
                 </div>
             ) : onlineAdmins.length > 0 ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {onlineAdmins.map((presence: any) => (
-                  <div key={presence.id} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {onlineAdmins.map((presence: any, idx) => (
+                  <div key={presence.id || presence._id || idx} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <div className="avatar avatar-md" style={{ background: 'var(--accent-admin-bg)', color: 'var(--accent-admin)' }}>
                       {(presence.full_name || 'A').charAt(0).toUpperCase()}
                     </div>
